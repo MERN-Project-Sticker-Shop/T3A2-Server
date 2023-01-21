@@ -20,3 +20,14 @@ try{
 catch(err) {
   console.log(err)
 }
+
+//Create a schema and model for product
+const productSchema = await mongoose.Schema({
+  name: { type:String, required:true},
+  price: { type:Number, required:true},
+  description: { type:String, required:true}
+})
+
+const ProductModel = mongoose.model('Product', productSchema)
+
+export { ProductModel, dbClose }
