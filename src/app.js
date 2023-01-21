@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors'
-import { ProductModel, dbClose } from './db.js'
+import productRoutes from './routes/product_routes.js'
+
 
 //Create a new instance of express server
 const app = express() 
@@ -9,20 +10,7 @@ const app = express()
 app.use(cors())  
 app.use(express.json())  
 
-const products = [
-  {name: 'R U OK',
-   price: 10,
-   description: 'This is a sticker flakes'
-  },
-  {name: 'Summer Vibe',
-  price: 15,
-  description: 'This is a summary sticker sheet'
- }
-]
-
-await ProductModel.insertMany(products)
-console.log('Inserted products')
-
-dbClose()
+//Routes
+app.use('/products', productRoutes)
 
 export default app
