@@ -1,0 +1,33 @@
+{
+  "name": "t3t2-part-b-server",
+  "version": "1.0.0",
+  "description": "## GitHub Repo: [Part-A-Documentation](https://github.com/MERN-Project-Sticker-Shop/Part-A-Docs)",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watchAll",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chengqunniu/T3A2-Server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Chengqunniu/T3A2-Server/issues"
+  },
+  "homepage": "https://github.com/Chengqunniu/T3A2-Server#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.8.4"
+  },
+  "devDependencies": {
+    "jest": "^29.3.1",
+    "nodemon": "^2.0.20",
+    "supertest": "^6.3.3"
+  }
+}
