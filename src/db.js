@@ -32,7 +32,7 @@ const ProductModel = mongoose.model('Product', productSchema)
 
 //Create a shema and model for cart
 const cartSchema = await mongoose.Schema({
-  name: { type:String, required:true },
+  name: { type:mongoose.ObjectId, ref: 'Product' },
   price: { type:Number, required:true },
   quantity: { type:Number, required:true }
 })

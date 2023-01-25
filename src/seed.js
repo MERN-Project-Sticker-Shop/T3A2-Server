@@ -1,4 +1,4 @@
-import { ProductModel, dbClose } from './db.js'
+import { ProductModel, CartModel, dbClose } from './db.js'
 
 //Clear database
 await ProductModel.deleteMany()
@@ -16,7 +16,18 @@ const products = [
  }
 ]
 
-await ProductModel.insertMany(products)
+const pros = await ProductModel.insertMany(products)
 console.log('Inserted products')
+
+//Seed cart data to the database
+const carts = [
+  {name: pros[0],
+   price: pros[0].price,
+   quantity: 1}
+]
+
+await CartModel.insertMany(carts)
+
+console.log('Inserted entries')
 
 dbClose()
