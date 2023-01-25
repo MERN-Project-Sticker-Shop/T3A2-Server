@@ -30,4 +30,13 @@ const productSchema = await mongoose.Schema({
 
 const ProductModel = mongoose.model('Product', productSchema)
 
-export { ProductModel, dbClose }
+//Create a shema and model for cart
+const cartSchema = await mongoose.Schema({
+  name: { type:String, required:true },
+  price: { type:Number, required:true },
+  quantity: { type:Number, required:true }
+})
+
+const CartModel = mongoose.model('Cart', cartSchema)
+
+export { ProductModel, CartModel, dbClose }
