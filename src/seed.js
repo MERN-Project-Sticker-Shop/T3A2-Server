@@ -4,6 +4,9 @@ import { ProductModel, CartModel, dbClose } from './db.js'
 await ProductModel.deleteMany()
 console.log('Deleted all products') 
 
+await CartModel.deleteMany()
+console.log('Deleted all cart items')
+
 //Seed product data to the database
 const products = [
   {name: 'R U OK',
@@ -21,9 +24,13 @@ console.log('Inserted products')
 
 //Seed cart data to the database
 const carts = [
-  {name: pros[0],
+  {item: [{product: pros[0].name,
    price: pros[0].price,
-   quantity: 1}
+   quantity: 1},
+   {product: pros[1].name,
+    price: pros[1].price,
+    quantity:10}
+  ]}
 ]
 
 await CartModel.insertMany(carts)

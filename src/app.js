@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import productRoutes from './routes/product_routes.js'
+import cartRoutes from './routes/cart_routes.js'
 
 
 //Create a new instance of express server
@@ -14,5 +15,6 @@ app.use(express.json())
 app.get('/', (request, response) => response.send({info: 'Sticker Shop API'})) // a route middleware
 
 app.use('/products', productRoutes)
+app.use('/carts', cartRoutes)
 
 export default app

@@ -28,15 +28,15 @@ const productSchema = await mongoose.Schema({
   description: { type:String, required:true}
 })
 
-const ProductModel = mongoose.model('Product', productSchema)
-
 //Create a shema and model for cart
-const cartSchema = await mongoose.Schema({
-  name: { type:mongoose.ObjectId, ref: 'Product' },
+const cartSchema = await mongoose.Schema(
+  {item: [{product: { type:String, required:true },
   price: { type:Number, required:true },
   quantity: { type:Number, required:true }
-})
+  }]}
+)
 
 const CartModel = mongoose.model('Cart', cartSchema)
+const ProductModel = mongoose.model('Product', productSchema)
 
 export { ProductModel, CartModel, dbClose }
