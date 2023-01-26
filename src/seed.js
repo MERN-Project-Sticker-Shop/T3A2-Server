@@ -42,19 +42,19 @@ console.log('Inserted products')
 const carts = [
   {item: [
     {
-    product: pros[0].name,
+    product: pros[0],
     price: pros[0].price,
     quantity: 1
     },
     {
-    product: pros[1].name,
+    product: pros[1],
     price: pros[1].price,
     quantity:10
     }
   ]},
   {item: [
     {
-    product: pros[1].name,
+    product: pros[1],
     price: pros[1].price,
     quantity: 20
     }
