@@ -53,8 +53,8 @@ console.log('Inserted cart items')
 
 // Seed order data to the database
 const orders = [
-  {content: cars[0], subtotal: 160},
-  {content: cars[1], subtotal: 300}
+  {cart: cars[0], subtotal: 160},
+  {cart: cars[1], subtotal: 300}
 ]
 
 await OrderModel.insertMany(orders)
