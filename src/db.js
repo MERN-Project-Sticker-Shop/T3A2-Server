@@ -38,7 +38,7 @@ const cartSchema = await mongoose.Schema(
 
 // Create a schema and model for order
 const orderSchema = await mongoose.Schema({
-  content: { type:mongoose.isObjectIdOrHexString, ref: 'Cart'},
+  content: { type:mongoose.ObjectId, ref: 'Cart'},
   subtotal: { type:Number, required:true }
 })
 
