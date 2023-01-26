@@ -38,13 +38,27 @@ const cartSchema = await mongoose.Schema(
 
 // Create a schema and model for order
 const orderSchema = await mongoose.Schema({
-  cart: { type:mongoose.ObjectId, ref: 'Cart'},
-  subtotal: { type:Number, required:true }
+  cart: { type:mongoose.ObjectId, ref: 'Cart' },
+  total: { type:Number, required:true },
+  address: { type:mongoose.ObjectId, ref: 'Address' }
+})
+
+// Create a schema and model for address
+const addressSchema = await mongoose.Schema({
+  email: { type:String, required:true},
+  firstName: { type:String, required:true},
+  lastName: { type:String, required:true},
+  Flat: { type:String},
+  streetAddress: { type:String, required:true},
+  city: { type:String, required:true},
+  state: { type:String, required:true},
+  postcode: { type:Number, required:true},
 })
 
 
 const CartModel = mongoose.model('Cart', cartSchema)
 const ProductModel = mongoose.model('Product', productSchema)
 const OrderModel = mongoose.model('Order', orderSchema)
+const AddressModel = mongoose.model('Address', addressSchema)
 
-export { ProductModel, CartModel, OrderModel, dbClose }
+export { ProductModel, CartModel, OrderModel, AddressModel, dbClose }
