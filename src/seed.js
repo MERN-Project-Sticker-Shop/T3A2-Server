@@ -17,11 +17,21 @@ console.log('Deleted all addresses')
 const products = [
   {name: 'R U OK',
    price: 10,
-   description: 'This is a sticker flakes'
+   description: 'This is a sticker flakes',
+   imageLinks: [
+    'https://ibb.co/7vdXTsW',
+    'https://ibb.co/DWTW5tV',
+    'https://ibb.co/XJpPqPT'
+   ]
   },
-  {name: 'Summer Vibe',
+  {name: 'Autumn Vibes',
   price: 15,
-  description: 'This is a summary sticker sheet'
+  description: 'This is a autumn sticker sheet',
+  imageLinks: [
+    'https://ibb.co/yNBcb0k',
+    'https://ibb.co/3WS3g9G',
+    'https://ibb.co/ymTVQ9m'
+  ]
  }
 ]
 
