@@ -1,4 +1,4 @@
-import { ProductModel, CartModel, OrderModel, dbClose } from './db.js'
+import { ProductModel, CartModel, OrderModel, AddressModel, dbClose } from './db.js'
 
 // Clear database
 await ProductModel.deleteMany()
@@ -9,6 +9,9 @@ console.log('Deleted all cart items')
 
 await OrderModel.deleteMany()
 console.log('Deleted all orders')
+
+await AddressModel.deleteMany()
+console.log('Deleted all addresses')
 
 // Seed product data to the database
 const products = [
@@ -51,10 +54,35 @@ const carts = [
 const cars = await CartModel.insertMany(carts)
 console.log('Inserted cart items')
 
+// Seed address data to the database
+const addresses = [
+  {
+    email: '12345@gmail.com',
+    firstName: 'Alex',
+    lastName: 'Yang',
+    streetAddress: '135 Elizabeth Street',
+    city: 'Melbourne',
+    state: 'VIC',
+    postcode: 3000,
+  }, 
+  {
+    email: '67899@gmail.com',
+    firstName: 'Bob',
+    lastName: 'Tian',
+    streetAddress: '188 Swanston Street',
+    city: 'Melbourne',
+    state: 'VIC',
+    postcode: 3000,
+  }
+]
+
+const adds = await AddressModel.insertMany(addresses)
+console.log('Inserted addresses')
+
 // Seed order data to the database
 const orders = [
-  {cart: cars[0], total: 160},
-  {cart: cars[1], total: 300}
+  {cart: cars[0], total: 160, address: adds[0]},
+  {cart: cars[1], total: 300, address: adds[1]}
 ]
 
 await OrderModel.insertMany(orders)
