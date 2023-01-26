@@ -32,7 +32,7 @@ async function updateCart(id, productName, result, res) {
     if (cartResult !== 'Cart Item not found!') {
       // Find the product and update the quantity
 
-      const productObject = await ProductModel.findOne({ name: productName })
+      const productObject = result.product
       const found = cartResult.find(obj => {
         return obj.product.toString() === productObject._id.toString()
       })
