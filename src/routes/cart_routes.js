@@ -8,7 +8,7 @@ const router = express.Router()
 async function checkProduct(productName, quantity) {
   const productObject = await ProductModel.findOne({ name: productName })
   if (productObject) {
-    const newCartitem = {product: productObject.name, price: productObject.price, quantity}
+    const newCartitem = { product: productObject, price: productObject.price, quantity}
     return newCartitem
   } else {
     return 'Product not found!'
@@ -16,7 +16,7 @@ async function checkProduct(productName, quantity) {
 }
 
 // Verify cart
-async function checkCart(id, res) {
+async function checkCart(id) {
   const cartObject = await CartModel.findOne({ _id: id  })
   if (cartObject) {
     const cartItem = cartObject.item
@@ -31,18 +31,23 @@ async function updateCart(id, productName, result, res) {
     const cartResult = await checkCart(id, res)
     if (cartResult !== 'Cart Item not found!') {
       // Find the product and update the quantity
-      for (var i in cartResult) {
-        if (cartResult[i].product === productName) {
-          cartResult[i].quantity += result.quantity
-        }else {
-          cartResult.push(result)
-        }}
+
+      const productObject = await ProductModel.findOne({ name: productName })
+      const found = cartResult.find(obj => {
+        return obj.product.toString() === productObject._id.toString()
+      })
+
+      if (found) {
+          found.quantity += result.quantity
+      }else {
+        cartResult.push(result)
+      }
       // Update the item array
       const updatedCartitem = {item: cartResult}
       // Update the database
       try {
         const newItem = await CartModel.findByIdAndUpdate(id, updatedCartitem, { new: true})
-        res.send(newItem)
+        res.send(await newItem.populate( { path: 'item.product', select: 'name description imageLinks'}))
       }
       catch(err) {
         res.status(500).send({ error: err.message })
@@ -72,7 +77,7 @@ router.post('/:cartid/:name', async (req, res) => {
       try {
         // Create a new instance of cart model and insert the newly created item array
         const insertedCartitem = await CartModel.create(newCartitem)
-        res.status(201).send(insertedCartitem)
+        res.status(201).send(await insertedCartitem.populate( { path: 'item.product', select: 'name description imageLinks'}))
         }
       catch(err) {
         res.status(500).send({ error: err.message })
