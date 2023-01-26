@@ -54,7 +54,7 @@ async function updateCart(id, productName, result, res) {
 
 // Get all cart items
 router.get('', async (req, res) => {
-  res.send(await CartModel.find())
+  res.send(await CartModel.find().populate({ path:'item.product', select: 'name description imageLinks'}))
 })
 
 // Add products to cart
