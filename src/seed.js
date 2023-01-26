@@ -18,16 +18,20 @@ const products = [
   {name: 'R U OK',
    price: 10,
    description: 'This is a sticker flakes',
-   image1: 'https://ibb.co/7vdXTsW',
-   image2: 'https://ibb.co/DWTW5tV',
-   image3: 'https://ibb.co/XJpPqPT'
+   imageLinks: [
+    'https://ibb.co/7vdXTsW',
+    'https://ibb.co/DWTW5tV',
+    'https://ibb.co/XJpPqPT'
+   ]
   },
   {name: 'Autumn Vibes',
   price: 15,
   description: 'This is a autumn sticker sheet',
-  image1: 'https://ibb.co/yNBcb0k',
-  image2: 'https://ibb.co/3WS3g9G',
-  image3: 'https://ibb.co/ymTVQ9m'
+  imageLinks: [
+    'https://ibb.co/yNBcb0k',
+    'https://ibb.co/3WS3g9G',
+    'https://ibb.co/ymTVQ9m'
+  ]
  }
 ]
 

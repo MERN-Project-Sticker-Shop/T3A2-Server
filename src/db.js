@@ -23,12 +23,10 @@ catch(err) {
 
 // Create a schema and model for product
 const productSchema = await mongoose.Schema({
-  name: { type:String, required:true},
-  price: { type:Number, required:true},
-  description: { type:String, required:true},
-  image1: { type:String, required:true},
-  image2: { type:String, required:true},
-  image3: { type:String, required:true}
+  name: { type:String, required:true },
+  price: { type:Number, required:true },
+  description: { type:String, required:true },
+  imageLinks: { type:Array, required:true },
 })
 
 // Create a shema and model for cart
