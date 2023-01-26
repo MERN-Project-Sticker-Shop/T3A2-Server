@@ -17,11 +17,13 @@ console.log('Deleted all addresses')
 const products = [
   {name: 'R U OK',
    price: 10,
-   description: 'This is a sticker flakes'
+   description: 'This is a sticker flakes',
+   image: 'https://ibb.co/f4Lx5FY'
   },
   {name: 'Summer Vibe',
   price: 15,
-  description: 'This is a summary sticker sheet'
+  description: 'This is a summary sticker sheet',
+  image: 'https://ibb.co/J7gfN5X'
  }
 ]
 
