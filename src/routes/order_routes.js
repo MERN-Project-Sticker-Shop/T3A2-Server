@@ -1,5 +1,5 @@
 import express from 'express'
-import { OrderModel, AddressModel } from '../db.js'
+import { OrderModel, AddressModel, CartModel } from '../db.js'
 
 const router = express.Router()
 
@@ -38,7 +38,31 @@ router.post('/address', async (req, res) => {
   }
 })
 
+// Create an order
+router.post('', async (req, res) => {
+  try {
+    const { addressId, total, cartId } = req.body 
 
+    const addressObject = await AddressModel.findOne({ _id: addressId })
+    if (addressObject) {
+      const cartObject = await CartModel.findOne({ _id: cartId })
+      if (cartObject) {
+        const newOrder = { address: addressObject, total, cart: cartObject }
+
+        const insertedOrder = await OrderModel.create(newOrder) 
+    
+        res.status(201).send(insertedOrder)
+      } else {
+        res.status(404).send({ error: 'Cart not found' })
+      }
+    } else {
+      res.status(404).send({ error: 'Address not found' })
+    }
+  }
+  catch(err) {
+    res.status(500).send({ error: err.message })
+  }
+})
 
 
 export default router
