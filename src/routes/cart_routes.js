@@ -1,8 +1,10 @@
 import express from 'express'
 import { CartModel, ProductModel } from '../db.js'
 
+
 const router = express.Router()
 
+// Verify product
 async function checkProduct(productName, quantity) {
   const productObject = await ProductModel.findOne({ name: productName })
   if (productObject) {
@@ -13,25 +15,38 @@ async function checkProduct(productName, quantity) {
   }
 }
 
-async function updateQuantity(id, name, result, res) {
-  //Find the existing cart model and obtain the cart items
+// Update the cart items includes products and quantities
+async function checkCart(id, res) {
   const cartObject = await CartModel.findOne({ _id: id  })
-  const cartItem = cartObject.item
-  //Add new item to the cart items array
-  //If item already exists, update the quantity number
-  for (var i in cartItem) {
-    if (cartItem[i].product === name) {
-      cartItem[i].quantity += result.quantity
-    }}
+  if (cartObject) {
+    const cartItem = cartObject.item
+    return cartItem
+  }else {
+    return 'Cart Item not found!'
+  }
+}
+
+async function updateCart(id, productName, result, res) {
+    const cartResult = await checkCart(id, res)
+    if (cartResult !== 'Cart Item not found!') {
+      for (var i in cartResult) {
+        if (cartResult[i].product === productName) {
+          cartResult[i].quantity += result.quantity
+        }else {
+          cartResult.push(result)
+        }}
   //Updated cart item
-  const updatedCartitem = {item: cartItem}
-  try {
-    const newItem = await CartModel.findByIdAndUpdate(id, updatedCartitem, { new: true})
-    res.send(newItem)
-  }
-  catch(err) {
-    res.status(500).send({ error: err.message })
-  }
+      const updatedCartitem = {item: cartResult}
+      try {
+        const newItem = await CartModel.findByIdAndUpdate(id, updatedCartitem, { new: true})
+        res.send(newItem)
+      }
+      catch(err) {
+        res.status(500).send({ error: err.message })
+      }
+    } else {
+      res.status(404).send({error:cartResult})
+    }
 }
 
 //Get all cart items
@@ -47,7 +62,7 @@ router.post('/:cartid/:name', async (req, res) => {
   if (result !== 'Product not found!') {
     //If cart exist, update the existing cart. If not, create a new cart
     if (req.params.cartid !== 'null') {
-      await updateQuantity(req.params.cartid, req.params.name, result, res)
+      await updateCart(req.params.cartid, req.params.name, result, res)
       //Create new cart
     } else {
       const newCartitem = { item: [result] }
@@ -68,38 +83,42 @@ router.post('/:cartid/:name', async (req, res) => {
 router.patch('/:cartid/:name', async (req, res) => {
   const result = await checkProduct(req.params.name, req.body.quantity)
   if (result !== 'Product not found!') {
-    const cartObject = await CartModel.findOne({ _id: req.params.cartid  })
-    if (cartObject) {
-      await updateQuantity(req.params.cartid, req.params.name, result, res)
-    }else {
-      res.status(404).send({error:'Cart Item not found!'})
-    }
+    await updateCart(req.params.cartid, req.params.name, result, res)
   } else {
     res.status(404).send({ error: result })
   }
 })
 
-//Delete the product
+//Delete one of the product from the cart
 router.delete('/:cartid/:name', async (req, res) => {
-  const cartObject = await CartModel.findOne({ _id: req.params.cartid  })
-  if (cartObject) {
-    const cartItem = cartObject.item
-    const filteredCartitem = cartItem.filter(item => item.product !== req.params.name)
-    try {
-      //Find and update the product in cart
-   const product = req.params.name
-
-      const newItem = await CartModel.findByIdAndDelete(cartObject)
-      if (newItem) {
+    const result = await checkProduct(req.params.name, null)
+    if (result !== 'Product not found!') {
+      const cartItem = await checkCart(req.params.cartid,res)
+      if (cartItem !== 'Cart Item not found!') {
+        const newCartitem = cartItem.filter(item => item.product !== req.params.name)
+        const newItem = await CartModel.findByIdAndUpdate(req.params.cartid, {item: newCartitem}, { new: true })
         res.status(204).send(newItem)
       } else {
-        res.status(404).send({error:'Cart Item not found!'})
-    }}
-    catch(err) {
-      res.status(500).send({ error: err.message})
-    }}
-  })
+        res.status(404).send({ error: cartItem })
+      }
+    } else {
+      res.status(404).send({ error: result })
+    }
+})
 
-
+//Delete the whoe cart
+router.delete('/:cartid', async (req, res) => {
+  try {
+    const cartItem = await CartModel.findByIdAndDelete(req.params.cartid)
+    if (cartItem) {
+      res.sendStatus(204)
+    } else {
+      res.status(404).send({error: 'Cart not found!'})
+    }
+  }
+  catch(err) {
+    res.status(500).send({ error: err.message })
+}
+})
 
 export default router
