@@ -1,5 +1,5 @@
 import express from 'express'
-import { OrderModel } from '../db.js'
+import { OrderModel, AddressModel } from '../db.js'
 
 const router = express.Router()
 
@@ -21,6 +21,24 @@ router.get('/:orderid', async (req, res) => {
     res.status(500).send({ error: err.message })
   }
 })
+
+// Create an address
+router.post('/address', async (req, res) => {
+  try {
+    const { email, firstName, lastName, streetAddress, city, state, postcode } = req.body 
+ 
+    const newAddress = { email, firstName, lastName, streetAddress, city, state, postcode }
+
+    const insertedAddress = await AddressModel.create(newAddress) 
+
+    res.status(201).send(insertedAddress)
+  }
+  catch(err) {
+    res.status(500).send({ error: err.message })
+  }
+})
+
+
 
 
 export default router
