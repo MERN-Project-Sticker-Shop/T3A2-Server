@@ -17,7 +17,7 @@ router.get('/:orderid', async (req, res) => {
     if (order) {
       res.send(order)
     } else {
-      res.status(404).send({ error: 'Order not found' })
+      res.status(404).send({ error: 'Order not found!' })
     }}
   catch (err) {
     res.status(500).send({ error: err.message })
