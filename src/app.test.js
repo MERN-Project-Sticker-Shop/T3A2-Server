@@ -165,8 +165,37 @@ describe("App tests", () => {
       expect(res.status).toBe(404)
       expect(res.headers['content-type']).toMatch(/json/i)
       expect(res.body).toEqual({"error": "Product not found!"})
-
     })
 
+    test("Update product quantity to the cart with valid id", async () => {
+      const res = await request(app).post('/carts/63d35c8f2c13144a29ec869d/Autumn Vibes').send({
+        quantity: 10
+      })
+      expect(res.status).toBe(201)
+      expect(res.headers['content-type']).toMatch(/json/i)
+      expect(res.body._id).toBeDefined()
+      expect(res.body.item[0].product.name).toBe("Autumn Vibes") 
+      expect(res.body.item[0].product.description).toBe("This is a autumn sticker sheet")
+      expect(res.body.item[0].price).toBe(15)
+      expect(res.body.item[0].quantity).toBe(25)
+    })
+
+    test("Update product quantity to the cart with invalid cartid", async () => {
+      const res = await request(app).post('/carts/63d35c8f2d13144a29ec869d/Autumn Vibes').send({
+        quantity: 10
+      })
+      expect(res.status).toBe(404)
+      expect(res.headers['content-type']).toMatch(/json/i)
+      expect(res.body).toEqual({"error": "Cart Item not found!"})
+    })
+
+    test("Update product quantity to the cart with invalid product name", async () => {
+      const res = await request(app).post('/carts/63d35c8f2c13144a29ec869d/Autumn and Spring Vibes').send({
+        quantity: 10
+      })
+      expect(res.status).toBe(404)
+      expect(res.headers['content-type']).toMatch(/json/i)
+      expect(res.body).toEqual({"error": "Product not found!"})
+    })
 })
 
