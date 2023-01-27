@@ -119,7 +119,7 @@ describe("App tests", () => {
       })
     }) 
 
-    test("Add product to the cart", async () => {
+    test("Add product to the cart with valid cartid", async () => {
       const res = await request(app).post('/carts/63d35c8f2c13144a29ec869a/Autumn Vibes').send({
         quantity: 15
       })
@@ -135,5 +135,38 @@ describe("App tests", () => {
       expect(res.body.item[1].price).toBe(15)
       expect(res.body.item[1].quantity).toBe(25)    
     })
+
+    test("Add product to the cart with invalid cartid", async () => {
+      const res = await request(app).post('/carts/63d35c8f2c13144a29ec899a/Autumn Vibes').send({
+        quantity: 15
+      })
+      expect(res.status).toBe(404)
+      expect(res.headers['content-type']).toMatch(/json/i)
+      expect(res.body).toEqual({"error": "Cart Item not found!"})
+    })
+
+    test("Add product to the cart without cartid", async () => {
+      const res = await request(app).post('/carts/null/R U OK').send({
+        quantity: 15
+      })
+      expect(res.status).toBe(201)
+      expect(res.headers['content-type']).toMatch(/json/i)
+      expect(res.body._id).toBeDefined()
+      expect(res.body.item[0].product.name).toBe("R U OK") 
+      expect(res.body.item[0].product.description).toBe("This is a sticker flakes")
+      expect(res.body.item[0].price).toBe(10)
+      expect(res.body.item[0].quantity).toBe(15)
+    })
+
+    test("Add product to the cart with invalid product name", async () => {
+      const res = await request(app).post('/carts/null/R U OKA').send({
+        quantity: 15
+      })
+      expect(res.status).toBe(404)
+      expect(res.headers['content-type']).toMatch(/json/i)
+      expect(res.body).toEqual({"error": "Product not found!"})
+
+    })
+
 })
 
