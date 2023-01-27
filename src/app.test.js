@@ -37,6 +37,9 @@ describe("App tests", () => {
         expect(el._id.length).toBe(24)
 
       })
+    })
+
+    it('Has an element with the correct data value', () => {
       expect(res.body[0].name).toBe("R U OK") 
       expect(res.body[0].price).toBe(10)
       expect(res.body[0].description).toBe("This is a sticker flakes")
@@ -54,11 +57,21 @@ describe("App tests", () => {
       expect(res.statusCode).toBe(200)
       expect(res.headers['content-type']).toMatch(/json/i)      
     })
-    it('Has an element with the correct data structure and value', () => {
+
+    it('Has an element with the correct data value', () => {
       expect(res.body.name).toBe("R U OK") 
       expect(res.body.price).toBe(10)
       expect(res.body.description).toBe("This is a sticker flakes")
     })
-  })
-    
+
+    it('Has an element with the correct data structure', () => {
+        expect(res.body._id).toBeDefined()
+        expect(res.body.name).toBeDefined()
+        expect(res.body.price).toBeDefined()
+        expect(res.body.imageLinks).toBeDefined()
+        expect(res.body.description).toBeDefined()
+        expect(res.body._id.length).toBe(24)
+    })
+  })  
 })
+
