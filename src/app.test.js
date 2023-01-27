@@ -49,7 +49,7 @@ describe("App tests", () => {
     })
   }) 
   // Test to get a single product
-  describe("GET a single product", () => {
+  describe("GET a single product with valid product name", () => {
     let res
     // Define the route and http method
     beforeEach(async () => {
@@ -71,6 +71,13 @@ describe("App tests", () => {
         expect(res.body.imageLinks).toBeDefined()
         expect(res.body.description).toBeDefined()
         expect(res.body._id.length).toBe(24)
+    })
+
+    test('GET a single product with invalid name', async () => {
+      const res = await request(app).get('/products/R U OKA')
+      expect(res.statusCode).toBe(404)
+      expect(res.headers['content-type']).toBe('application/json; charset=utf-8')
+      expect(res.body).toEqual({"error": "Product not found!"})
     })
   })
     // Test the cart routes to get all carts
