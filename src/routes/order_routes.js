@@ -11,7 +11,9 @@ router.get('', async (req, res) => {
 // Get a single order
 router.get('/:orderid', async (req, res) => {
   try {
+    // Find the order object that matches the order id
     const order = await OrderModel.findOne({_id: req.params.orderid}).populate('cart').populate('address')
+    // If found, send the order. Otherwise, return the error message
     if (order) {
       res.send(order)
     } else {
@@ -27,11 +29,10 @@ router.post('/address', async (req, res) => {
   try {
     // Deconstruct the request body
     const { email, firstName, lastName, streetAddress, city, state, postcode } = req.body 
- 
+    // Assign parameters to a new variable, which is more secure
     const newAddress = { email, firstName, lastName, streetAddress, city, state, postcode }
     // Create an instance of addess model
     const insertedAddress = await AddressModel.create(newAddress) 
-
     res.status(201).send(insertedAddress)
   }
   catch(err) {
@@ -46,15 +47,15 @@ router.post('', async (req, res) => {
     const { addressId, total, cartId } = req.body 
     // Verify whether address exists
     const addressObject = await AddressModel.findOne({ _id: addressId })
-    // If exists, continue to verify whether the cart exitst
+    // If exists, continue to verify whether the cart exitst. Otherwise, return the error message
     if (addressObject) {
       const cartObject = await CartModel.findOne({ _id: cartId })
-      // If both of them exit, create an instance of order model
+      // If both of them exit, create an instance of order model. Otherwiser, return the error message
       if (cartObject) {
+        // Create an javascript object
         const newOrder = { address: addressObject, total, cart: cartObject }
-
-        const insertedOrder = await OrderModel.create(newOrder) 
-    
+        // Insert into the database
+        const insertedOrder = await OrderModel.create(newOrder)    
         res.status(201).send(insertedOrder)
       } else {
         res.status(404).send({ error: 'Cart not found' })
