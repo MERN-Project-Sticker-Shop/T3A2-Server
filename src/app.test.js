@@ -118,5 +118,22 @@ describe("App tests", () => {
 
       })
     }) 
+
+    test("Add product to the cart", async () => {
+      const res = await request(app).post('/carts/63d35c8f2c13144a29ec869a/Autumn Vibes').send({
+        quantity: 15
+      })
+      expect(res.status).toBe(201)
+      expect(res.headers['content-type']).toMatch(/json/i)
+      expect(res.body._id).toBeDefined()
+      expect(res.body.item[0].product.name).toBe("R U OK") 
+      expect(res.body.item[0].product.description).toBe("This is a sticker flakes")
+      expect(res.body.item[0].price).toBe(10)
+      expect(res.body.item[0].quantity).toBe(1)
+      expect(res.body.item[1].product.name).toBe("Autumn Vibes")  
+      expect(res.body.item[1].product.description).toBe("This is a autumn sticker sheet")
+      expect(res.body.item[1].price).toBe(15)
+      expect(res.body.item[1].quantity).toBe(25)    
+    })
 })
 

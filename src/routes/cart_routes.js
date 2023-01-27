@@ -56,7 +56,7 @@ async function updateCart(id, result, res) {
       // Update the database
       try {
         const newItem = await CartModel.findByIdAndUpdate(id, updatedCartitem, { new: true})
-        res.send(await newItem.populate( { path: 'item.product', select: 'name description imageLinks'}))
+        res.status(201).send(await newItem.populate( { path: 'item.product', select: 'name description imageLinks'}))
       }
       catch(err) {
         res.status(500).send({ error: err.message })
