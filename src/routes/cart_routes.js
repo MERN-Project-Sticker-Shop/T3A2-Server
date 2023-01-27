@@ -27,7 +27,7 @@ async function checkCart(id) {
 }
 
 // Update cart item and quantity
-async function updateCart(id, productName, result, res) {
+async function updateCart(id, result, res) {
     const cartResult = await checkCart(id, res)
     if (cartResult !== 'Cart Item not found!') {
       // Find the product and update the quantity
@@ -70,7 +70,7 @@ router.post('/:cartid/:name', async (req, res) => {
   if (result !== 'Product not found!') {
     // If cart exist, update the existing cart. If not, create a new cart
     if (req.params.cartid !== 'null') {
-      await updateCart(req.params.cartid, req.params.name, result, res)
+      await updateCart(req.params.cartid, result, res)
     // Cart not exists, create a new item array
     } else {
       const newCartitem = { item: [result] }
@@ -93,7 +93,7 @@ router.patch('/:cartid/:name', async (req, res) => {
   const result = await checkProduct(req.params.name, req.body.quantity)
   if (result !== 'Product not found!') {
     // Update the cart
-    await updateCart(req.params.cartid, req.params.name, result, res)
+    await updateCart(req.params.cartid, result, res)
   } else {
     res.status(404).send({ error: result })
   }
@@ -108,10 +108,12 @@ router.delete('/:cartid/:name', async (req, res) => {
       const cartItem = await checkCart(req.params.cartid,res)
       if (cartItem !== 'Cart Item not found!') {
         // Filter out product that match the name parameters in the url
-        const newCartitem = cartItem.filter(item => item.product !== req.params.name)
+        const newCartitem = cartItem.filter(item => {
+          return item.product.toString() !== result.product._id.toString()})
         // Update the cart with the filtered item array
         const newItem = await CartModel.findByIdAndUpdate(req.params.cartid, {item: newCartitem}, { new: true })
-        res.status(204).send(newItem)
+        console.log(newItem)
+        res.send(await newItem.populate( { path: 'item.product', select: 'name description imageLinks'}))
       } else {
         res.status(404).send({ error: cartItem })
       }
