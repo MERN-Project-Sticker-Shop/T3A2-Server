@@ -12,5 +12,39 @@ describe("App tests", () => {
   })
 
 
+  // Test the product routes
+  describe("GET product lists", () => {
+    let res
 
+    beforeEach(async () => {   
+      res = await request(app).get('/products')
+      expect(res.statusCode).toBe(200)
+      expect(res.headers['content-type']).toMatch(/json/i)
+      })
+
+    it('Should return an array of 2 elements', () => {        
+      expect(res.body).toBeInstanceOf(Array)
+      expect(res.body.length).toBe(2)
+    })
+
+    it('Has an element with the correct data structure', () => {
+      res.body.forEach(el => {
+        expect(el._id).toBeDefined()
+        expect(el.name).toBeDefined()
+        expect(el.price).toBeDefined()
+        expect(el.imageLinks).toBeDefined()
+        expect(el.description).toBeDefined()
+        expect(el._id.length).toBe(24)
+
+      })
+      expect(res.body[0].name).toBe("R U OK") 
+      expect(res.body[0].price).toBe(10)
+      expect(res.body[0].description).toBe("This is a sticker flakes")
+      expect(res.body[1].name).toBe("Autumn Vibes")  
+      expect(res.body[1].price).toBe(15)
+      expect(res.body[1].description).toBe("This is a autumn sticker sheet")
+    })
+  }) 
+
+    
 })
