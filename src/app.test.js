@@ -15,18 +15,18 @@ describe("App tests", () => {
   // Test the product routes
   describe("GET product lists", () => {
     let res
-
+    // Define the route and http method
     beforeEach(async () => {   
       res = await request(app).get('/products')
       expect(res.statusCode).toBe(200)
       expect(res.headers['content-type']).toMatch(/json/i)
       })
-
+    // Test the number of elements in the array
     it('Should return an array of 2 elements', () => {        
       expect(res.body).toBeInstanceOf(Array)
       expect(res.body.length).toBe(2)
     })
-
+    // Test the data structure of the data returned
     it('Has an element with the correct data structure', () => {
       res.body.forEach(el => {
         expect(el._id).toBeDefined()
@@ -38,7 +38,7 @@ describe("App tests", () => {
 
       })
     })
-
+    // Test the value of the data returned
     it('Has an element with the correct data value', () => {
       expect(res.body[0].name).toBe("R U OK") 
       expect(res.body[0].price).toBe(10)
@@ -51,19 +51,19 @@ describe("App tests", () => {
   // Test to get a single product
   describe("GET a single product", () => {
     let res
-    
+    // Define the route and http method
     beforeEach(async () => {
       res = await request(app).get('/products/R U OK')
       expect(res.statusCode).toBe(200)
       expect(res.headers['content-type']).toMatch(/json/i)      
     })
-
+    // Test the value of the data returned
     it('Has an element with the correct data value', () => {
       expect(res.body.name).toBe("R U OK") 
       expect(res.body.price).toBe(10)
       expect(res.body.description).toBe("This is a sticker flakes")
     })
-
+    // Test the data structure of the data returned
     it('Has an element with the correct data structure', () => {
         expect(res.body._id).toBeDefined()
         expect(res.body.name).toBeDefined()
@@ -72,6 +72,51 @@ describe("App tests", () => {
         expect(res.body.description).toBeDefined()
         expect(res.body._id.length).toBe(24)
     })
-  })  
+  })
+    // Test the cart routes
+    describe("GET cart lists", () => {
+      let res
+
+      // Define the route and http method
+      beforeEach(async () => {   
+        res = await request(app).get('/carts')
+        expect(res.statusCode).toBe(200)
+        expect(res.headers['content-type']).toMatch(/json/i)
+        })
+      // Test the number of elements in the array
+      it('Should return an array of 2 elements', () => {        
+        expect(res.body).toBeInstanceOf(Array)
+        expect(res.body.length).toBe(2)
+      })
+      // Test the data structure of the data returned  
+      it('Has an element with the correct data structure', () => {
+        res.body.forEach(el => {
+          expect(el._id).toBeDefined()
+          expect(el._id.length).toBe(24)
+          expect(el.item).toBeDefined()
+          el.item.forEach(subel => {
+            expect(subel.product).toBeDefined()
+            expect(subel.price).toBeDefined()
+            expect(subel.quantity).toBeDefined()
+          })  
+        })
+      })
+      // Test the value of the data returned
+      it('Has an element with the correct data value', () => {
+        expect(res.body[0].item[0].product.name).toBe("R U OK") 
+        expect(res.body[0].item[0].product.description).toBe("This is a sticker flakes")
+        expect(res.body[0].item[0].price).toBe(10)
+        expect(res.body[0].item[0].quantity).toBe(1)
+        expect(res.body[0].item[1].product.name).toBe("Autumn Vibes")  
+        expect(res.body[0].item[1].product.description).toBe("This is a autumn sticker sheet")
+        expect(res.body[0].item[1].price).toBe(15)
+        expect(res.body[0].item[1].quantity).toBe(10)       
+        expect(res.body[1].item[0].product.name).toBe("Autumn Vibes")  
+        expect(res.body[1].item[0].product.description).toBe("This is a autumn sticker sheet")
+        expect(res.body[1].item[0].price).toBe(15)
+        expect(res.body[1].item[0].quantity).toBe(20)
+
+      })
+    }) 
 })
 
