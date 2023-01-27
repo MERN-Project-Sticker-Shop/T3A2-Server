@@ -45,6 +45,20 @@ describe("App tests", () => {
       expect(res.body[1].description).toBe("This is a autumn sticker sheet")
     })
   }) 
-
+  // Test to get a single product
+  describe("GET a single product", () => {
+    let res
+    
+    beforeEach(async () => {
+      res = await request(app).get('/products/R U OK')
+      expect(res.statusCode).toBe(200)
+      expect(res.headers['content-type']).toMatch(/json/i)      
+    })
+    it('Has an element with the correct data structure and value', () => {
+      expect(res.body.name).toBe("R U OK") 
+      expect(res.body.price).toBe(10)
+      expect(res.body.description).toBe("This is a sticker flakes")
+    })
+  })
     
 })
