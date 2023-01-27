@@ -70,19 +70,21 @@ const addresses = [
     email: '12345@gmail.com',
     firstName: 'Alex',
     lastName: 'Yang',
+    phone: '04000000000',
     streetAddress: '135 Elizabeth Street',
-    city: 'Melbourne',
+    suburb: 'Melbourne',
     state: 'VIC',
-    postcode: 3000,
+    postcode: 3000
   }, 
   {
     email: '67899@gmail.com',
     firstName: 'Bob',
     lastName: 'Tian',
+    phone: '0411111111',
     streetAddress: '188 Swanston Street',
-    city: 'Melbourne',
+    suburb: 'Melbourne',
     state: 'VIC',
-    postcode: 3000,
+    postcode: 3000
   }
 ]
 
