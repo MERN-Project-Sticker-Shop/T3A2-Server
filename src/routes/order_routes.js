@@ -58,10 +58,10 @@ router.post('', async (req, res) => {
         const insertedOrder = await OrderModel.create(newOrder)    
         res.status(201).send(insertedOrder)
       } else {
-        res.status(404).send({ error: 'Cart not found' })
+        res.status(404).send({ error: 'Cart not found!' })
       }
     } else {
-      res.status(404).send({ error: 'Address not found' })
+      res.status(404).send({ error: 'Address not found!' })
     }
   }
   catch(err) {

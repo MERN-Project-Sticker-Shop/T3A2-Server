@@ -372,5 +372,41 @@ describe("App tests", () => {
       expect(res.body.postcode).toBe(3000)
     })
 
+    test("Add new orders with valid id", async () => {
+      const res = await request(app).post('/orders').send({
+        "addressId":"63d45d962acdcc5d6564f7f0",
+        "total": 500,
+        "cartId": "63d3b9997ef8672097ade9a0"
+      })
+      expect(res.status).toBe(201)
+      expect(res.headers['content-type']).toMatch(/json/i)
+      expect(res.body._id).toBeDefined()
+      expect(res.body.cart.item[0].product).toBe("63d35c8f2c13144a29ec8697") 
+      expect(res.body.cart._id).toBe("63d3b9997ef8672097ade9a0") 
+      expect(res.body.total).toBe(500)
+      expect(res.body.address._id).toBe("63d45d962acdcc5d6564f7f0")
+    })
+
+    test("Add new orders with invalid address id", async () => {
+      const res = await request(app).post('/orders').send({
+        "addressId":"63d45d962acdcc5d6510f7f0",
+        "total": 500,
+        "cartId": "63d3b9997ef8672097ade9a0"
+      })
+      expect(res.status).toBe(404)
+      expect(res.headers['content-type']).toMatch(/json/i)
+      expect(res.body).toEqual({"error": "Address not found!"})
+    })
+
+    test("Add new orders with invalid address id", async () => {
+      const res = await request(app).post('/orders').send({
+        "addressId":"63d45d962acdcc5d6564f7f0",
+        "total": 500,
+        "cartId": "63d3b9997ef8672097aff9a0"
+      })
+      expect(res.status).toBe(404)
+      expect(res.headers['content-type']).toMatch(/json/i)
+      expect(res.body).toEqual({"error": "Cart not found!"})
+    })
 })
 
