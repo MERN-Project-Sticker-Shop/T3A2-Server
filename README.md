@@ -2,6 +2,12 @@
 
 ## GitHub Repo: [Part-A-Documentation](https://github.com/MERN-Project-Sticker-Shop/Part-A-Docs)
 
+## Deployment:
+
+* Frontend: [Frontend Deployment]
+  
+* Backend: [Backend Deployment](t3a2-server-production.up.railway.app)
+  
 ## Description
 
 ### Purpose
