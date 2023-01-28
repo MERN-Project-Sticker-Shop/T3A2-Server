@@ -16,7 +16,7 @@ router.get('/:name', async (req, res) => {
     if (product) {
       res.send(product)
     } else {
-      res.status(404).send({ error: 'Product not found' })
+      res.status(404).send({ error: 'Product not found!' })
     }}
   catch (err) {
     res.status(500).send({ error: err.message })

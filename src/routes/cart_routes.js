@@ -6,10 +6,13 @@ const router = express.Router()
 
 // Verify product
 async function checkProduct(productName, quantity) {
+  // Find the product object that matches the product name
   const productObject = await ProductModel.findOne({ name: productName })
+  // If found, create a new cart item using this product object
   if (productObject) {
     const newCartitem = { product: productObject, price: productObject.price, quantity}
     return newCartitem
+  // If not, return the error message
   } else {
     return 'Product not found!'
   }
@@ -17,10 +20,13 @@ async function checkProduct(productName, quantity) {
 
 // Verify cart
 async function checkCart(id) {
+  // Find the cart object that matches the the cart id
   const cartObject = await CartModel.findOne({ _id: id  })
+  // If found, obtain the item array from the cart object
   if (cartObject) {
     const cartItem = cartObject.item
     return cartItem
+  // If not, return the error message
   }else {
     return 'Cart Item not found!'
   }
@@ -28,17 +34,20 @@ async function checkCart(id) {
 
 // Update cart item and quantity
 async function updateCart(id, result, res) {
+    // Verify the cart first and return the item array of the cart
     const cartResult = await checkCart(id, res)
+    // If the cart item exists
     if (cartResult !== 'Cart Item not found!') {
-      // Find the product and update the quantity
-
+      // Obtain the objectID of the product
       const productObject = result.product
+      // Check whether the product already exists in the cart
       const found = cartResult.find(obj => {
         return obj.product.toString() === productObject._id.toString()
       })
-
+      // If yes, update the quantity
       if (found) {
           found.quantity += result.quantity
+      // If not, add new product to the cart
       }else {
         cartResult.push(result)
       }
@@ -47,7 +56,7 @@ async function updateCart(id, result, res) {
       // Update the database
       try {
         const newItem = await CartModel.findByIdAndUpdate(id, updatedCartitem, { new: true})
-        res.send(await newItem.populate( { path: 'item.product', select: 'name description imageLinks'}))
+        res.status(201).send(await newItem.populate( { path: 'item.product', select: 'name description imageLinks'}))
       }
       catch(err) {
         res.status(500).send({ error: err.message })
@@ -91,8 +100,8 @@ router.post('/:cartid/:name', async (req, res) => {
 router.patch('/:cartid/:name', async (req, res) => {
   // Check whether product exists 
   const result = await checkProduct(req.params.name, req.body.quantity)
+  // If cart extists, update the cart
   if (result !== 'Product not found!') {
-    // Update the cart
     await updateCart(req.params.cartid, result, res)
   } else {
     res.status(404).send({ error: result })
@@ -107,12 +116,12 @@ router.delete('/:cartid/:name', async (req, res) => {
       // Check whether cart exists
       const cartItem = await checkCart(req.params.cartid,res)
       if (cartItem !== 'Cart Item not found!') {
-        // Filter out product that match the name parameters in the url
+        // Filter out product that match the name parameters in the url and create a new array
         const newCartitem = cartItem.filter(item => {
           return item.product.toString() !== result.product._id.toString()})
         // Update the cart with the filtered item array
         const newItem = await CartModel.findByIdAndUpdate(req.params.cartid, {item: newCartitem}, { new: true })
-        console.log(newItem)
+        // Send the updated array
         res.send(await newItem.populate( { path: 'item.product', select: 'name description imageLinks'}))
       } else {
         res.status(404).send({ error: cartItem })
@@ -127,6 +136,7 @@ router.delete('/:cartid', async (req, res) => {
   // Delete the cart with the id defined in the url
   try {
     const cartItem = await CartModel.findByIdAndDelete(req.params.cartid)
+    // If cart exitst, delete it. If not, return the error message
     if (cartItem) {
       res.sendStatus(204)
     } else {
