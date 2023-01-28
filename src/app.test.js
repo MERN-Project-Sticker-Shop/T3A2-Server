@@ -40,12 +40,33 @@ describe("App tests", () => {
     })
     // Test the value of the data returned
     it('Has an element with the correct data value', () => {
-      expect(res.body[0].name).toBe("R U OK") 
-      expect(res.body[0].price).toBe(10)
-      expect(res.body[0].description).toBe("This is a sticker flakes")
-      expect(res.body[1].name).toBe("Autumn Vibes")  
-      expect(res.body[1].price).toBe(15)
-      expect(res.body[1].description).toBe("This is a autumn sticker sheet")
+      expect(res.body).toEqual(
+      [
+        {
+            "_id": "63d35c8f2c13144a29ec8697",
+            "name": "R U OK",
+            "price": 10,
+            "description": "This is a sticker flakes",
+            "imageLinks": [
+                "https://ibb.co/7vdXTsW",
+                "https://ibb.co/DWTW5tV",
+                "https://ibb.co/XJpPqPT"
+            ],
+            "__v": 0
+        },
+        {
+            "_id": "63d35c8f2c13144a29ec8698",
+            "name": "Autumn Vibes",
+            "price": 15,
+            "description": "This is a autumn sticker sheet",
+            "imageLinks": [
+                "https://ibb.co/yNBcb0k",
+                "https://ibb.co/3WS3g9G",
+                "https://ibb.co/ymTVQ9m"
+            ],
+            "__v": 0
+        }
+      ])
     })
   }) 
   // Test to get a single product
@@ -110,18 +131,63 @@ describe("App tests", () => {
       })
       // Test the value of the data returned
       it('Has an element with the correct data value', () => {
-        expect(res.body[0].item[0].product.name).toBe("R U OK") 
-        expect(res.body[0].item[0].product.description).toBe("This is a sticker flakes")
-        expect(res.body[0].item[0].price).toBe(10)
-        expect(res.body[0].item[0].quantity).toBe(1)
-        expect(res.body[0].item[1].product.name).toBe("Autumn Vibes")  
-        expect(res.body[0].item[1].product.description).toBe("This is a autumn sticker sheet")
-        expect(res.body[0].item[1].price).toBe(15)
-        expect(res.body[0].item[1].quantity).toBe(10)       
-        expect(res.body[1].item[0].product.name).toBe("Autumn Vibes")  
-        expect(res.body[1].item[0].product.description).toBe("This is a autumn sticker sheet")
-        expect(res.body[1].item[0].price).toBe(15)
-        expect(res.body[1].item[0].quantity).toBe(20)
+        expect(res.body[0]).toEqual(
+          {
+              "_id": "63d35c8f2c13144a29ec869a",
+              "item": [
+                  {
+                      "product": {
+                          "_id": "63d35c8f2c13144a29ec8697",
+                          "name": "R U OK",
+                          "description": "This is a sticker flakes",
+                          "imageLinks": [
+                              "https://ibb.co/7vdXTsW",
+                              "https://ibb.co/DWTW5tV",
+                              "https://ibb.co/XJpPqPT"
+                          ]
+                      },
+                      "price": 10,
+                      "quantity": 1,
+                      "_id": "63d35c8f2c13144a29ec869b"
+                  },
+                  {
+                      "product": {
+                          "_id": "63d35c8f2c13144a29ec8698",
+                          "name": "Autumn Vibes",
+                          "description": "This is a autumn sticker sheet",
+                          "imageLinks": [
+                              "https://ibb.co/yNBcb0k",
+                              "https://ibb.co/3WS3g9G",
+                              "https://ibb.co/ymTVQ9m"
+                          ]
+                      },
+                      "price": 15,
+                      "quantity": 580,
+                      "_id": "63d35c8f2c13144a29ec869c"
+                  }
+              ],
+              "__v": 0
+          })
+        expect(res.body[1]).toEqual(
+          {
+              "_id": "63d35c8f2c13144a29ec869d",
+              "item": [
+                  {
+                      "product": {
+                          "_id": "63d35c8f2c13144a29ec8698",
+                          "name": "Autumn Vibes",
+                          "description": "This is a autumn sticker sheet",
+                          "imageLinks": [
+                              "https://ibb.co/yNBcb0k",
+                              "https://ibb.co/3WS3g9G",
+                              "https://ibb.co/ymTVQ9m"
+                          ]
+                      },
+                      "price": 15,
+                      "quantity": 35,
+                      "_id": "63d35c8f2c13144a29ec869e"
+                  }]
+        })
 
       })
     }) 
@@ -280,7 +346,31 @@ describe("App tests", () => {
         expect(res.statusCode).toBe(404)
         expect(res.headers['content-type']).toMatch(/json/i)     
         expect(res.body).toEqual({"error": "Order not found!"})
-
     })
+
+    test("Add new address", async () => {
+      const res = await request(app).post('/orders/address').send({
+        email: '6789977@gmail.com',
+        firstName: 'Bob',
+        lastName: 'Tian',
+        phone: '0411112321',
+        streetAddress: '188 Swanston Street',
+        suburb: 'Melbourne',
+        state: 'VIC',
+        postcode: 3000
+      })
+      expect(res.status).toBe(201)
+      expect(res.headers['content-type']).toMatch(/json/i)
+      expect(res.body._id).toBeDefined()
+      expect(res.body.email).toBe('6789977@gmail.com')
+      expect(res.body.firstName).toBe('Bob')
+      expect(res.body.lastName).toBe('Tian')
+      expect(res.body.phone).toBe('0411112321')
+      expect(res.body.streetAddress).toBe('188 Swanston Street')
+      expect(res.body.suburb).toBe('Melbourne')
+      expect(res.body.state).toBe('VIC')
+      expect(res.body.postcode).toBe(3000)
+    })
+
 })
 

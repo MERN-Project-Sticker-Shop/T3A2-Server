@@ -28,9 +28,9 @@ router.get('/:orderid', async (req, res) => {
 router.post('/address', async (req, res) => {
   try {
     // Deconstruct the request body
-    const { email, firstName, lastName, streetAddress, city, state, postcode } = req.body 
+    const { email, firstName, lastName, phone, streetAddress, suburb, state, postcode } = req.body 
     // Assign parameters to a new variable, which is more secure
-    const newAddress = { email, firstName, lastName, streetAddress, city, state, postcode }
+    const newAddress = { email, firstName, lastName, phone, streetAddress, suburb, state, postcode }
     // Create an instance of addess model
     const insertedAddress = await AddressModel.create(newAddress) 
     res.status(201).send(insertedAddress)
