@@ -276,6 +276,14 @@ describe("App tests", () => {
       }) 
     })
     
+  // Test to view a single cart with invalid cartid
+    test('GET a single cart with invalid cartid', async () => {
+      const res = await request(app).get('/carts/63d479f9b4c1cb86f6d30b8b')
+      expect(res.statusCode).toBe(404)
+      expect(res.headers['content-type']).toBe('application/json; charset=utf-8')
+      expect(res.body).toEqual({"error": "Cart Item not found!"})
+    })
+
     // Test the route to add product to the cart with valid cartid
     test("Add product to the cart with valid cartid", async () => {
       const res = await request(app).post('/carts/63d479f9b4c1cb86f6d30b8b/Autumn Vibes').send({
@@ -500,4 +508,5 @@ describe("App tests", () => {
       expect(res.headers['content-type']).toMatch(/json/i)
       expect(res.body).toEqual({"error": "Cart not found!"})
     })
+
 })
