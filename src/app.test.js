@@ -509,4 +509,31 @@ describe("App tests", () => {
       expect(res.body).toEqual({"error": "Cart not found!"})
     })
 
+    // Test to delete a cart item
+    test("Delete the product in the cart with valid cartid", async () => {
+      const res = await request(app).delete('/carts/63d479f9b4c1cb86f6d30b8b/Autumn Vibes')
+      expect(res.status).toBe(200)
+      expect(res.headers['content-type']).toMatch(/json/i)
+      expect(res.body._id).toBeDefined()
+      expect(res.body.item.product.name).toBe("R U OK") 
+      expect(res.body.item.product.description).toBe("This is a sticker flakes")
+      expect(res.body.item.price).toBe(10)
+      expect(res.body.item.quantity).toBe(1)
+    })
+
+    // Test to delete a cart item in the cart with invalid cartid
+    test("Delete the product in the cart with invalid cartid", async () => {
+      const res = await request(app).delete('/carts/63d479f9b4c1cb86f6d30b8f/Autumn Vibes')
+        expect(res.status).toBe(404)
+        expect(res.headers['content-type']).toMatch(/json/i)
+        expect(res.body).toEqual({"error": "Cart Item not found!"})
+      })
+  
+      // Test to delete a cart item in the cart with invalid product name
+      test("Delete the product in the cart with invalid product name", async () => {
+        const res = await request(app).delete('/carts/63d479f9b4c1cb86f6d30b8b/Autumn and Spring Vibes')
+      expect(res.status).toBe(404)
+      expect(res.headers['content-type']).toMatch(/json/i)
+      expect(res.body).toEqual({"error": "Product not found!"})
+    })
 })
