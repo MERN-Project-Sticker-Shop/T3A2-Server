@@ -14,6 +14,7 @@ describe("App tests", () => {
   // Test the product routes to view all products
   describe("GET product lists", () => {
     let res
+
     // Define the route and http method
     beforeEach(async () => {   
       res = await request(app).get('/products')
@@ -45,7 +46,7 @@ describe("App tests", () => {
       expect(res.body).toEqual(
       [
         {
-            "_id": "63d479f8b4c1cb86f6d30b88",
+            "_id": "63d48688d7b6e064962fffa2",
             "name": "R U OK",
             "price": 10,
             "description": "This is a sticker flakes",
@@ -57,7 +58,7 @@ describe("App tests", () => {
             "__v": 0
         },
         {
-            "_id": "63d479f8b4c1cb86f6d30b89",
+            "_id": "63d48688d7b6e064962fffa3",
             "name": "Autumn Vibes",
             "price": 15,
             "description": "This is a autumn sticker sheet",
@@ -110,83 +111,147 @@ describe("App tests", () => {
     })
   })
 
-    // Test the cart routes to get all carts
-    describe("GET cart lists", () => {
-      let res
+  // Test the cart routes to get all carts
+  describe("GET cart lists", () => {
+    let res
 
-      // Define the route and http method
-      beforeEach(async () => {   
-        res = await request(app).get('/carts')
-        expect(res.statusCode).toBe(200)
-        expect(res.headers['content-type']).toMatch(/json/i)
-        })
-
-      // Test the number of elements in the array
-      it('Should return an array of 2 elements', () => {        
-        expect(res.body).toBeInstanceOf(Array)
-        expect(res.body.length).toBe(2)
+    // Define the route and http method
+    beforeEach(async () => {   
+      res = await request(app).get('/carts')
+      expect(res.statusCode).toBe(200)
+      expect(res.headers['content-type']).toMatch(/json/i)
       })
 
-      // Test the data structure of the data returned  
-      it('Has an element with the correct data structure', () => {
-        res.body.forEach(el => {
-          expect(el._id).toBeDefined()
-          expect(el._id.length).toBe(24)
-          expect(el.item).toBeDefined()
-          el.item.forEach(subel => {
-            expect(subel.product).toBeDefined()
-            expect(subel.price).toBeDefined()
-            expect(subel.quantity).toBeDefined()
-          })  
-        })
-      })
+    // Test the number of elements in the array
+    it('Should return an array of 2 elements', () => {        
+      expect(res.body).toBeInstanceOf(Array)
+      expect(res.body.length).toBe(2)
+    })
 
-      // Test the value of the data returned
-      it('Has an element with the correct data value', () => {
-        expect(res.body[0]).toEqual(
-            {
-              "_id": "63d479f9b4c1cb86f6d30b8b",
-              "item": [
-                  {
-                      "product": {
-                          "_id": "63d479f8b4c1cb86f6d30b88",
-                          "name": "R U OK",
-                          "description": "This is a sticker flakes",
-                          "imageLinks": [
-                              "https://ibb.co/7vdXTsW",
-                              "https://ibb.co/DWTW5tV",
-                              "https://ibb.co/XJpPqPT"
-                          ]
-                      },
-                      "price": 10,
-                      "quantity": 1,
-                      "_id": "63d479f9b4c1cb86f6d30b8c"
-                  },
-                  {
-                      "product": {
-                          "_id": "63d479f8b4c1cb86f6d30b89",
-                          "name": "Autumn Vibes",
-                          "description": "This is a autumn sticker sheet",
-                          "imageLinks": [
-                              "https://ibb.co/yNBcb0k",
-                              "https://ibb.co/3WS3g9G",
-                              "https://ibb.co/ymTVQ9m"
-                          ]
-                      },
-                      "price": 15,
-                      "quantity": 10,
-                      "_id": "63d479f9b4c1cb86f6d30b8d"
-                  }
-              ],
-              "__v": 0
-          })
-        expect(res.body[1]).toEqual(
+    // Test the data structure of the data returned  
+    it('Has an element with the correct data structure', () => {
+      res.body.forEach(el => {
+        expect(el._id).toBeDefined()
+        expect(el._id.length).toBe(24)
+        expect(el.item).toBeDefined()
+        el.item.forEach(subel => {
+          expect(subel.product).toBeDefined()
+          expect(subel.price).toBeDefined()
+          expect(subel.quantity).toBeDefined()
+        })  
+      })
+    })
+
+    // Test the value of the data returned
+    it('Has an element with the correct data value', () => {
+      expect(res.body[0]).toEqual(
           {
-            "_id": "63d479f9b4c1cb86f6d30b8e",
+            "_id": "63d48688d7b6e064962fffa5",
             "item": [
                 {
                     "product": {
-                        "_id": "63d479f8b4c1cb86f6d30b89",
+                        "_id": "63d48688d7b6e064962fffa2",
+                        "name": "R U OK",
+                        "description": "This is a sticker flakes",
+                        "imageLinks": [
+                            "https://ibb.co/7vdXTsW",
+                            "https://ibb.co/DWTW5tV",
+                            "https://ibb.co/XJpPqPT"
+                        ]
+                    },
+                    "price": 10,
+                    "quantity": 1,
+                    "_id": "63d48688d7b6e064962fffa6"
+                },
+                {
+                    "product": {
+                        "_id": "63d48688d7b6e064962fffa3",
+                        "name": "Autumn Vibes",
+                        "description": "This is a autumn sticker sheet",
+                        "imageLinks": [
+                           "https://ibb.co/yNBcb0k",
+                            "https://ibb.co/3WS3g9G",
+                            "https://ibb.co/ymTVQ9m"
+                        ]
+                    },
+                    "price": 15,
+                    "quantity": 10,
+                    "_id": "63d48688d7b6e064962fffa7"
+                }
+            ],
+            "__v": 0
+        })
+      expect(res.body[1]).toEqual(
+        {
+          "_id": "63d48688d7b6e064962fffa8",
+          "item": [
+              {
+                  "product": {
+                      "_id": "63d48688d7b6e064962fffa3",
+                      "name": "Autumn Vibes",
+                      "description": "This is a autumn sticker sheet",
+                      "imageLinks": [
+                          "https://ibb.co/yNBcb0k",
+                          "https://ibb.co/3WS3g9G",
+                          "https://ibb.co/ymTVQ9m"
+                      ]
+                  },
+                  "price": 15,
+                  "quantity": 20,
+                  "_id": "63d48688d7b6e064962fffa9"
+              }
+          ],
+          "__v": 0
+        })
+      })
+    }) 
+
+  // Test the cart routes to get a single cart
+  describe("GET a single cart", () => {
+      let res
+  
+      // Define the route and http method
+      beforeEach(async () => {   
+        res = await request(app).get('/carts/63d48688d7b6e064962fffa5')
+        expect(res.statusCode).toBe(200)
+        expect(res.headers['content-type']).toMatch(/json/i)
+        })
+   
+      // Test the returned structure
+      it('Should return an object', () => {        
+        expect(res.body).toBeInstanceOf(Object)
+      })
+  
+      // Test the data structure of the data returned  
+      it('Has an element with the correct data structure', () => {
+          expect(res.body._id).toBeDefined()
+          expect(res.body.item).toBeDefined()
+      })
+    
+      // Test the value of the data returned
+      it('Has an element with the correct data value', () => {
+        expect(res.body).toEqual(
+          {
+            "_id": "63d48688d7b6e064962fffa5",
+            "item": [
+                {
+                    "product": {
+                        "_id": "63d48688d7b6e064962fffa2",
+                        "name": "R U OK",
+                        "description": "This is a sticker flakes",
+                        "imageLinks": [
+                            "https://ibb.co/7vdXTsW",
+                            "https://ibb.co/DWTW5tV",
+                            "https://ibb.co/XJpPqPT"
+                        ]
+                    },
+                    "price": 10,
+                    "quantity": 1,
+                    "_id": "63d48688d7b6e064962fffa6"
+                },
+                {
+                    "product": {
+                        "_id": "63d48688d7b6e064962fffa3",
                         "name": "Autumn Vibes",
                         "description": "This is a autumn sticker sheet",
                         "imageLinks": [
@@ -196,344 +261,297 @@ describe("App tests", () => {
                         ]
                     },
                     "price": 15,
-                    "quantity": 20,
-                    "_id": "63d479f9b4c1cb86f6d30b8f"
+                    "quantity": 10,
+                    "_id": "63d48688d7b6e064962fffa7"
                 }
             ],
             "__v": 0
           })
-      })
-    }) 
-
-    // Test the cart routes to get a single cart
-    describe("GET a single cart", () => {
-        let res
-  
-        // Define the route and http method
-        beforeEach(async () => {   
-          res = await request(app).get('/carts/63d479f9b4c1cb86f6d30b8b')
-          expect(res.statusCode).toBe(200)
-          expect(res.headers['content-type']).toMatch(/json/i)
-          })
-    
-        // Test the number of elements in the array
-        it('Should return an array of 1 elements', () => {        
-          expect(res.body).toBeInstanceOf(Object)
-          expect(res.body.length).toBe(1)
-        })
-  
-        // Test the data structure of the data returned  
-        it('Has an element with the correct data structure', () => {
-          res.body.forEach(el => {
-            expect(res.body._id).toBeDefined()
-            expect(res.body.item).toBeDefined()
-            expect(res.body.item.product).toBeDefined()
-            expect(res.body.item.price).toBeDefined()
-            expect(res.body.item.quantity).toBeDefined()
-            expect(res.body.item._id).toBeDefined()
-          })
-        })
-    
-        // Test the value of the data returned
-        it('Has an element with the correct data value', () => {
-          expect(res.body).toEqual(
-            {
-              "_id": "63d479f9b4c1cb86f6d30b8b",
-              "item": [
-                  {
-                      "product": {
-                          "_id": "63d479f8b4c1cb86f6d30b88",
-                          "name": "R U OK",
-                          "description": "This is a sticker flakes",
-                          "imageLinks": [
-                              "https://ibb.co/7vdXTsW",
-                              "https://ibb.co/DWTW5tV",
-                              "https://ibb.co/XJpPqPT"
-                          ]
-                      },
-                      "price": 10,
-                      "quantity": 1,
-                      "_id": "63d479f9b4c1cb86f6d30b8c"
-                  },
-                  {
-                      "product": {
-                          "_id": "63d479f8b4c1cb86f6d30b89",
-                          "name": "Autumn Vibes",
-                          "description": "This is a autumn sticker sheet",
-                          "imageLinks": [
-                              "https://ibb.co/yNBcb0k",
-                              "https://ibb.co/3WS3g9G",
-                              "https://ibb.co/ymTVQ9m"
-                          ]
-                      },
-                      "price": 15,
-                      "quantity": 10,
-                      "_id": "63d479f9b4c1cb86f6d30b8d"
-                  }
-              ],
-              "__v": 0
-            })
       }) 
     })
     
   // Test to view a single cart with invalid cartid
-    test('GET a single cart with invalid cartid', async () => {
-      const res = await request(app).get('/carts/63d479f9b4c1cb86f6d30b8b')
-      expect(res.statusCode).toBe(404)
-      expect(res.headers['content-type']).toBe('application/json; charset=utf-8')
-      expect(res.body).toEqual({"error": "Cart Item not found!"})
-    })
+  test('GET a single cart with invalid cartid', async () => {
+    const res = await request(app).get('/carts/63d479f9b4c1cb86f6d30b8f')
+    expect(res.statusCode).toBe(404)
+    expect(res.headers['content-type']).toBe('application/json; charset=utf-8')
+    expect(res.body).toEqual({"error": "Cart Item not found!"})
+  })
 
-    // Test the route to add product to the cart with valid cartid
-    test("Add product to the cart with valid cartid", async () => {
-      const res = await request(app).post('/carts/63d479f9b4c1cb86f6d30b8b/Autumn Vibes').send({
-        quantity: 15
-      })
-      expect(res.status).toBe(201)
-      expect(res.headers['content-type']).toMatch(/json/i)
-      expect(res.body._id).toBeDefined()
-      expect(res.body.item[0].product.name).toBe("R U OK") 
-      expect(res.body.item[0].product.description).toBe("This is a sticker flakes")
-      expect(res.body.item[0].price).toBe(10)
-      expect(res.body.item[0].quantity).toBe(1)
-      expect(res.body.item[1].product.name).toBe("Autumn Vibes")  
-      expect(res.body.item[1].product.description).toBe("This is a autumn sticker sheet")
-      expect(res.body.item[1].price).toBe(15)
-      expect(res.body.item[1].quantity).toBe(25)    
+  // Test the route to add product to the cart with valid cartid
+  test("Add product to the cart with valid cartid", async () => {
+    const res = await request(app).post('/carts/63d48688d7b6e064962fffa5/Autumn Vibes').send({
+      quantity: 15
     })
+    expect(res.status).toBe(201)
+    expect(res.headers['content-type']).toMatch(/json/i)
+    expect(res.body._id).toBeDefined()
+    expect(res.body.item[0].product.name).toBe("R U OK") 
+    expect(res.body.item[0].product.description).toBe("This is a sticker flakes")
+    expect(res.body.item[0].price).toBe(10)
+    expect(res.body.item[0].quantity).toBe(1)
+    expect(res.body.item[1].product.name).toBe("Autumn Vibes")  
+    expect(res.body.item[1].product.description).toBe("This is a autumn sticker sheet")
+    expect(res.body.item[1].price).toBe(15)
+    expect(res.body.item[1].quantity).toBe(25)    
+  })
 
-    // Test the route to add product to the cart with invalid cartid
-    test("Add product to the cart with invalid cartid", async () => {
-      const res = await request(app).post('/carts/63d35c8f2c13144a29ec899a/Autumn Vibes').send({
-        quantity: 15
-      })
-      expect(res.status).toBe(404)
-      expect(res.headers['content-type']).toMatch(/json/i)
-      expect(res.body).toEqual({"error": "Cart Item not found!"})
+  // Test the route to add product to the cart with invalid cartid
+  test("Add product to the cart with invalid cartid", async () => {
+    const res = await request(app).post('/carts/63d35c8f2c13144a29ec899a/Autumn Vibes').send({
+      quantity: 15
     })
+    expect(res.status).toBe(404)
+    expect(res.headers['content-type']).toMatch(/json/i)
+    expect(res.body).toEqual({"error": "Cart Item not found!"})
+  })
 
-    // Test the route to add product to the cart without cartid, will create a new cart
-    test("Add product to the cart without cartid", async () => {
-      const res = await request(app).post('/carts/null/R U OK').send({
-        quantity: 15
-      })
-      expect(res.status).toBe(201)
-      expect(res.headers['content-type']).toMatch(/json/i)
-      expect(res.body._id).toBeDefined()
-      expect(res.body.item[0].product.name).toBe("R U OK") 
-      expect(res.body.item[0].product.description).toBe("This is a sticker flakes")
-      expect(res.body.item[0].price).toBe(10)
-      expect(res.body.item[0].quantity).toBe(15)
+  // Test the route to add product to the cart without cartid, will create a new cart
+  test("Add product to the cart without cartid", async () => {
+    const res = await request(app).post('/carts/null/R U OK').send({
+      quantity: 15
     })
+    expect(res.status).toBe(201)
+    expect(res.headers['content-type']).toMatch(/json/i)
+    expect(res.body._id).toBeDefined()
+    expect(res.body.item[0].product.name).toBe("R U OK") 
+    expect(res.body.item[0].product.description).toBe("This is a sticker flakes")
+    expect(res.body.item[0].price).toBe(10)
+    expect(res.body.item[0].quantity).toBe(15)
+  })
 
-    // Test the route to add product to the cart with invalid product name
-    test("Add product to the cart with invalid product name", async () => {
-      const res = await request(app).post('/carts/63d479f9b4c1cb86f6d30b8b/R U OKA').send({
-        quantity: 15
-      })
-      expect(res.status).toBe(404)
-      expect(res.headers['content-type']).toMatch(/json/i)
-      expect(res.body).toEqual({"error": "Product not found!"})
+  // Test the route to add product to the cart with invalid product name
+  test("Add product to the cart with invalid product name", async () => {
+    const res = await request(app).post('/carts/63d48688d7b6e064962fffa5/R U OKA').send({
+      quantity: 15
     })
+    expect(res.status).toBe(404)
+    expect(res.headers['content-type']).toMatch(/json/i)
+    expect(res.body).toEqual({"error": "Product not found!"})
+  })
 
-    // Test the route to update product quantity in the cart with valid cartid
-    test("Update product quantity to the cart with valid id", async () => {
-      const res = await request(app).patch('/carts/63d479f9b4c1cb86f6d30b8e/Autumn Vibes').send({
-        quantity: 10
-      })
-      expect(res.status).toBe(201)
-      expect(res.headers['content-type']).toMatch(/json/i)
-      expect(res.body._id).toBeDefined()
-      expect(res.body.item[0].product.name).toBe("Autumn Vibes") 
-      expect(res.body.item[0].product.description).toBe("This is a autumn sticker sheet")
-      expect(res.body.item[0].price).toBe(15)
-      expect(res.body.item[0].quantity).toBe(30)
+  // Test the route to update product quantity in the cart with valid cartid
+  test("Update product quantity to the cart with valid id", async () => {
+    const res = await request(app).patch('/carts/63d48688d7b6e064962fffa8/Autumn Vibes').send({
+      quantity: 10
     })
+    expect(res.status).toBe(201)
+    expect(res.headers['content-type']).toMatch(/json/i)
+    expect(res.body._id).toBeDefined()
+    expect(res.body.item[0].product.name).toBe("Autumn Vibes") 
+    expect(res.body.item[0].product.description).toBe("This is a autumn sticker sheet")
+    expect(res.body.item[0].price).toBe(15)
+    expect(res.body.item[0].quantity).toBe(30)
+  })
 
-    // Test the route to update product quantity in the cart with invalid cartid
-    test("Update product quantity to the cart with invalid cartid", async () => {
-      const res = await request(app).patch('/carts/63d35c8f2d13144a29ec869d/Autumn Vibes').send({
-        quantity: 10
-      })
-      expect(res.status).toBe(404)
-      expect(res.headers['content-type']).toMatch(/json/i)
-      expect(res.body).toEqual({"error": "Cart Item not found!"})
+  // Test the route to update product quantity in the cart with invalid cartid
+  test("Update product quantity to the cart with invalid cartid", async () => {
+    const res = await request(app).patch('/carts/63d35c8f2d13144a29ec869d/Autumn Vibes').send({
+      quantity: 10
     })
+    expect(res.status).toBe(404)
+    expect(res.headers['content-type']).toMatch(/json/i)
+    expect(res.body).toEqual({"error": "Cart Item not found!"})
+  })
 
-    // Test the route to update product quantity in the cart with invalid product name
-    test("Update product quantity to the cart with invalid product name", async () => {
-      const res = await request(app).patch('/carts/63d479f9b4c1cb86f6d30b8e/Autumn and Spring Vibes').send({
-        quantity: 10
-      })
-      expect(res.status).toBe(404)
-      expect(res.headers['content-type']).toMatch(/json/i)
-      expect(res.body).toEqual({"error": "Product not found!"})
+  // Test the route to update product quantity in the cart with invalid product name
+  test("Update product quantity to the cart with invalid product name", async () => {
+    const res = await request(app).patch('/carts/63d48688d7b6e064962fffa8/Autumn and Spring Vibes').send({
+      quantity: 10
     })
+    expect(res.status).toBe(404)
+    expect(res.headers['content-type']).toMatch(/json/i)
+    expect(res.body).toEqual({"error": "Product not found!"})
+  })
 
-    // Test to get all orders
-    describe("GET order lists", () => {
-      let res
-      // Define the route and http method
-      beforeEach(async () => {   
-        res = await request(app).get('/orders')
-        expect(res.statusCode).toBe(200)
-        expect(res.headers['content-type']).toMatch(/json/i)
-        })
-      // Test the number of elements in the array
-      it('Should return an array of 2 elements', () => {        
-        expect(res.body).toBeInstanceOf(Array)
-        expect(res.body.length).toBe(2)
-      })
-      // Test the data structure of the data returned
-      it('Has an element with the correct data structure', () => {
-        res.body.forEach(el => {
-          expect(el._id).toBeDefined()
-          expect(el._id.length).toBe(24)
-          expect(el.total).toBeDefined()
-          expect(el.address).toBeDefined()
-          expect(el.cart).toBeDefined()
-          expect(el.cart.item).toBeDefined()
-        }) 
-      })
-      
-      // Test the value of the data returned
-      it('Has an element with the correct data value', () => {
-        expect(res.body[0].cart.item[0].product).toBe("63d35c8f2c13144a29ec8697") 
-        expect(res.body[0].cart.item[0].price).toBe(10)
-        expect(res.body[0].cart.item[0].quantity).toBe(1)
-        expect(res.body[0].cart.item[1].product).toBe("63d35c8f2c13144a29ec8698")  
-        expect(res.body[0].cart.item[1].price).toBe(15)
-        expect(res.body[0].cart.item[1].quantity).toBe(10)
-        expect(res.body[0].total).toBe(160)
-        expect(res.body[0].address.email).toBe("12345@gmail.com")
-        expect(res.body[0].cart.item[0].product).toBe("63d35c8f2c13144a29ec8698") 
-        expect(res.body[0].cart.item[0].price).toBe(15)
-        expect(res.body[0].cart.item[0].quantity).toBe(20)
-      })
-    })
-
-    // Test to get a single order
-    describe("GET a single product with valid orderid", () => {
-      let res
-      // Define the route and http method
-      beforeEach(async () => {
-        res = await request(app).get('/orders/63d35c902c13144a29ec86a3')
-        expect(res.statusCode).toBe(200)
-        expect(res.headers['content-type']).toMatch(/json/i)      
-      })
-      // Test the value of the data returned
-      it('Has an element with the correct data value', () => {
-        expect(res.body.cart.item[0].product).toBe("63d35c8f2c13144a29ec8697") 
-        expect(res.body.cart.item[0].price).toBe(10)
-        expect(res.body.total).toBe(160)
-        expect(res.body.address._id).toBe("63d35c902c13144a29ec86a0")
-      })
-      // Test the data structure of the data returned
-      it('Has an element with the correct data structure', () => {
-          expect(res.body._id).toBeDefined()
-          expect(res.body.cart.item).toBeDefined()
-          expect(res.body.cart.item[0].product).toBeDefined()
-          expect(res.body.cart.item[0].price).toBeDefined()
-          expect(res.body._id.length).toBe(24)
-          expect(res.body.total).toBeDefined()
-          expect(res.body.address).toBeDefined()
-      })
-    })
-
-    test("GET a single product with invalid orderid", async () => {
-      // Define the route and http method
-      const res = await request(app).get('/orders/63d36c902c13144a29ec86a3')
-        expect(res.statusCode).toBe(404)
-        expect(res.headers['content-type']).toMatch(/json/i)     
-        expect(res.body).toEqual({"error": "Order not found!"})
-    })
-
-    test("Add new address", async () => {
-      const res = await request(app).post('/orders/address').send({
-        email: '6789977@gmail.com',
-        firstName: 'Bob',
-        lastName: 'Tian',
-        phone: '0411112321',
-        streetAddress: '188 Swanston Street',
-        suburb: 'Melbourne',
-        state: 'VIC',
-        postcode: 3000
-      })
-      expect(res.status).toBe(201)
-      expect(res.headers['content-type']).toMatch(/json/i)
-      expect(res.body._id).toBeDefined()
-      expect(res.body.email).toBe('6789977@gmail.com')
-      expect(res.body.firstName).toBe('Bob')
-      expect(res.body.lastName).toBe('Tian')
-      expect(res.body.phone).toBe('0411112321')
-      expect(res.body.streetAddress).toBe('188 Swanston Street')
-      expect(res.body.suburb).toBe('Melbourne')
-      expect(res.body.state).toBe('VIC')
-      expect(res.body.postcode).toBe(3000)
-    })
-
-    test("Add new orders with valid id", async () => {
-      const res = await request(app).post('/orders').send({
-        "addressId":"63d45d962acdcc5d6564f7f0",
-        "total": 500,
-        "cartId": "63d3b9997ef8672097ade9a0"
-      })
-      expect(res.status).toBe(201)
-      expect(res.headers['content-type']).toMatch(/json/i)
-      expect(res.body._id).toBeDefined()
-      expect(res.body.cart.item[0].product).toBe("63d35c8f2c13144a29ec8697") 
-      expect(res.body.cart._id).toBe("63d3b9997ef8672097ade9a0") 
-      expect(res.body.total).toBe(500)
-      expect(res.body.address._id).toBe("63d45d962acdcc5d6564f7f0")
-    })
-
-    test("Add new orders with invalid address id", async () => {
-      const res = await request(app).post('/orders').send({
-        "addressId":"63d45d962acdcc5d6510f7f0",
-        "total": 500,
-        "cartId": "63d3b9997ef8672097ade9a0"
-      })
-      expect(res.status).toBe(404)
-      expect(res.headers['content-type']).toMatch(/json/i)
-      expect(res.body).toEqual({"error": "Address not found!"})
-    })
-
-    test("Add new orders with invalid address id", async () => {
-      const res = await request(app).post('/orders').send({
-        "addressId":"63d45d962acdcc5d6564f7f0",
-        "total": 500,
-        "cartId": "63d3b9997ef8672097aff9a0"
-      })
-      expect(res.status).toBe(404)
-      expect(res.headers['content-type']).toMatch(/json/i)
-      expect(res.body).toEqual({"error": "Cart not found!"})
-    })
-
-    // Test to delete a cart item
-    test("Delete the product in the cart with valid cartid", async () => {
-      const res = await request(app).delete('/carts/63d479f9b4c1cb86f6d30b8b/Autumn Vibes')
-      expect(res.status).toBe(200)
-      expect(res.headers['content-type']).toMatch(/json/i)
-      expect(res.body._id).toBeDefined()
-      expect(res.body.item.product.name).toBe("R U OK") 
-      expect(res.body.item.product.description).toBe("This is a sticker flakes")
-      expect(res.body.item.price).toBe(10)
-      expect(res.body.item.quantity).toBe(1)
-    })
-
-    // Test to delete a cart item in the cart with invalid cartid
-    test("Delete the product in the cart with invalid cartid", async () => {
-      const res = await request(app).delete('/carts/63d479f9b4c1cb86f6d30b8f/Autumn Vibes')
-        expect(res.status).toBe(404)
-        expect(res.headers['content-type']).toMatch(/json/i)
-        expect(res.body).toEqual({"error": "Cart Item not found!"})
-      })
+  // Test to get all orders
+  describe("GET order lists", () => {
+    let res
   
-      // Test to delete a cart item in the cart with invalid product name
-      test("Delete the product in the cart with invalid product name", async () => {
-        const res = await request(app).delete('/carts/63d479f9b4c1cb86f6d30b8b/Autumn and Spring Vibes')
-      expect(res.status).toBe(404)
+    // Define the route and http method
+    beforeEach(async () => {   
+      res = await request(app).get('/orders')
+      expect(res.statusCode).toBe(200)
       expect(res.headers['content-type']).toMatch(/json/i)
-      expect(res.body).toEqual({"error": "Product not found!"})
+      })
+    
+    // Test the number of elements in the array
+    it('Should return an array of 2 elements', () => {        
+      expect(res.body).toBeInstanceOf(Array)
+      expect(res.body.length).toBe(2)
     })
+    
+    // Test the data structure of the data returned
+    it('Has an element with the correct data structure', () => {
+      res.body.forEach(el => {
+        expect(el._id).toBeDefined()
+        expect(el._id.length).toBe(24)
+        expect(el.total).toBeDefined()
+        expect(el.address).toBeDefined()
+        expect(el.cart).toBeDefined()
+      }) 
+    })
+      
+    // Test the value of the data returned
+    it('Has an element with the correct data value', () => {
+      expect(res.body[0].cart.item[0].product).toBe("63d48688d7b6e064962fffa2") 
+      expect(res.body[0].cart.item[0].price).toBe(10)
+      expect(res.body[0].cart.item[0].quantity).toBe(1)
+      expect(res.body[0].cart.item[1].product).toBe("63d48688d7b6e064962fffa3")  
+      expect(res.body[0].cart.item[1].price).toBe(15)
+      expect(res.body[0].cart.item[1].quantity).toBe(10)
+      expect(res.body[0].total).toBe(160)
+      expect(res.body[0].address.email).toBe("12345@gmail.com")
+      expect(res.body[1].cart.item[0].product).toBe("63d48688d7b6e064962fffa3") 
+      expect(res.body[1].cart.item[0].price).toBe(15)
+      expect(res.body[1].cart.item[0].quantity).toBe(30)
+    })
+  })
+
+   // Test to get a single order
+   describe("GET a single order with valid orderid", () => {
+    let res
+    
+    // Define the route and http method
+    beforeEach(async () => {
+      res = await request(app).get('/orders/63d4888d6f851e8fbefccef8')
+      expect(res.statusCode).toBe(200)
+      expect(res.headers['content-type']).toMatch(/json/i)      
+    })
+    
+    // Test the value of the data returned
+    it('Has an element with the correct data value', () => {
+      expect(res.body.cart.item[0].product).toBe("63d48688d7b6e064962fffa3") 
+      expect(res.body.cart.item[0].price).toBe(10)
+      expect(res.body.total).toBe(160)
+      expect(res.body.address._id).toBe("63d48688d7b6e064962fffac")
+    })
+    
+    // Test the data structure of the data returned
+    it('Has an element with the correct data structure', () => {
+        expect(res.body._id).toBeDefined()
+        expect(res.body.cart).toBeDefined()
+        expect(res.body.cart.item).toBeDefined()
+        expect(res.body._id.length).toBe(24)
+        expect(res.body.total).toBeDefined()
+        expect(res.body.address).toBeDefined()
+    })
+  })
+
+  // Test to get a single order with invalid order id
+  test("GET a single order with invalid orderid", async () => {
+
+    // Define the route and http method
+    const res = await request(app).get('/orders/63d36c902c13144a29ec86a3')
+      expect(res.statusCode).toBe(404)
+      expect(res.headers['content-type']).toMatch(/json/i)     
+      expect(res.body).toEqual({"error": "Order not found!"})
+  })
+
+  // Test to add new address
+  test("Add new address", async () => {
+    const res = await request(app).post('/orders/address').send({
+      email: '6789977@gmail.com',
+      firstName: 'Bob',
+      lastName: 'Tian',
+      phone: '0411112321',
+      streetAddress: '188 Swanston Street',
+      suburb: 'Melbourne',
+      state: 'VIC',
+      postcode: 3000
+    })
+    expect(res.status).toBe(201)
+    expect(res.headers['content-type']).toMatch(/json/i)
+    expect(res.body._id).toBeDefined()
+    expect(res.body.email).toBe('6789977@gmail.com')
+    expect(res.body.firstName).toBe('Bob')
+    expect(res.body.lastName).toBe('Tian')
+    expect(res.body.phone).toBe('0411112321')
+    expect(res.body.streetAddress).toBe('188 Swanston Street')
+    expect(res.body.suburb).toBe('Melbourne')
+    expect(res.body.state).toBe('VIC')
+    expect(res.body.postcode).toBe(3000)
+  })
+
+  // Test to add new order with valid ids
+  test("Add new orders with valid id", async () => {
+    const res = await request(app).post('/orders').send({
+      "addressId":"63d48688d7b6e064962fffac",
+      "total": 500,
+      "cartId": "63d48688d7b6e064962fffa8"
+    })
+    expect(res.status).toBe(201)
+    expect(res.headers['content-type']).toMatch(/json/i)
+    expect(res.body._id).toBeDefined()
+    expect(res.body.cart.item[0].product).toBe("63d48688d7b6e064962fffa3") 
+    expect(res.body.cart._id).toBe("63d48688d7b6e064962fffa8") 
+    expect(res.body.total).toBe(500)
+    expect(res.body.address._id).toBe("63d48688d7b6e064962fffac")
+  })
+
+  // Test to add new orders with invalid address id
+  test("Add new orders with invalid address id", async () => {
+    const res = await request(app).post('/orders').send({
+      "addressId":"63d45d962acdcc5d6510f7f0",
+      "total": 500,
+      "cartId": "63d48688d7b6e064962fffa8"
+    })
+    expect(res.status).toBe(404)
+    expect(res.headers['content-type']).toMatch(/json/i)
+    expect(res.body).toEqual({"error": "Address not found!"})
+  })
+
+  // Test to add new orders with invalid cart id
+  test("Add new orders with invalid cart id", async () => {
+    const res = await request(app).post('/orders').send({
+      "addressId":"63d48688d7b6e064962fffac",
+      "total": 500,
+      "cartId": "63d3b9997ef8672097aff9a0"
+    })
+    expect(res.status).toBe(404)
+    expect(res.headers['content-type']).toMatch(/json/i)
+    expect(res.body).toEqual({"error": "Cart not found!"})
+  })
+
+  // Test to delete a cart item
+  test("Delete a product in the cart with valid cartid", async () => {
+    const res = await request(app).delete('/carts/63d48688d7b6e064962fffa5/Autumn Vibes')
+    expect(res.status).toBe(200)
+    expect(res.headers['content-type']).toMatch(/json/i)
+    expect(res.body._id).toBeDefined()
+    expect(res.body.item.product.name).toBe("R U OK") 
+    expect(res.body.item.product.description).toBe("This is a sticker flakes")
+    expect(res.body.item.price).toBe(10)
+    expect(res.body.item.quantity).toBe(1)
+  })
+
+  // Test to delete a cart item in the cart with invalid cartid
+  test("Delete a product in the cart with invalid cartid", async () => {
+    const res = await request(app).delete('/carts/63d479f9b4c1cb86f6d30b8f/Autumn Vibes')
+    expect(res.status).toBe(404)
+    expect(res.headers['content-type']).toMatch(/json/i)
+    expect(res.body).toEqual({"error": "Cart Item not found!"})
+  })
+  
+  // Test to delete a cart item in the cart with invalid product name
+  test("Delete a product in the cart with invalid product name", async () => {
+    const res = await request(app).delete('/carts/63d48688d7b6e064962fffa5/Autumn and Spring Vibes')
+    expect(res.status).toBe(404)
+    expect(res.headers['content-type']).toMatch(/json/i)
+    expect(res.body).toEqual({"error": "Product not found!"})
+  })
+
+  // Test to delete a cart with valid cartid
+  test("Delete the cart with valid cartid", async () => {
+    const res = await request(app).delete('/carts/63d48688d7b6e064962fffa5')
+    expect(res.status).toBe(204)
+  })
+    
+  // Test to delete a cart with invalid cartid
+  test("Delete the cart with invalid cartid", async () => {
+    const res = await request(app).delete('/carts/63d479f9b4c1cb86f6d30b8f')
+    expect(res.status).toBe(404)
+    expect(res.headers['content-type']).toMatch(/json/i)
+    expect(res.body).toEqual({"error": "Cart not found!"})
+  })
 })

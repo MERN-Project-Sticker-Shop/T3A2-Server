@@ -23,7 +23,6 @@ async function checkCart(id) {
   // Find the cart object that matches the the cart id
   const cartObject = await CartModel.findById({ _id: id  })
   // If found, obtain the item array from the cart object
-  console.log(cartObject)
   if (cartObject) {
     return cartObject
   // If not, return the error message
@@ -131,7 +130,7 @@ router.delete('/:cartid/:name', async (req, res) => {
       const cartItem = await checkCart(req.params.cartid,res)
       if (cartItem !== 'Cart Item not found!') {
         // Filter out product that match the name parameters in the url and create a new array
-        const newCartitem = cartItem.filter(item => {
+        const newCartitem = cartItem.item.filter(item => {
           return item.product.toString() !== result.product._id.toString()})
         // Update the cart with the filtered item array
         const newItem = await CartModel.findByIdAndUpdate(req.params.cartid, {item: newCartitem}, { new: true })
