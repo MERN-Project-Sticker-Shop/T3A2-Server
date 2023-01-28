@@ -21,13 +21,13 @@ async function checkProduct(productName, quantity) {
 // Verify cart
 async function checkCart(id) {
   // Find the cart object that matches the the cart id
-  const cartObject = await CartModel.findOne({ _id: id  })
+  const cartObject = await CartModel.findById({ _id: id  })
   // If found, obtain the item array from the cart object
+  console.log(cartObject)
   if (cartObject) {
-    const cartItem = cartObject.item
-    return cartItem
+    return cartObject
   // If not, return the error message
-  }else {
+  } else {
     return 'Cart Item not found!'
   }
 }
@@ -35,13 +35,13 @@ async function checkCart(id) {
 // Update cart item and quantity
 async function updateCart(id, result, res) {
     // Verify the cart first and return the item array of the cart
-    const cartResult = await checkCart(id, res)
+    const cartResult = await checkCart(id)
     // If the cart item exists
     if (cartResult !== 'Cart Item not found!') {
       // Obtain the objectID of the product
       const productObject = result.product
       // Check whether the product already exists in the cart
-      const found = cartResult.find(obj => {
+      const found = cartResult.item.find(obj => {
         return obj.product.toString() === productObject._id.toString()
       })
       // If yes, update the quantity
@@ -49,10 +49,10 @@ async function updateCart(id, result, res) {
           found.quantity += result.quantity
       // If not, add new product to the cart
       }else {
-        cartResult.push(result)
+        cartResult.item.push(result)
       }
       // Update the item array
-      const updatedCartitem = {item: cartResult}
+      const updatedCartitem = {item: cartResult.item}
       // Update the database
       try {
         const newItem = await CartModel.findByIdAndUpdate(id, updatedCartitem, { new: true})
@@ -66,9 +66,23 @@ async function updateCart(id, result, res) {
     }
 }
 
-// Get all cart items
+// Get all carts
 router.get('', async (req, res) => {
   res.send(await CartModel.find().populate({ path:'item.product', select: 'name description imageLinks'}))
+})
+
+// Get a single cart
+router.get('/:cartid', async (req, res) => {
+  // Obtain cartid
+  const id = req.params.cartid
+  // Check whether cart exists. If exists, send the cart object. If not, return the error message
+  const cartResult = await checkCart(id)
+  if (cartResult !=='Cart Item not found!') {
+    res.send(await cartResult.populate({ path:'item.product', select: 'name description imageLinks'}))
+  } else {
+    res.status(404).send({ error: cartResult})
+  }
+
 })
 
 // Add products to cart
