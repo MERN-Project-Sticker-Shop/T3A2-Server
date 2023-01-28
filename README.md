@@ -6,7 +6,7 @@
 
 * Frontend: [Frontend Deployment]
   
-* Backend: [Backend Deployment](t3a2-server-production.up.railway.app)
+* Backend: [Backend Deployment](https://t3a2-server-production.up.railway.app/)
   
 ## Description
 
