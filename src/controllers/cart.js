@@ -76,7 +76,8 @@ async function getSingleCart(req, res) {
   if (cartResult !=='Cart Item not found!') {
     res.send(await cartResult.populate({ path:'item.product', select: 'name description imageLinks'}))
   } else {
-    res.status(404).send({ error: cartResult})
+    res.status(404)
+    res.send({ error: cartResult})
   }
 }
 

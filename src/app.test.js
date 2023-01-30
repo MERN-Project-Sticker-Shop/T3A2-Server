@@ -136,7 +136,6 @@ describe("App tests", () => {
       expect(res.body[0].item[1].quantity).toBe(10)     
       expect(res.body[1].item[0].product.name).toBe("Autumn Vibes")
       expect(res.body[1].item[0].quantity).toBe(20)
-      console.log(res.body[0]._id)
       cartId = res.body[0]._id
       })
     }) 
