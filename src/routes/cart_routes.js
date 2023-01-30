@@ -45,7 +45,7 @@ async function updateCart(id, result, res) {
       })
       // If yes, update the quantity
       if (found) {
-          found.quantity += result.quantity
+          found.quantity = result.quantity
       // If not, add new product to the cart
       }else {
         cartResult.item.push(result)
