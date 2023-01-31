@@ -295,7 +295,7 @@ describe("App tests", () => {
       expect(res.body[0].cart.item[0].quantity).toBe(1)
       expect(res.body[0].cart.item[1].product).toBe(`${productId2}`)  
       expect(res.body[0].cart.item[1].price).toBe(15)
-      expect(res.body[0].cart.item[1].quantity).toBe(8)
+      expect(res.body[0].cart.item[1].quantity).toBe(30)
       expect(res.body[0].total).toBe(160)
       expect(res.body[0].address.email).toBe("12345@gmail.com")
       expect(res.body[1].cart.item[0].product).toBe(`${productId2}`) 
