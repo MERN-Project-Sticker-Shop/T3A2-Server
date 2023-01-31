@@ -1,5 +1,5 @@
 import { ProductModel, CartModel } from '../db.js'
-import { checkProduct, checkCart } from '../controllers/cart.js' 
+import { checkProduct, checkCart } from '../controllers/cart_controller.js' 
 import {jest} from '@jest/globals'
 
 // Test checkProduct function
@@ -54,13 +54,14 @@ describe('Update Cart', () => {
     "__v": 0
 };
   const mockCart = originalCart
-  mockCart.item[0].quantity = originalCart.item[0].quantity + request.quantity
+  mockCart.item[0].quantity =  request.quantity
 
   const updateCart = jest.fn(mockUrl => mockCart);
   it('returns the updated quantity', () => {
-    expect(updateCart(mockUrl).item[0].quantity).toBe(21);
+    expect(updateCart(mockUrl).item[0].quantity).toBe(20);
   });
   it('called updateCart with a mockUrl', () => {
     expect(updateCart).toHaveBeenCalledWith(mockUrl);
   });
 });
+
