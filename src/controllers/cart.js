@@ -16,24 +16,31 @@ async function checkProduct(productName, quantity) {
 }
 
 // Verify cart
-async function checkCart(id) {
+async function checkCart(id, res) {
   // Find the cart object that matches the the cart id
+  try{
   const cartObject = await CartModel.findById({ _id: id  })
-  // If found, obtain the item array from the cart object
-  if (cartObject) {
-    return cartObject
-  // If not, return the error message
-  } else {
-    return 'Cart Item not found!'
+    // If found, obtain the item array from the cart object
+    if (cartObject) {
+      return cartObject
+    // If not, return the error message
+    } else {
+      return 'Cart Item not found!'
+    }
+  } 
+  catch(err) {
+    return 'Invalid Cart Id'
   }
+
 }
 
 // Update cart item and quantity
 async function updateCart(id, result, res) {
     // Verify the cart first and return the item array of the cart
-    const cartResult = await checkCart(id)
+
+    const cartResult = await checkCart(id, res)
     // If the cart item exists
-    if (cartResult !== 'Cart Item not found!') {
+    if (cartResult !=='Cart Item not found!' & cartResult !=='Invalid Cart Id') {
       // Obtain the objectID of the product
       const productObject = result.product
       // Check whether the product already exists in the cart
@@ -50,14 +57,10 @@ async function updateCart(id, result, res) {
       // Update the item array
       const updatedCartitem = {item: cartResult.item}
       // Update the database
-      try {
         const newItem = await CartModel.findByIdAndUpdate(id, updatedCartitem, { new: true})
         res.status(201).send(await newItem.populate( { path: 'item.product', select: 'name description imageLinks'}))
       }
-      catch(err) {
-        res.status(500).send({ error: err.message })
-      }
-    } else {
+     else {
       res.status(404).send({ error: cartResult })
     }
 }
@@ -73,12 +76,11 @@ async function getSingleCart(req, res) {
   const id = req.params.cartid
   // Check whether cart exists. If exists, send the cart object. If not, return the error message
   const cartResult = await checkCart(id)
-  if (cartResult !=='Cart Item not found!') {
+  if (cartResult !=='Cart Item not found!' & cartResult !=='Invalid Cart Id') {
     res.send(await cartResult.populate({ path:'item.product', select: 'name description imageLinks'}))
   } else {
-    res.status(404)
-    res.send({ error: cartResult})
-  }
+    res.status(404).send({ error: cartResult })
+  } 
 }
 
 // Add products to cart
@@ -93,14 +95,11 @@ async function addProduct(req, res) {
     // Cart not exists, create a new item array
     } else {
       const newCartitem = { item: [result] }
-      try {
-        // Create a new instance of cart model and insert the newly created item array
-        const insertedCartitem = await CartModel.create(newCartitem)
-        res.status(201).send(await insertedCartitem.populate( { path: 'item.product', select: 'name description imageLinks'}))
-        }
-      catch(err) {
-        res.status(500).send({ error: err.message })
-      }}
+      
+      // Create a new instance of cart model and insert the newly created item array
+      const insertedCartitem = await CartModel.create(newCartitem)
+      res.status(201).send(await insertedCartitem.populate( { path: 'item.product', select: 'name description imageLinks'}))
+      }
   } else {
     res.status(404).send({ error: result })
   }
@@ -125,7 +124,7 @@ async function deleteProduct(req, res) {
     if (result !== 'Product not found!') {
       // Check whether cart exists
       const cartItem = await checkCart(req.params.cartid,res)
-      if (cartItem !== 'Cart Item not found!') {
+      if (cartItem !== 'Cart Item not found!' & cartItem !== 'Invalid Cart Id') {
         // Filter out product that match the name parameters in the url and create a new array
         const newCartitem = cartItem.item.filter(item => {
           return item.product.toString() !== result.product._id.toString()})
@@ -139,7 +138,7 @@ async function deleteProduct(req, res) {
     } else {
       res.status(404).send({ error: result })
     }
-}
+  }
 
 //Delete the whole cart
 async function deleteCart(req, res) {
@@ -154,7 +153,7 @@ async function deleteCart(req, res) {
     }
   }
   catch(err) {
-    res.status(500).send({ error: err.message })
+    res.status(500).send({ error: 'Invalid Cart Id' })
 }
 }
 

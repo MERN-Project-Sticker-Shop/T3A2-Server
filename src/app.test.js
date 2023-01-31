@@ -179,6 +179,14 @@ describe("App tests", () => {
     expect(res.body).toEqual({"error": "Cart Item not found!"})
   })
 
+  // Test to view a single cart with cartid in the wrong format
+  test('GET a single cart with cartid in the wrong format', async () => {
+    const res = await request(app).get('/carts/63d479f9')
+    expect(res.statusCode).toBe(404)
+    expect(res.headers['content-type']).toBe('application/json; charset=utf-8')
+    expect(res.body).toEqual({"error": "Invalid Cart Id"})
+  })
+
   // Test the route to add product to the cart with valid cartid
   test("Add product to the cart with valid cartid", async () => {
     const res = await request(app).post(`/carts/${cartId}/Autumn Vibes`).send({
@@ -351,6 +359,16 @@ describe("App tests", () => {
       expect(res.body).toEqual({"error": "Order not found!"})
   })
 
+  // Test to get a single order with order id in the wrong format
+  test("GET a single order with orderid in the wrong format", async () => {
+
+    // Define the route and http method
+    const res = await request(app).get('/orders/63d48fb6055')
+      expect(res.statusCode).toBe(500)
+      expect(res.headers['content-type']).toMatch(/json/i)     
+      expect(res.body).toEqual({"error": "Invalid Order Id"})
+  })
+
   // Test to add new address
   test("Add new address", async () => {
     const res = await request(app).post('/orders/address').send({
@@ -375,6 +393,21 @@ describe("App tests", () => {
     expect(res.body.state).toBe('VIC')
     expect(res.body.postcode).toBe(3000)
     addressId = res.body._id
+  })
+
+  // Test to add new address with missing field
+  test("Add new address", async () => {
+    const res = await request(app).post('/orders/address').send({
+      firstName: 'Bob',
+      lastName: 'Tian',
+      phone: '0411112321',
+      streetAddress: '188 Swanston Street',
+      suburb: 'Melbourne',
+      state: 'VIC',
+      postcode: 3000
+    })
+    expect(res.status).toBe(500)
+    expect(res.headers['content-type']).toMatch(/json/i)
   })
 
   // Test to add new order with valid ids
@@ -417,6 +450,17 @@ describe("App tests", () => {
     expect(res.body).toEqual({"error": "Cart not found!"})
   })
 
+  // Test to add new orders with cart id that has wrong format
+  test("Add new orders with cart id in wrong format", async () => {
+    const res = await request(app).post('/orders').send({
+      "addressId":`${addressId}`,
+      "total": 500,
+      "cartId": "63d3b9997ef"
+    })
+    expect(res.status).toBe(500)
+    expect(res.headers['content-type']).toMatch(/json/i)
+  })
+
   // Test to delete a cart item
   test("Delete a product in the cart with valid cartid", async () => {
     const res = await request(app).delete(`/carts/${cartId}/Autumn Vibes`)
@@ -451,11 +495,19 @@ describe("App tests", () => {
     expect(res.status).toBe(204)
   })
     
-  // Test to delete a cart with invalid cartid
-  test("Delete the cart with invalid cartid", async () => {
+  // Test to delete a cart with wrong cartid
+  test("Delete the cart with wrong cartid", async () => {
     const res = await request(app).delete('/carts/63d479f9b4c1cb86f6d30b8f')
     expect(res.status).toBe(404)
     expect(res.headers['content-type']).toMatch(/json/i)
     expect(res.body).toEqual({"error": "Cart not found!"})
+  })
+
+  // Test to delete a cart with invalid cartid
+  test("Delete the cart with invalid cartid", async () => {
+    const res = await request(app).delete('/carts/63d479f9b4c1cb86f6d30b8')
+    expect(res.status).toBe(500)
+    expect(res.headers['content-type']).toMatch(/json/i)
+    expect(res.body).toEqual({"error": "Invalid Cart Id"})
   })
 })
