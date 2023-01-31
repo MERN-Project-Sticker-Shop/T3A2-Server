@@ -2,7 +2,7 @@ import { ProductModel, CartModel } from '../db.js'
 import { checkProduct, checkCart } from '../controllers/cart_controller.js' 
 import {jest} from '@jest/globals'
 
-// Test checkProduct function
+// Unit Test checkProduct function
 describe('Check whether a product exists', () => {
   it('Should return Product not found', async () => {
     ProductModel.findOne = jest.fn().mockImplementation(() => {
@@ -15,7 +15,7 @@ describe('Check whether a product exists', () => {
     })
 })
 
-// Test checkCart function
+// Unit Test checkCart function
 describe('Check whether a cart exists', () => {
   it('Should return Cart Item not found', async () => {
     CartModel.findById = jest.fn().mockImplementation(() => {
@@ -28,7 +28,7 @@ describe('Check whether a cart exists', () => {
     })
 })
 
-// Test updateCart function
+// Unit Test updateCart function
 describe('Update Cart', () => {
   const mockUrl = '/carts/63d79b36be7fa03f924bbb36/R U OK';
   const request = { quantity: 20 }
