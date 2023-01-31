@@ -495,17 +495,17 @@ describe("App tests", () => {
     expect(res.status).toBe(204)
   })
     
-  // Test to delete a cart with wrong cartid
-  test("Delete the cart with wrong cartid", async () => {
+  // Test to delete a cart with invalid cartid
+  test("Delete the cart with invalid cartid", async () => {
     const res = await request(app).delete('/carts/63d479f9b4c1cb86f6d30b8f')
     expect(res.status).toBe(404)
     expect(res.headers['content-type']).toMatch(/json/i)
     expect(res.body).toEqual({"error": "Cart not found!"})
   })
 
-  // Test to delete a cart with invalid cartid
-  test("Delete the cart with invalid cartid", async () => {
-    const res = await request(app).delete('/carts/63d479f9b4c1cb86f6d30b8')
+  // Test to delete a cart with cartid in the wrong format
+  test("Delete the cart with cartid in the wrong format", async () => {
+    const res = await request(app).delete('/carts/63d479f9b4c')
     expect(res.status).toBe(500)
     expect(res.headers['content-type']).toMatch(/json/i)
     expect(res.body).toEqual({"error": "Invalid Cart Id"})

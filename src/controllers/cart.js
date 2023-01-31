@@ -157,4 +157,4 @@ async function deleteCart(req, res) {
 }
 }
 
-export { getAllCart, getSingleCart, addProduct, updateProduct, deleteProduct, deleteCart }
+export { getAllCart, getSingleCart, addProduct, updateProduct, deleteProduct, deleteCart, checkProduct, checkCart, updateCart }
