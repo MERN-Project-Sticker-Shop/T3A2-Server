@@ -1,14 +1,23 @@
 # Dan Mo and Chengqun Niu T3A2 MERN-Project-Sticker Shop
 
-## GitHub Repo: [Part-A-Documentation](https://github.com/MERN-Project-Sticker-Shop/Part-A-Docs)
+## GitHub Repo:
+
+---
+
+* [Part-A-Documentation](https://github.com/MERN-Project-Sticker-Shop/Part-A-Docs)
+* [Part-B-Server](https://github.com/MERN-Project-Sticker-Shop/T3A2-Server)
 
 ## Deployment:
+
+---
 
 * Frontend: [Frontend Deployment]
   
 * Backend: [Backend Deployment](https://t3a2-server-production.up.railway.app/)
   
 ## Description
+
+---
 
 ### Purpose
 
@@ -32,7 +41,6 @@ Above are the basic features of the sticker shop application. Time permitting, t
 
 * Customers are able to register and login to view their order history
 
-
 ### Target audience
 
 This app will target existing customers (mainly the scrapbookers) of the sticker shop and potential customers interested in this sticker brand. These people are targeted to view products and place orders online, which saves their time.
@@ -45,11 +53,13 @@ This app will target existing customers (mainly the scrapbookers) of the sticker
 * Deployment: Railway
 * Agile Project Management: Trello
 * Utilities: 
-    * Lucichart (Application Architecture Diagram, Dataflow Diagram) 
+    * Lucichart (Application Architecture Diagram, Dataflow Diagram)
     * Figma (Wireframes)
 * DevOps: Git, Github, VS Code
 
 ## Dataflow Diagram
+
+---
 
 ---
 ![Dataflow Diagram](docs/Dataflow%20Diagram-revised.png)
@@ -57,9 +67,13 @@ This app will target existing customers (mainly the scrapbookers) of the sticker
 ## Application Architecture Diagram
 
 ---
-![Application Architecture Diagram](docs/Application%20Architecture%20Diagram.png)
+
+---
+![Application Architecture Diagram](docs/Application%20Architecture%20Diagram-updated.png)
 
 ## User Stories
+
+---
 
 ### Initial user stories after kick-off meeting:
 
@@ -141,26 +155,49 @@ This page displays order details.
 
 ---
 
+ Trello Board : Our Trello board can be viewed [here](https://trello.com/b/9oxdHoQc/t3a2-full-stack-app)
+
+We took screeeshots of our Trello each day. These screenshots can be viewed [here]
+
+---
+
 We decided to use Kanban project methodology, which is efficient, flexible and allowed us to continously deliver our products. We achieved this by using the Kanban board on Trello.
 
-### Day 1
+## Implemented Application
 
-![2023-01-16](docs/trello-screenshots/2023-01-16%20Day%201%20Trello.png)
+---
 
-### Day 2
+The deployed application is available at [here](#deployment).
 
-![2023-01-17-1](docs/trello-screenshots/2023-01-17%20Day%202%20Trello%20-1.png)
-![2023-01-17-2](docs/trello-screenshots/2023-01-17%20Day%202%20Trello%20-2.png)
+## Libraries & Dependencies
 
-### Day 3
+---
 
-![2023-01-18-1](docs/trello-screenshots/2023-01-18%20Day%203%20Trello%20-1.png)
-![2023-01-18-2](docs/trello-screenshots/2023-01-18%20Day%203%20Trello%20-2.png)
+* **Client**
+* **Server**
+* express
+* cors
+* dotnev
+* mongoose
+* jest
+* supertest
+* nodemon
 
-### Day 4
+## Project Management and Task Delegation Methodology
 
-![2023-01-19](docs/trello-screenshots/2023-01-19%20Day%204%20Trello%20-1.png)
+---
 
-### Day 5
+How to communicate and how frequently we communicate.
 
-![2023-01-20](docs/trello-screenshots/2023-01-20%20Day%205%20Trello%20-1.png)
+Use what methodology, determine the due data, how to allocate task
+
+## Testing
+
+---
+We have written both unit testing and integration testing for both the client and server side of the application. These tests can be run using xxx at the client side and jest and supertest at server side.
+
+We have also down extensive user testing by ourselves during at both the development stage and production stage. During the development stage, we used postman to test the server side of the application.
+
+Testing log and screenshots of postman testing is available at [here](docs/postman_test_log.md).
+
+
