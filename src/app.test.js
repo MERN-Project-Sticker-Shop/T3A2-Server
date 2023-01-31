@@ -3,7 +3,8 @@ import request from 'supertest'
 
 let productId1
 let productId2
-let cartId
+let cartId1
+let cartId2
 let newCartid
 let orderId
 let addressId
@@ -136,7 +137,8 @@ describe("App tests", () => {
       expect(res.body[0].item[1].quantity).toBe(10)     
       expect(res.body[1].item[0].product.name).toBe("Autumn Vibes")
       expect(res.body[1].item[0].quantity).toBe(20)
-      cartId = res.body[0]._id
+      cartId1 = res.body[0]._id
+      cartId2 = res.body[1]._id
       })
     }) 
 
@@ -146,7 +148,7 @@ describe("App tests", () => {
   
     // Define the route and http method
     beforeEach(async () => {   
-      res = await request(app).get(`/carts/${cartId}`)
+      res = await request(app).get(`/carts/${cartId1}`)
       expect(res.statusCode).toBe(200)
       expect(res.headers['content-type']).toMatch(/json/i)
       })
@@ -188,8 +190,8 @@ describe("App tests", () => {
   })
 
   // Test the route to add product to the cart with valid cartid
-  test("Add product to the cart with valid cartid", async () => {
-    const res = await request(app).post(`/carts/${cartId}/Autumn Vibes`).send({
+  test("Add existing product to the cart with valid cartid", async () => {
+    const res = await request(app).post(`/carts/${cartId1}/Autumn Vibes`).send({
       quantity: 30
     })
     expect(res.status).toBe(201)
@@ -203,6 +205,24 @@ describe("App tests", () => {
     expect(res.body.item[1].product.description).toBe("This is a autumn sticker sheet")
     expect(res.body.item[1].price).toBe(15)
     expect(res.body.item[1].quantity).toBe(30)    
+  })
+
+  // Test the route to add product to the cart with valid cartid
+  test("Add new product to the cart with valid cartid", async () => {
+    const res = await request(app).post(`/carts/${cartId2}/R U OK`).send({
+      quantity: 30
+    })
+    expect(res.status).toBe(201)
+    expect(res.headers['content-type']).toMatch(/json/i)
+    expect(res.body._id).toBeDefined()
+    expect(res.body.item[0].product.name).toBe("Autumn Vibes")  
+    expect(res.body.item[0].product.description).toBe("This is a autumn sticker sheet")
+    expect(res.body.item[0].price).toBe(15)
+    expect(res.body.item[0].quantity).toBe(20)  
+    expect(res.body.item[1].product.name).toBe("R U OK") 
+    expect(res.body.item[1].product.description).toBe("This is a sticker flakes")
+    expect(res.body.item[1].price).toBe(10)
+    expect(res.body.item[1].quantity).toBe(30)  
   })
 
   // Test the route to add product to the cart with invalid cartid
@@ -232,7 +252,7 @@ describe("App tests", () => {
 
   // Test the route to add product to the cart with invalid product name
   test("Add product to the cart with invalid product name", async () => {
-    const res = await request(app).post(`/carts/${cartId}/R U OKA`).send({
+    const res = await request(app).post(`/carts/${cartId1}/R U OKA`).send({
       quantity: 15
     })
     expect(res.status).toBe(404)
@@ -242,7 +262,7 @@ describe("App tests", () => {
 
   // Test the route to update product quantity in the cart with valid cartid
   test("Update product quantity to the cart with valid id", async () => {
-    const res = await request(app).patch(`/carts/${cartId}/Autumn Vibes`).send({
+    const res = await request(app).patch(`/carts/${cartId1}/Autumn Vibes`).send({
       quantity: 8
     })
     expect(res.status).toBe(201)
@@ -266,7 +286,7 @@ describe("App tests", () => {
 
   // Test the route to update product quantity in the cart with invalid product name
   test("Update product quantity to the cart with invalid product name", async () => {
-    const res = await request(app).patch(`/carts/${cartId}/Autumn and Spring Vibes`).send({
+    const res = await request(app).patch(`/carts/${cartId1}/Autumn and Spring Vibes`).send({
       quantity: 10
     })
     expect(res.status).toBe(404)
@@ -415,13 +435,13 @@ describe("App tests", () => {
     const res = await request(app).post('/orders').send({
       "addressId":`${addressId}`,
       "total": 500,
-      "cartId": `${cartId}`
+      "cartId": `${cartId1}`
     })
     expect(res.status).toBe(201)
     expect(res.headers['content-type']).toMatch(/json/i)
     expect(res.body._id).toBeDefined()
     expect(res.body.cart.item[0].product).toBe(`${productId1}`) 
-    expect(res.body.cart._id).toBe(`${cartId}`) 
+    expect(res.body.cart._id).toBe(`${cartId1}`) 
     expect(res.body.total).toBe(500)
     expect(res.body.address._id).toBe(`${addressId}`)
   })
@@ -431,7 +451,7 @@ describe("App tests", () => {
     const res = await request(app).post('/orders').send({
       "addressId":"63d45d962acdcc5d6510f7f0",
       "total": 500,
-      "cartId": `${cartId}`
+      "cartId": `${cartId1}`
     })
     expect(res.status).toBe(404)
     expect(res.headers['content-type']).toMatch(/json/i)
@@ -463,7 +483,7 @@ describe("App tests", () => {
 
   // Test to delete a cart item
   test("Delete a product in the cart with valid cartid", async () => {
-    const res = await request(app).delete(`/carts/${cartId}/Autumn Vibes`)
+    const res = await request(app).delete(`/carts/${cartId1}/Autumn Vibes`)
     expect(res.status).toBe(200)
     expect(res.headers['content-type']).toMatch(/json/i)
     expect(res.body._id).toBeDefined()
@@ -483,7 +503,7 @@ describe("App tests", () => {
   
   // Test to delete a cart item in the cart with invalid product name
   test("Delete a product in the cart with invalid product name", async () => {
-    const res = await request(app).delete(`/carts/${cartId}/Autumn and Spring Vibes`)
+    const res = await request(app).delete(`/carts/${cartId1}/Autumn and Spring Vibes`)
     expect(res.status).toBe(404)
     expect(res.headers['content-type']).toMatch(/json/i)
     expect(res.body).toEqual({"error": "Product not found!"})
