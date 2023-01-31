@@ -83,7 +83,7 @@ async function getSingleCart(req, res) {
   } 
 }
 
-// Add products to cart
+// Add products to cart and update product quantity
 async function addProduct(req, res) {
   // Check whether the product is a valid product
   const result = await checkProduct(req.params.name, req.body.quantity)
@@ -105,17 +105,6 @@ async function addProduct(req, res) {
   }
 }
 
-// Update products in cart
-async function updateProduct(req, res) {
-  // Check whether product exists 
-  const result = await checkProduct(req.params.name, req.body.quantity)
-  // If cart extists, update the cart
-  if (result !== 'Product not found!') {
-    await updateCart(req.params.cartid, result, res)
-  } else {
-    res.status(404).send({ error: result })
-  }
-}
 
 //Delete one of the product from the cart
 async function deleteProduct(req, res) {
@@ -157,4 +146,4 @@ async function deleteCart(req, res) {
 }
 }
 
-export { getAllCart, getSingleCart, addProduct, updateProduct, deleteProduct, deleteCart, checkProduct, checkCart, updateCart }
+export { getAllCart, getSingleCart, addProduct, deleteProduct, deleteCart, checkProduct, checkCart, updateCart }
