@@ -19,18 +19,18 @@ const products = [
    price: 10,
    description: 'This is a sticker flakes',
    imageLinks: [
-    'https://ibb.co/7vdXTsW',
-    'https://ibb.co/DWTW5tV',
-    'https://ibb.co/XJpPqPT'
+    'https://i.postimg.cc/7Cgg0Tjt/RUOK1.jpg',
+    'https://i.postimg.cc/9zxyd2N2/RUOK2.jpg',
+    'https://i.postimg.cc/PCDZnwff/RUOK3.jpg'
    ]
   },
   {name: 'Autumn Vibes',
   price: 15,
   description: 'This is a autumn sticker sheet',
   imageLinks: [
-    'https://ibb.co/yNBcb0k',
-    'https://ibb.co/3WS3g9G',
-    'https://ibb.co/ymTVQ9m'
+    'https://i.postimg.cc/dhcPnbLH/1b32342cfbe061ad1733ace2f4ffb48.jpg',
+    'https://i.postimg.cc/1njbFTkK/a23c8a65932500cd1e72ff2cfc7b675.jpg',
+    'https://i.postimg.cc/8F18gLdL/e93cdad8f30d24fb02712ac59d41028.jpg'
   ]
  }
 ]
