@@ -58,7 +58,7 @@ async function updateCart(id, result, res) {
       const updatedCartitem = {item: cartResult.item}
       // Update the database
         const newItem = await CartModel.findByIdAndUpdate(id, updatedCartitem, { new: true})
-        res.status(201).send(await newItem.populate( { path: 'item.product', select: 'name description imageLinks'}))
+        res.status(201).send(await newItem)
       }
      else {
       res.status(404).send({ error: cartResult })
@@ -67,7 +67,7 @@ async function updateCart(id, result, res) {
 
 // Get all carts
 async function getAllCart(req, res) {
-  res.send(await CartModel.find().populate({ path:'item.product', select: 'name description imageLinks'}))
+  res.send(await CartModel.find())
 }
 
 // Get a single cart
@@ -77,7 +77,7 @@ async function getSingleCart(req, res) {
   // Check whether cart exists. If exists, send the cart object. If not, return the error message
   const cartResult = await checkCart(id)
   if (cartResult !=='Cart Item not found!' & cartResult !=='Invalid Cart Id') {
-    res.send(await cartResult.populate({ path:'item.product', select: 'name description imageLinks'}))
+    res.send(await cartResult)
   } else {
     res.status(404).send({ error: cartResult })
   } 
@@ -98,7 +98,7 @@ async function addProduct(req, res) {
       
       // Create a new instance of cart model and insert the newly created item array
       const insertedCartitem = await CartModel.create(newCartitem)
-      res.status(201).send(await insertedCartitem.populate( { path: 'item.product', select: 'name description imageLinks'}))
+      res.status(201).send(await insertedCartitem)
       }
   } else {
     res.status(404).send({ error: result })
@@ -120,7 +120,7 @@ async function deleteProduct(req, res) {
         // Update the cart with the filtered item array
         const newItem = await CartModel.findByIdAndUpdate(req.params.cartid, {item: newCartitem}, { new: true })
         // Send the updated array
-        res.send(await newItem.populate( { path: 'item.product', select: 'name description imageLinks'}))
+        res.send(await newItem)
       } else {
         res.status(404).send({ error: cartItem })
       }
