@@ -6,6 +6,7 @@
 
 * [Part-A-Documentation](https://github.com/MERN-Project-Sticker-Shop/Part-A-Docs)
 * [Part-B-Server](https://github.com/MERN-Project-Sticker-Shop/T3A2-Server)
+* [Part-B-Client](https://github.com/MERN-Project-Sticker-Shop/T3A2-Client)
 
 ## Deployment:
 
@@ -170,6 +171,28 @@ The MVP features of this application includes view product lists, view details o
 ---
 
 * **Client**
+* `react`: React is a javascript library for building user intergaces. It is based on components. We use it to build the front end(client-side) of our application.
+  
+* `react-dom`: React-dom is a library or package which provides DOM-specific methods and binds react to the DOM. Methods such as render() has been used to render the component of the react.
+  
+* `react-hook-form`: React Form Hook is a React library that is used to make and validate complex forms.
+  
+* `react-router-dom`: React Router DOM is a javascript library for routing in React. It allows us to implement dynamic routing in the web application. It is used to build single-page applications that acts like a multi-paged website.
+  
+* `@testing-library/jest-dom`, `@testing-library/react`, `@testing-library/react-hooks`, `@testing-library/user-event`: These are testing libraries used in the application. We run these tests using vitest framework.
+  
+* `@types/react`: This pakcage contains type definitions for React.
+  
+* `@types/react-dom`: This package contains type definitions for React (react-dom).
+  
+* `@vitejs/plugin-react-swc`: This package speeds up the vite development server with SWC.
+  
+* `jsdom`: JSDOM is a library which parses and interacts with assembled HTML just like a browser. It is used to create a realistic testing environment.
+  
+* `vite`: Vite is a build tool that significantly improves the front-end development experience. We use this to build our client-side application.
+  
+* `vitest`: Vitest is the unit testing framework built on top of Vite, we use this framework together with testing libraries to test our client-side application.
+  
 * **Server**
 * `express`: Express is a Node.js web application framework for building web and mobile applications. It was used for building the backend of this applications to creates a robust API and allows for HTTP utility methods and middleware support.
   
