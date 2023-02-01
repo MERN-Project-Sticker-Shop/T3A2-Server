@@ -1,14 +1,23 @@
 # Dan Mo and Chengqun Niu T3A2 MERN-Project-Sticker Shop
 
-## GitHub Repo: [Part-A-Documentation](https://github.com/MERN-Project-Sticker-Shop/Part-A-Docs)
+## GitHub Repo:
+
+---
+
+* [Part-A-Documentation](https://github.com/MERN-Project-Sticker-Shop/Part-A-Docs)
+* [Part-B-Server](https://github.com/MERN-Project-Sticker-Shop/T3A2-Server)
 
 ## Deployment:
+
+---
 
 * Frontend: [Frontend Deployment]
   
 * Backend: [Backend Deployment](https://t3a2-server-production.up.railway.app/)
   
 ## Description
+
+---
 
 ### Purpose
 
@@ -32,7 +41,6 @@ Above are the basic features of the sticker shop application. Time permitting, t
 
 * Customers are able to register and login to view their order history
 
-
 ### Target audience
 
 This app will target existing customers (mainly the scrapbookers) of the sticker shop and potential customers interested in this sticker brand. These people are targeted to view products and place orders online, which saves their time.
@@ -45,7 +53,7 @@ This app will target existing customers (mainly the scrapbookers) of the sticker
 * Deployment: Railway
 * Agile Project Management: Trello
 * Utilities: 
-    * Lucichart (Application Architecture Diagram, Dataflow Diagram) 
+    * Lucichart (Application Architecture Diagram, Dataflow Diagram)
     * Figma (Wireframes)
 * DevOps: Git, Github, VS Code
 
@@ -57,9 +65,11 @@ This app will target existing customers (mainly the scrapbookers) of the sticker
 ## Application Architecture Diagram
 
 ---
-![Application Architecture Diagram](docs/Application%20Architecture%20Diagram.png)
+![Application Architecture Diagram](docs/Application%20Architecture%20Diagram-updated.png)
 
 ## User Stories
+
+---
 
 ### Initial user stories after kick-off meeting:
 
@@ -141,26 +151,63 @@ This page displays order details.
 
 ---
 
+ Trello Board : Our Trello board can be viewed [here](https://trello.com/b/9oxdHoQc/t3a2-full-stack-app)
+
+We took screeeshots of our Trello each day. These screenshots can be viewed [here]
+
+---
+
 We decided to use Kanban project methodology, which is efficient, flexible and allowed us to continously deliver our products. We achieved this by using the Kanban board on Trello.
 
-### Day 1
+## Implemented Application
 
-![2023-01-16](docs/trello-screenshots/2023-01-16%20Day%201%20Trello.png)
+---
 
-### Day 2
+The deployed application is available at [here](#deployment).
 
-![2023-01-17-1](docs/trello-screenshots/2023-01-17%20Day%202%20Trello%20-1.png)
-![2023-01-17-2](docs/trello-screenshots/2023-01-17%20Day%202%20Trello%20-2.png)
+The MVP features of this application includes view product lists, view details of each product, add products to cart, modify cart items, checkout, enter address and receives an order confirmation. We also have some optional features, but we are not able to make it due to time limits. We only create a order model and routes, and we will try to implement these optional features later if we have more time.
 
-### Day 3
+## Libraries & Dependencies
 
-![2023-01-18-1](docs/trello-screenshots/2023-01-18%20Day%203%20Trello%20-1.png)
-![2023-01-18-2](docs/trello-screenshots/2023-01-18%20Day%203%20Trello%20-2.png)
+---
 
-### Day 4
+* **Client**
+* **Server**
+* `express`: Express is a Node.js web application framework for building web and mobile applications. It was used for building the backend of this applications to creates a robust API and allows for HTTP utility methods and middleware support.
+  
+* `cors`: CORS is a node.js package for providing a Connect/Express middleware that can be used to enable cross origin resource sharing between Express server and React client with different origin or domain. We use cros in the application to ensure both client from local version and deployed website have access to the resources.
+  
+* `dotnev`: Dotenv is a zero-dependency module that loads environment variables from a .env file into process.env. Environment variables like the connect url of mongo database can be safely stored in the .env file.
+  
+* `mongoose`: Mongoose is an Object Data Modeling (ODM) library for MongoDB and Node.js. It allows defining strongly-typed schemas to manages relationships between data and provides schema validation. We use mongoose to define our schemas and handle the interaction between our express server and cloud mongo database to manipulate data.
 
-![2023-01-19](docs/trello-screenshots/2023-01-19%20Day%204%20Trello%20-1.png)
+* `jest`: Jest is a Javascript testing framework used to create, run and structure tests. We use jest to mock the functions in the express server to create unit tests.
 
-### Day 5
+* `supertest`: SuperTest is a Node.js library that tests Restful APIs. It is driven by super-agent. It is used together with the testing framework jest to test the APIs of this application.
+  
+* `nodemon`: Nodemon is used to automatically restarting the node application when changes of the code are detected.
 
-![2023-01-20](docs/trello-screenshots/2023-01-20%20Day%205%20Trello%20-1.png)
+## Project Management and Task Delegation Methodology
+
+---
+
+We decided to use discord to communicate during this project. Before we start the project, we joined an audio call to divide the project into small tasks, decide the priority of each task, set up the due date of each task and assigned to each member. Each day we communicated about our progression in the morning and dicuss our plan for the day. If we faces any issues, we will join the audio call to discuss it immediately. 
+
+We continued to use the Kanban board for part-b and task delegation. We created cards for tasks and label them with different labels, like MVP, Opional, High priority and etc. The Kanban board included several sections, backlog, to-do, doing, testing and done. Initially all cards were in the backlog section of the board, if we planned to do some of the cards, we will move them to the to-do section. When we doing that card, we will move it to the doing section, then testing section. Once it has been completed, we will move it to the done section.
+
+We have grouped tasks into different due dates based on the priority and whether it is MVP. Once we complete all tasks belongs to one due date(like all tasks that due on 23rd of Jan), we will have an audio call to review what we have done and discuss if there is any new tasks need to be added. If so, we will add new cards to the board. We will also review the due date for tasks that haven't started yet based on the current progression.  
+
+Each card has been assigned to one or two members in the Kanban board, the name of the member can be seen at the bottom right part of the card. Basically, as we only have two memebers, we decided to divide the project into two parts, client-side and server-side, each will be assigned to a member.
+
+## Testing
+
+---
+We have written both unit testing and integration testing for both the client and server side of the application. These tests can be run using xxx at the client side and jest and supertest at server side.
+
+We have also down extensive user testing by ourselves during at both the development stage and production stage. During the development stage, we used postman to test the server side of the application.
+
+* **Server**
+* Integration & Unit tests:
+Test coverage report is available by opening the web brower and navaigate to (src/coverage/Icov-report/index.html)
+* Development test(Postman-Manual):
+Test log and screenshots of postman testing is available at [here](docs/postman_test_log.md).
