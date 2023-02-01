@@ -31,10 +31,10 @@ const productSchema = await mongoose.Schema({
 
 // Create a shema and model for cart
 const cartSchema = await mongoose.Schema(
-  {item: [{product: { type:String, required:true },
+  {items: [{product: { type:String, required:true },
   price: { type:Number, required:true },
   quantity: { type:Number, required:true },
-  imageLinks: { type:String, required:true }
+  imageLink: { type:String, required:true }
   }]}
 )
 
