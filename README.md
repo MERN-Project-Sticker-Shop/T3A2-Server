@@ -191,11 +191,14 @@ The MVP features of this application includes view product lists, view details o
 
 ---
 
-we decided to use discord to communicate during this project.
+We decided to use discord to communicate during this project. Before we start the project, we joined an audio call to divide the project into small tasks, decide the priority of each task, set up the due date of each task and assigned to each member. Each day we communicated about our progression in the morning and dicuss our plan for the day. If we faces any issues, we will join the audio call to discuss it immediately. 
 
-How to communicate and how frequently we communicate.
+We continued to use the Kanban board for part-b and task delegation. We created cards for tasks and label them with different labels, like MVP, Opional, High priority and etc. The Kanban board included several sections, backlog, to-do, doing, testing and done. Initially all cards were in the backlog section of the board, if we planned to do some of the cards, we will move them to the to-do section. When we doing that card, we will move it to the doing section, then testing section. Once it has been completed, we will move it to the done section.
 
-Use what methodology, determine the due data, how to allocate task
+We have grouped tasks into different due dates based on the priority and whether it is MVP. Once we complete all tasks belongs to one due date(like all tasks that due on 23rd of Jan), we will have an audio call to review what we have done and discuss if there is any new tasks need to be added. If so, we will add new cards to the board. We will also review the due date for tasks that haven't started yet based on the current progression.  
+
+Each card has been assigned to one or two members in the Kanban board, the name of the member can be seen at the bottom right part of the card. Basically, as we only have two memebers, we decided to divide the project into two parts, client-side and server-side, each will be assigned to a member.
+
 
 ## Testing
 
