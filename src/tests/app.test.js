@@ -131,12 +131,15 @@ describe("App tests", () => {
 
     // Test the value of the data returned
     it('Has an element with the correct data value', () => {
-      expect(res.body[0].item[0].product.name).toBe("R U OK")
+      expect(res.body[0].item[0].product).toBe("R U OK")
       expect(res.body[0].item[0].quantity).toBe(1)
-      expect(res.body[0].item[1].product.name).toBe("Autumn Vibes")
-      expect(res.body[0].item[1].quantity).toBe(10)     
-      expect(res.body[1].item[0].product.name).toBe("Autumn Vibes")
+      expect(res.body[0].item[0].imageLinks).toBe("https://i.postimg.cc/7Cgg0Tjt/RUOK1.jpg")
+      expect(res.body[0].item[1].product).toBe("Autumn Vibes")
+      expect(res.body[0].item[1].quantity).toBe(10)   
+      expect(res.body[0].item[1].imageLinks).toBe("https://i.postimg.cc/dhcPnbLH/1b32342cfbe061ad1733ace2f4ffb48.jpg")
+      expect(res.body[1].item[0].product).toBe("Autumn Vibes")
       expect(res.body[1].item[0].quantity).toBe(20)
+      expect(res.body[0].item[1].imageLinks).toBe("https://i.postimg.cc/dhcPnbLH/1b32342cfbe061ad1733ace2f4ffb48.jpg")
       cartId1 = res.body[0]._id
       cartId2 = res.body[1]._id
       })
@@ -166,10 +169,12 @@ describe("App tests", () => {
     
     // Test the value of the data returned
     it('Has an element with the correct data value', () => {
-      expect(res.body.item[0].product.name).toBe("R U OK")
+      expect(res.body.item[0].product).toBe("R U OK")
       expect(res.body.item[0].quantity).toBe(1)
-      expect(res.body.item[1].product.name).toBe("Autumn Vibes")
+      expect(res.body.item[0].imageLinks).toBe("https://i.postimg.cc/7Cgg0Tjt/RUOK1.jpg")
+      expect(res.body.item[1].product).toBe("Autumn Vibes")
       expect(res.body.item[1].quantity).toBe(10)     
+      expect(res.body.item[1].imageLinks).toBe("https://i.postimg.cc/dhcPnbLH/1b32342cfbe061ad1733ace2f4ffb48.jpg")
     })
   })
     
@@ -197,14 +202,14 @@ describe("App tests", () => {
     expect(res.status).toBe(201)
     expect(res.headers['content-type']).toMatch(/json/i)
     expect(res.body._id).toBeDefined()
-    expect(res.body.item[0].product.name).toBe("R U OK") 
-    expect(res.body.item[0].product.description).toBe("This is a sticker flakes")
+    expect(res.body.item[0].product).toBe("R U OK") 
+    expect(res.body.item[0].imageLinks).toBe("https://i.postimg.cc/7Cgg0Tjt/RUOK1.jpg") 
     expect(res.body.item[0].price).toBe(10)
     expect(res.body.item[0].quantity).toBe(1)
-    expect(res.body.item[1].product.name).toBe("Autumn Vibes")  
-    expect(res.body.item[1].product.description).toBe("This is a autumn sticker sheet")
+    expect(res.body.item[1].product).toBe("Autumn Vibes")  
     expect(res.body.item[1].price).toBe(15)
     expect(res.body.item[1].quantity).toBe(30)    
+    expect(res.body.item[1].imageLinks).toBe("https://i.postimg.cc/dhcPnbLH/1b32342cfbe061ad1733ace2f4ffb48.jpg")
   })
 
   // Test the route to add product to the cart with valid cartid
@@ -215,14 +220,14 @@ describe("App tests", () => {
     expect(res.status).toBe(201)
     expect(res.headers['content-type']).toMatch(/json/i)
     expect(res.body._id).toBeDefined()
-    expect(res.body.item[0].product.name).toBe("Autumn Vibes")  
-    expect(res.body.item[0].product.description).toBe("This is a autumn sticker sheet")
+    expect(res.body.item[0].product).toBe("Autumn Vibes")  
     expect(res.body.item[0].price).toBe(15)
     expect(res.body.item[0].quantity).toBe(20)  
-    expect(res.body.item[1].product.name).toBe("R U OK") 
-    expect(res.body.item[1].product.description).toBe("This is a sticker flakes")
+    expect(res.body.item[0].imageLinks).toBe("https://i.postimg.cc/dhcPnbLH/1b32342cfbe061ad1733ace2f4ffb48.jpg")
+    expect(res.body.item[1].product).toBe("R U OK") 
     expect(res.body.item[1].price).toBe(10)
     expect(res.body.item[1].quantity).toBe(30)  
+    expect(res.body.item[1].imageLinks).toBe("https://i.postimg.cc/7Cgg0Tjt/RUOK1.jpg") 
   })
 
   // Test the route to add product to the cart with invalid cartid
@@ -243,10 +248,10 @@ describe("App tests", () => {
     expect(res.status).toBe(201)
     expect(res.headers['content-type']).toMatch(/json/i)
     expect(res.body._id).toBeDefined()
-    expect(res.body.item[0].product.name).toBe("R U OK") 
-    expect(res.body.item[0].product.description).toBe("This is a sticker flakes")
+    expect(res.body.item[0].product).toBe("R U OK") 
     expect(res.body.item[0].price).toBe(10)
     expect(res.body.item[0].quantity).toBe(15)
+    expect(res.body.item[0].imageLinks).toBe("https://i.postimg.cc/7Cgg0Tjt/RUOK1.jpg") 
     newCartid = res.body._id
     })
 
@@ -290,15 +295,15 @@ describe("App tests", () => {
       
     // Test the value of the data returned
     it('Has an element with the correct data value', () => {
-      expect(res.body[0].cart.item[0].product).toBe(`${productId1}`) 
+      expect(res.body[0].cart.item[0].product).toBe('R U OK') 
       expect(res.body[0].cart.item[0].price).toBe(10)
       expect(res.body[0].cart.item[0].quantity).toBe(1)
-      expect(res.body[0].cart.item[1].product).toBe(`${productId2}`)  
+      expect(res.body[0].cart.item[1].product).toBe('Autumn Vibes')  
       expect(res.body[0].cart.item[1].price).toBe(15)
       expect(res.body[0].cart.item[1].quantity).toBe(30)
       expect(res.body[0].total).toBe(160)
       expect(res.body[0].address.email).toBe("12345@gmail.com")
-      expect(res.body[1].cart.item[0].product).toBe(`${productId2}`) 
+      expect(res.body[1].cart.item[0].product).toBe('Autumn Vibes') 
       expect(res.body[1].cart.item[0].price).toBe(15)
       expect(res.body[1].cart.item[0].quantity).toBe(20)
       orderId = res.body[0]._id
@@ -318,7 +323,7 @@ describe("App tests", () => {
     
     // Test the value of the data returned
     it('Has an element with the correct data value', () => {
-      expect(res.body.cart.item[0].product).toBe(`${productId1}`) 
+      expect(res.body.cart.item[0].product).toBe('R U OK') 
       expect(res.body.cart.item[0].price).toBe(10)
       expect(res.body.total).toBe(160)
       expect(res.body.address.email).toBe("12345@gmail.com")
@@ -406,7 +411,7 @@ describe("App tests", () => {
     expect(res.status).toBe(201)
     expect(res.headers['content-type']).toMatch(/json/i)
     expect(res.body._id).toBeDefined()
-    expect(res.body.cart.item[0].product).toBe(`${productId1}`) 
+    expect(res.body.cart.item[0].product).toBe('R U OK') 
     expect(res.body.cart._id).toBe(`${cartId1}`) 
     expect(res.body.total).toBe(500)
     expect(res.body.address._id).toBe(`${addressId}`)
@@ -453,10 +458,10 @@ describe("App tests", () => {
     expect(res.status).toBe(200)
     expect(res.headers['content-type']).toMatch(/json/i)
     expect(res.body._id).toBeDefined()
-    expect(res.body.item[0].product.name).toBe("R U OK") 
-    expect(res.body.item[0].product.description).toBe("This is a sticker flakes")
+    expect(res.body.item[0].product).toBe("R U OK") 
     expect(res.body.item[0].price).toBe(10)
     expect(res.body.item[0].quantity).toBe(1)
+    expect(res.body.item[0].imageLinks).toBe("https://i.postimg.cc/7Cgg0Tjt/RUOK1.jpg")
   })
 
   // Test to delete a cart item in the cart with invalid cartid
