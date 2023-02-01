@@ -40,26 +40,26 @@ console.log('Inserted products')
 
 // Seed cart data to the database
 const carts = [
-  {item: [
+  {items: [
     {
     product: pros[0].name,
     price: pros[0].price,
     quantity: 1,
-    imageLinks: pros[0].imageLinks[0]
+    imageLink: pros[0].imageLinks[0]
     },
     {
     product: pros[1].name,
     price: pros[1].price,
     quantity:10,
-    imageLinks: pros[1].imageLinks[0]
+    imageLink: pros[1].imageLinks[0]
     }
   ]},
-  {item: [
+  {items: [
     {
     product: pros[1].name,
     price: pros[1].price,
     quantity: 20,
-    imageLinks: pros[1].imageLinks[0]
+    imageLink: pros[1].imageLinks[0]
     }
   ]}
 ]

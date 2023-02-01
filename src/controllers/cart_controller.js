@@ -7,7 +7,7 @@ async function checkProduct(productName, quantity) {
   const productObject = await ProductModel.findOne({ name: productName })
   // If found, create a new cart item using this product object
   if (productObject) {
-    const newCartitem = { product: productObject.name, price: productObject.price, quantity, imageLinks: productObject.imageLinks[0]}
+    const newCartitem = { product: productObject.name, price: productObject.price, quantity, imageLink: productObject.imageLinks[0]}
     return newCartitem
   // If not, return the error message
   } else {
@@ -44,7 +44,7 @@ async function updateCart(id, result, res) {
       // Obtain the objectID of the product
       const productName = result.product
       // Check whether the product already exists in the cart
-      const found = cartResult.item.find(obj => {
+      const found = cartResult.items.find(obj => {
         return obj.product.toString() === productName.toString()
       })
       // If yes, update the quantity
@@ -52,10 +52,10 @@ async function updateCart(id, result, res) {
           found.quantity = result.quantity
       // If not, add new product to the cart
       }else {
-        cartResult.item.push(result)
+        cartResult.items.push(result)
       }
       // Update the item array
-      const updatedCartitem = {item: cartResult.item}
+      const updatedCartitem = {items: cartResult.items}
       // Update the database
         const newItem = await CartModel.findByIdAndUpdate(id, updatedCartitem, { new: true})
         res.status(201).send(await newItem)
@@ -94,7 +94,7 @@ async function addProduct(req, res) {
       await updateCart(req.params.cartid, result, res)
     // Cart not exists, create a new item array
     } else {
-      const newCartitem = { item: [result] }
+      const newCartitem = { items: [result] }
       
       // Create a new instance of cart model and insert the newly created item array
       const insertedCartitem = await CartModel.create(newCartitem)
@@ -115,10 +115,10 @@ async function deleteProduct(req, res) {
       const cartItem = await checkCart(req.params.cartid,res)
       if (cartItem !== 'Cart Item not found!' & cartItem !== 'Invalid Cart Id') {
         // Filter out product that match the name parameters in the url and create a new array
-        const newCartitem = cartItem.item.filter(item => {
+        const newCartitem = cartItem.items.filter(item => {
           return item.product.toString() !== result.product.toString()})
         // Update the cart with the filtered item array
-        const newItem = await CartModel.findByIdAndUpdate(req.params.cartid, {item: newCartitem}, { new: true })
+        const newItem = await CartModel.findByIdAndUpdate(req.params.cartid, {items: newCartitem}, { new: true })
         // Send the updated array
         res.send(await newItem)
       } else {

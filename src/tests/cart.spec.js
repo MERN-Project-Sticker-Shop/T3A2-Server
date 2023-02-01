@@ -11,7 +11,7 @@ describe('Check whether a product exists', () => {
 
     ProductModel.prototype.save = jest.fn().mockImplementation(() => {})
 
-    await expect(checkProduct('R U OK', 10)).resolves.toEqual({"price": 10, "product": "R U OK", "quantity": 10, imageLinks: 'M'})
+    await expect(checkProduct('R U OK', 10)).resolves.toEqual({"price": 10, "product": "R U OK", "quantity": 10, imageLink: 'M'})
     })
 })
 
@@ -34,10 +34,10 @@ describe('Update Cart', () => {
   const request = { quantity: 20 }
   const originalCart = {
     "_id": "63d79b36be7fa03f924bbb36",
-    "item": [
+    "items": [
         {
             "product": "R U OK",
-            "imageLinks": "https://i.postimg.cc/7Cgg0Tjt/RUOK1.jpg",
+            "imageLink": "https://i.postimg.cc/7Cgg0Tjt/RUOK1.jpg",
             "price": 10,
             "quantity": 1,
             "_id": "63d79b36be7fa03f924bbb37"
@@ -46,11 +46,11 @@ describe('Update Cart', () => {
     "__v": 0
 };
   const mockCart = originalCart
-  mockCart.item[0].quantity =  request.quantity
+  mockCart.items[0].quantity =  request.quantity
 
   const updateCart = jest.fn(mockUrl => mockCart);
   it('returns the updated quantity', () => {
-    expect(updateCart(mockUrl).item[0].quantity).toBe(20);
+    expect(updateCart(mockUrl).items[0].quantity).toBe(20);
   });
   it('called updateCart with a mockUrl', () => {
     expect(updateCart).toHaveBeenCalledWith(mockUrl);
