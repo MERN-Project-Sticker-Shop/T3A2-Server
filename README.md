@@ -165,23 +165,33 @@ We decided to use Kanban project methodology, which is efficient, flexible and a
 
 The deployed application is available at [here](#deployment).
 
+The MVP features of this application includes view product lists, view details of each product, add products to cart, modify cart items, checkout, enter address and receives an order confirmation. We also have some optional features, but we are not able to make it due to time limits. We only create a order model and routes, and we will try to implement these optional features later if we have more time.
+
 ## Libraries & Dependencies
 
 ---
 
 * **Client**
 * **Server**
-* express: Express is a Node.js web application framework for building web and mobile applications. It was used for building the backend of this applications to creates a robust API and allows for HTTP utility methods and middleware support.
-* cors: CORS is a node.js package for providing a Connect/Express middleware that can be used to enable cross origin resource sharing between Express server and React client with different origin or domain. We use cros in the application to ensure both client from local version and deployed website have access to the resources.
-* dotnev: Dotenv is a zero-dependency module that loads environment variables from a .env file into process.env. Environment variables like the connect url of mongo database can be safely stored in the .env file.
-* mongoose: Mongoose is an Object Data Modeling (ODM) library for MongoDB and Node.js. It allows defining strongly-typed schemas to manages relationships between data and provides schema validation. We use mongoose to define our schemas and handle the interaction between our express server and cloud mongo database to manipulate data. 
-* jest: Jest is a Javascript testing framework used to create, run and structure tests. We use jest to mock the functions in the express server to create unit tests.
-* supertest: SuperTest is a Node.js library that tests Restful APIs. It is driven by super-agent. It is used together with the testing framework jest to test the APIs of this application.
-* nodemon: Nodemon is used to automatically restarting the node application when changes of the code are detected.
+* `express`: Express is a Node.js web application framework for building web and mobile applications. It was used for building the backend of this applications to creates a robust API and allows for HTTP utility methods and middleware support.
+  
+* `cors`: CORS is a node.js package for providing a Connect/Express middleware that can be used to enable cross origin resource sharing between Express server and React client with different origin or domain. We use cros in the application to ensure both client from local version and deployed website have access to the resources.
+  
+* `dotnev`: Dotenv is a zero-dependency module that loads environment variables from a .env file into process.env. Environment variables like the connect url of mongo database can be safely stored in the .env file.
+  
+* `mongoose`: Mongoose is an Object Data Modeling (ODM) library for MongoDB and Node.js. It allows defining strongly-typed schemas to manages relationships between data and provides schema validation. We use mongoose to define our schemas and handle the interaction between our express server and cloud mongo database to manipulate data.
+
+* `jest`: Jest is a Javascript testing framework used to create, run and structure tests. We use jest to mock the functions in the express server to create unit tests.
+
+* `supertest`: SuperTest is a Node.js library that tests Restful APIs. It is driven by super-agent. It is used together with the testing framework jest to test the APIs of this application.
+  
+* `nodemon`: Nodemon is used to automatically restarting the node application when changes of the code are detected.
 
 ## Project Management and Task Delegation Methodology
 
 ---
+
+we decided to use discord to communicate during this project.
 
 How to communicate and how frequently we communicate.
 
