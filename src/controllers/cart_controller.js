@@ -7,7 +7,7 @@ async function checkProduct(productName, quantity) {
   const productObject = await ProductModel.findOne({ name: productName })
   // If found, create a new cart item using this product object
   if (productObject) {
-    const newCartitem = { product: productObject, price: productObject.price, quantity}
+    const newCartitem = { product: productObject.name, price: productObject.price, quantity, imageLinks: productObject.imageLinks[0]}
     return newCartitem
   // If not, return the error message
   } else {
@@ -16,7 +16,7 @@ async function checkProduct(productName, quantity) {
 }
 
 // Verify cart
-async function checkCart(id, res) {
+async function checkCart(id) {
   // Find the cart object that matches the the cart id
   try{
   const cartObject = await CartModel.findById({ _id: id  })
@@ -42,10 +42,10 @@ async function updateCart(id, result, res) {
     // If the cart item exists
     if (cartResult !=='Cart Item not found!' & cartResult !=='Invalid Cart Id') {
       // Obtain the objectID of the product
-      const productObject = result.product
+      const productName = result.product
       // Check whether the product already exists in the cart
       const found = cartResult.item.find(obj => {
-        return obj.product.toString() === productObject._id.toString()
+        return obj.product.toString() === productName.toString()
       })
       // If yes, update the quantity
       if (found) {
@@ -116,7 +116,7 @@ async function deleteProduct(req, res) {
       if (cartItem !== 'Cart Item not found!' & cartItem !== 'Invalid Cart Id') {
         // Filter out product that match the name parameters in the url and create a new array
         const newCartitem = cartItem.item.filter(item => {
-          return item.product.toString() !== result.product._id.toString()})
+          return item.product.toString() !== result.product.toString()})
         // Update the cart with the filtered item array
         const newItem = await CartModel.findByIdAndUpdate(req.params.cartid, {item: newCartitem}, { new: true })
         // Send the updated array

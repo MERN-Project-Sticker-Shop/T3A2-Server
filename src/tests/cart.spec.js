@@ -6,12 +6,12 @@ import {jest} from '@jest/globals'
 describe('Check whether a product exists', () => {
   it('Should return Product not found', async () => {
     ProductModel.findOne = jest.fn().mockImplementation(() => {
-      return { name: 'R U OK', id: 'fake_id' }
+      return { name: 'R U OK', id: 'fake_id', price: 10, imageLinks: 'M' }
   })
 
     ProductModel.prototype.save = jest.fn().mockImplementation(() => {})
 
-    await expect(checkProduct('R U OK', 10)).resolves.toEqual({"price": undefined, "product": {"name": "R U OK", "id": "fake_id"}, "quantity": 10})
+    await expect(checkProduct('R U OK', 10)).resolves.toEqual({"price": 10, "product": "R U OK", "quantity": 10, imageLinks: 'M'})
     })
 })
 
@@ -36,16 +36,8 @@ describe('Update Cart', () => {
     "_id": "63d79b36be7fa03f924bbb36",
     "item": [
         {
-            "product": {
-                "_id": "63d79b36be7fa03f924bbb33",
-                "name": "R U OK",
-                "description": "This is a sticker flakes",
-                "imageLinks": [
-                    "https://ibb.co/7vdXTsW",
-                    "https://ibb.co/DWTW5tV",
-                    "https://ibb.co/XJpPqPT"
-                ]
-            },
+            "product": "R U OK",
+            "imageLinks": "https://i.postimg.cc/7Cgg0Tjt/RUOK1.jpg",
             "price": 10,
             "quantity": 1,
             "_id": "63d79b36be7fa03f924bbb37"
