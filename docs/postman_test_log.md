@@ -60,11 +60,14 @@
 * Get a single cart with cartid in wrong format
   ![Get a single cart with cartid in wrong format](postman-testing-screenshot/Get%20a%20single%20cart%20with%20cartid%20in%20wrong%20format.png)
 
-* ![Delete a product from cart](postman-testing-screenshot/Delete%20a%20product%20from%20cart.png)
+* Delete a product from cart
+  ![Delete a product from cart](postman-testing-screenshot/Delete%20a%20product%20from%20cart.png)
   
-* ![Delete a product from cart with invalid cart id](postman-testing-screenshot/Delete%20a%20product%20from%20cart%20with%20invalid%20cart%20id.png)
+* Delete a product from cart with invalid cart id
+  ![Delete a product from cart with invalid cart id](postman-testing-screenshot/Delete%20a%20product%20from%20cart%20with%20invalid%20cart%20id.png)
   
-* ![Delete a product from cart with cartid in wrong format](postman-testing-screenshot/Delete%20a%20product%20from%20cart%20with%20cartid%20in%20wrong%20format.png)
+* Delete a product from cart with cartid in wrong format
+  ![Delete a product from cart with cartid in wrong format](postman-testing-screenshot/Delete%20a%20product%20from%20cart%20with%20cartid%20in%20wrong%20format.png)
   
 * Delete a cart with valid cart id
   ![Delete a cart with valid cart id](postman-testing-screenshot/Delete%20a%20cart%20with%20valid%20cart%20id.png)
