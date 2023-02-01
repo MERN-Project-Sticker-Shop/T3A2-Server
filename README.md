@@ -91,8 +91,6 @@ This app will target existing customers (mainly the scrapbookers) of the sticker
 
 Each page has three designs, corresponded to the mobile, tablet and desktop view. Each page has a signin button, a nav bar, a banner image and a contact us section. The contact us section includes links to the social media. Features like customer signin, order histories will only be implemented if time permitted.
 
----
-
 ### Home
 
 This is the landing page of our website. Customers can use the nav bar to navigate between different pages. Customers can also use the search bar in the product section to search for particular products. Customers can click the picture of the product to navigate to the products page for details.
@@ -195,9 +193,9 @@ We decided to use discord to communicate during this project. Before we start th
 
 We continued to use the Kanban board for part-b and task delegation. We created cards for tasks and label them with different labels, like MVP, Opional, High priority and etc. The Kanban board included several sections, backlog, to-do, doing, testing and done. Initially all cards were in the backlog section of the board, if we planned to do some of the cards, we will move them to the to-do section. When we doing that card, we will move it to the doing section, then testing section. Once it has been completed, we will move it to the done section.
 
-We have grouped tasks into different due dates based on the priority and whether it is MVP. Once we complete all tasks belongs to one due date(like all tasks that due on 23rd of Jan), we will have an audio call to review what we have done and discuss if there is any new tasks need to be added. If so, we will add new cards to the board. We will also review the due date for tasks that haven't started yet based on the current progression.  
+We have grouped tasks into different due dates based on the priority and whether it is MVP. MVP with high priority will have earlier due date, which means we have to complete them first. Once we complete all tasks belongs to one due date(like all tasks that due on 23rd of Jan), we will have an audio call to review what we have done and discuss if there is any new tasks need to be added. If so, we will add new cards to the board. We will also review the due date for tasks that haven't started yet based on the current progression.  
 
-Each card has been assigned to one or two members in the Kanban board, the name of the member can be seen at the bottom right part of the card. Basically, as we only have two memebers, we decided to divide the project into two parts, client-side and server-side, each will be assigned to a member.
+Each card has been assigned to one or two members in the Kanban board, the name of the member can be seen at the bottom right part of the card. Basically, as we only have two memebers, we decided to divide the project into two parts, client-side and server-side, each will be assigned to a member. Member who are more confident with React have been assigned with the client-side, and who are more confident with APIs, express and database models have been assigned with the server-side.
 
 ## Testing
 
