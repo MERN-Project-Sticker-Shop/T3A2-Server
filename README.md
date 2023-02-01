@@ -60,13 +60,9 @@ This app will target existing customers (mainly the scrapbookers) of the sticker
 ## Dataflow Diagram
 
 ---
-
----
 ![Dataflow Diagram](docs/Dataflow%20Diagram-revised.png)
 
 ## Application Architecture Diagram
-
----
 
 ---
 ![Application Architecture Diagram](docs/Application%20Architecture%20Diagram-updated.png)
@@ -175,13 +171,13 @@ The deployed application is available at [here](#deployment).
 
 * **Client**
 * **Server**
-* express
-* cors
-* dotnev
-* mongoose
-* jest
-* supertest
-* nodemon
+* express: Express is a Node.js web application framework for building web and mobile applications. It was used for building the backend of this applications to creates a robust API and allows for HTTP utility methods and middleware support.
+* cors: CORS is a node.js package for providing a Connect/Express middleware that can be used to enable cross origin resource sharing between Express server and React client with different origin or domain. We use cros in the application to ensure both client from local version and deployed website have access to the resources.
+* dotnev: Dotenv is a zero-dependency module that loads environment variables from a .env file into process.env. Environment variables like the connect url of mongo database can be safely stored in the .env file.
+* mongoose: Mongoose is an Object Data Modeling (ODM) library for MongoDB and Node.js. It allows defining strongly-typed schemas to manages relationships between data and provides schema validation. We use mongoose to define our schemas and handle the interaction between our express server and cloud mongo database to manipulate data. 
+* jest: Jest is a Javascript testing framework used to create, run and structure tests. We use jest to mock the functions in the express server to create unit tests.
+* supertest: SuperTest is a Node.js library that tests Restful APIs. It is driven by super-agent. It is used together with the testing framework jest to test the APIs of this application.
+* nodemon: Nodemon is used to automatically restarting the node application when changes of the code are detected.
 
 ## Project Management and Task Delegation Methodology
 
@@ -195,6 +191,8 @@ Use what methodology, determine the due data, how to allocate task
 
 ---
 We have written both unit testing and integration testing for both the client and server side of the application. These tests can be run using xxx at the client side and jest and supertest at server side.
+
+Test coverage report is available by opening the web brower and navaigate to (src/coverage/Icov-report/index.html)
 
 We have also down extensive user testing by ourselves during at both the development stage and production stage. During the development stage, we used postman to test the server side of the application.
 
