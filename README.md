@@ -199,16 +199,15 @@ We have grouped tasks into different due dates based on the priority and whether
 
 Each card has been assigned to one or two members in the Kanban board, the name of the member can be seen at the bottom right part of the card. Basically, as we only have two memebers, we decided to divide the project into two parts, client-side and server-side, each will be assigned to a member.
 
-
 ## Testing
 
 ---
 We have written both unit testing and integration testing for both the client and server side of the application. These tests can be run using xxx at the client side and jest and supertest at server side.
 
-Test coverage report is available by opening the web brower and navaigate to (src/coverage/Icov-report/index.html)
-
 We have also down extensive user testing by ourselves during at both the development stage and production stage. During the development stage, we used postman to test the server side of the application.
 
-Testing log and screenshots of postman testing is available at [here](docs/postman_test_log.md).
-
-
+* **Server**
+* Integration & Unit tests:
+Test coverage report is available by opening the web brower and navaigate to (src/coverage/Icov-report/index.html)
+* Development test(Postman-Manual):
+Test log and screenshots of postman testing is available at [here](docs/postman_test_log.md).
