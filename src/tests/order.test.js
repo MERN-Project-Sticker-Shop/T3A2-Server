@@ -36,12 +36,12 @@ let addressId
     // Test the value of the data returned
     it('Has an element with the correct data value', () => {
       expect(res.body[0].cart.items[0].product).toBe('R U OK') 
-      expect(res.body[0].cart.items[0].price).toBe(10)
+      expect(res.body[0].cart.items[0].price).toBe(3)
       expect(res.body[0].cart.items[0].quantity).toBe(1)
       expect(res.body[0].total).toBe(160)
       expect(res.body[0].address.email).toBe("12345@gmail.com")
       expect(res.body[1].cart.items[0].product).toBe('Autumn Vibes') 
-      expect(res.body[1].cart.items[0].price).toBe(15)
+      expect(res.body[1].cart.items[0].price).toBe(6)
       expect(res.body[1].cart.items[0].quantity).toBe(20)
       orderId = res.body[0]._id
     })
@@ -61,7 +61,7 @@ let addressId
     // Test the value of the data returned
     it('Has an element with the correct data value', () => {
       expect(res.body.cart.items[0].product).toBe('R U OK') 
-      expect(res.body.cart.items[0].price).toBe(10)
+      expect(res.body.cart.items[0].price).toBe(3)
       expect(res.body.total).toBe(160)
       expect(res.body.address.email).toBe("12345@gmail.com")
     })
