@@ -51,7 +51,7 @@ const addressSchema = await mongoose.Schema({
   firstName: { type:String, required:true},
   lastName: { type:String, required:true},
   phone: { type:String, required:true},
-  apartmentOrsuite: { type:String},
+  apartmentOrSuite: { type:String},
   streetAddress: { type:String, required:true},
   suburb: { type:String, required:true},
   state: { type:String, required:true},
