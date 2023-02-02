@@ -41,13 +41,13 @@ let newCartId
     it('Has an element with the correct data value', () => {
       expect(res.body[0].items[0].product).toBe("R U OK")
       expect(res.body[0].items[0].quantity).toBe(1)
-      expect(res.body[0].items[0].imageLink).toBe("https://i.postimg.cc/7Cgg0Tjt/RUOK1.jpg")
+      expect(res.body[0].items[0].imageLink).toBe("https://i.postimg.cc/Sxyck0pm/84c3983c010dcf1eb814972e8c66111.jpg")
       expect(res.body[0].items[1].product).toBe("Autumn Vibes")
       expect(res.body[0].items[1].quantity).toBe(10)   
-      expect(res.body[0].items[1].imageLink).toBe("https://i.postimg.cc/dhcPnbLH/1b32342cfbe061ad1733ace2f4ffb48.jpg")
+      expect(res.body[0].items[1].imageLink).toBe("https://i.postimg.cc/Pf0kghY8/a9631135138ebca99bef8ade1982662.jpg")
       expect(res.body[1].items[0].product).toBe("Autumn Vibes")
       expect(res.body[1].items[0].quantity).toBe(20)
-      expect(res.body[0].items[1].imageLink).toBe("https://i.postimg.cc/dhcPnbLH/1b32342cfbe061ad1733ace2f4ffb48.jpg")
+      expect(res.body[0].items[1].imageLink).toBe("https://i.postimg.cc/Pf0kghY8/a9631135138ebca99bef8ade1982662.jpg")
       cartId1 = res.body[0]._id
       cartId2 = res.body[1]._id
       })
@@ -79,10 +79,10 @@ let newCartId
     it('Has an element with the correct data value', () => {
       expect(res.body.items[0].product).toBe("R U OK")
       expect(res.body.items[0].quantity).toBe(1)
-      expect(res.body.items[0].imageLink).toBe("https://i.postimg.cc/7Cgg0Tjt/RUOK1.jpg")
+      expect(res.body.items[0].imageLink).toBe("https://i.postimg.cc/Sxyck0pm/84c3983c010dcf1eb814972e8c66111.jpg")
       expect(res.body.items[1].product).toBe("Autumn Vibes")
       expect(res.body.items[1].quantity).toBe(10)     
-      expect(res.body.items[1].imageLink).toBe("https://i.postimg.cc/dhcPnbLH/1b32342cfbe061ad1733ace2f4ffb48.jpg")
+      expect(res.body.items[1].imageLink).toBe("https://i.postimg.cc/Pf0kghY8/a9631135138ebca99bef8ade1982662.jpg")
     })
   })
     
@@ -111,13 +111,13 @@ let newCartId
     expect(res.headers['content-type']).toMatch(/json/i)
     expect(res.body._id).toBeDefined()
     expect(res.body.items[0].product).toBe("R U OK") 
-    expect(res.body.items[0].imageLink).toBe("https://i.postimg.cc/7Cgg0Tjt/RUOK1.jpg") 
-    expect(res.body.items[0].price).toBe(10)
+    expect(res.body.items[0].imageLink).toBe("https://i.postimg.cc/Sxyck0pm/84c3983c010dcf1eb814972e8c66111.jpg") 
+    expect(res.body.items[0].price).toBe(3)
     expect(res.body.items[0].quantity).toBe(1)
     expect(res.body.items[1].product).toBe("Autumn Vibes")  
-    expect(res.body.items[1].price).toBe(15)
+    expect(res.body.items[1].price).toBe(6)
     expect(res.body.items[1].quantity).toBe(30)    
-    expect(res.body.items[1].imageLink).toBe("https://i.postimg.cc/dhcPnbLH/1b32342cfbe061ad1733ace2f4ffb48.jpg")
+    expect(res.body.items[1].imageLink).toBe("https://i.postimg.cc/Pf0kghY8/a9631135138ebca99bef8ade1982662.jpg")
   })
 
   // Test the route to add product to the cart with valid cartid
@@ -129,13 +129,13 @@ let newCartId
     expect(res.headers['content-type']).toMatch(/json/i)
     expect(res.body._id).toBeDefined()
     expect(res.body.items[0].product).toBe("Autumn Vibes")  
-    expect(res.body.items[0].price).toBe(15)
+    expect(res.body.items[0].price).toBe(6)
     expect(res.body.items[0].quantity).toBe(20)  
-    expect(res.body.items[0].imageLink).toBe("https://i.postimg.cc/dhcPnbLH/1b32342cfbe061ad1733ace2f4ffb48.jpg")
+    expect(res.body.items[0].imageLink).toBe("https://i.postimg.cc/Pf0kghY8/a9631135138ebca99bef8ade1982662.jpg")
     expect(res.body.items[1].product).toBe("R U OK") 
-    expect(res.body.items[1].price).toBe(10)
+    expect(res.body.items[1].price).toBe(3)
     expect(res.body.items[1].quantity).toBe(30)  
-    expect(res.body.items[1].imageLink).toBe("https://i.postimg.cc/7Cgg0Tjt/RUOK1.jpg") 
+    expect(res.body.items[1].imageLink).toBe("https://i.postimg.cc/Sxyck0pm/84c3983c010dcf1eb814972e8c66111.jpg") 
   })
 
   // Test the route to add product to the cart with invalid cartid
@@ -157,9 +157,9 @@ let newCartId
     expect(res.headers['content-type']).toMatch(/json/i)
     expect(res.body._id).toBeDefined()
     expect(res.body.items[0].product).toBe("R U OK") 
-    expect(res.body.items[0].price).toBe(10)
+    expect(res.body.items[0].price).toBe(3)
     expect(res.body.items[0].quantity).toBe(15)
-    expect(res.body.items[0].imageLink).toBe("https://i.postimg.cc/7Cgg0Tjt/RUOK1.jpg") 
+    expect(res.body.items[0].imageLink).toBe("https://i.postimg.cc/Sxyck0pm/84c3983c010dcf1eb814972e8c66111.jpg") 
     newCartId = res.body._id
     })
 
@@ -180,9 +180,9 @@ let newCartId
       expect(res.headers['content-type']).toMatch(/json/i)
       expect(res.body._id).toBeDefined()
       expect(res.body.items[0].product).toBe("R U OK") 
-      expect(res.body.items[0].price).toBe(10)
+      expect(res.body.items[0].price).toBe(3)
       expect(res.body.items[0].quantity).toBe(1)
-      expect(res.body.items[0].imageLink).toBe("https://i.postimg.cc/7Cgg0Tjt/RUOK1.jpg")
+      expect(res.body.items[0].imageLink).toBe("https://i.postimg.cc/Sxyck0pm/84c3983c010dcf1eb814972e8c66111.jpg")
     })
   
     // Test to delete a cart item in the cart with invalid cartid

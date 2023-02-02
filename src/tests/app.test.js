@@ -48,9 +48,9 @@ describe("App tests", () => {
     // Test the value of the data returned
     it('Has an element with the correct data value', () => {
         expect(res.body[0].name).toBe("R U OK")
-        expect(res.body[0].price).toBe(10)
+        expect(res.body[0].price).toBe(3)
         expect(res.body[1].name).toBe("Autumn Vibes")
-        expect(res.body[1].price).toBe(15)
+        expect(res.body[1].price).toBe(6)
         productId1 = res.body[0]._id
         productId2 = res.body[1]._id
     })
@@ -71,8 +71,11 @@ describe("App tests", () => {
     // Test the value of the data returned
     it('Has an element with the correct data value', () => {
       expect(res.body.name).toBe("R U OK") 
-      expect(res.body.price).toBe(10)
-      expect(res.body.description).toBe("This is a sticker flakes")
+      expect(res.body.price).toBe(3)
+      expect(res.body.description).toBe('Perfect for Laptop, ipad, Phone, Bullet Journal, Scrapbook, any smooth and flat surface! ' +
+      'The size of the sticker flake is approximately 5.5cm x 6cm (2.17 inches x 2.36 inches), and the material ' + 
+      'is glossy water resistant laminate.To increase the lifespan of our stickers, ' + 
+      'please do not submerge it in water for long periods of time or subject it to hard scrubbing.')
     })
 
     // Test the data structure of the data returned
