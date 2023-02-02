@@ -33,8 +33,8 @@ const products = [
   'The size of the sticker sheet is approximately 11.5cm x 16.5cm (4.56 inches x 6.49 inches), and ' +
   'it is printed on glossy white sticker paper.  Stickers sheets are NOT waterproof.',
   imageLinks: [
-    'https://i.postimg.cc/y6DHpWgH/2938e70e8f884ee20aa9864fba6512a.jpg',
     'https://i.postimg.cc/Pf0kghY8/a9631135138ebca99bef8ade1982662.jpg',
+    'https://i.postimg.cc/y6DHpWgH/2938e70e8f884ee20aa9864fba6512a.jpg',
     'https://i.postimg.cc/Qd3ZMb68/e7619087dd1949e6e2f398bb861bfe8.jpg'
   ]
  }
