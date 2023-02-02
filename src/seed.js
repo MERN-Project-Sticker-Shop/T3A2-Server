@@ -17,9 +17,9 @@ console.log('Deleted all addresses')
 const products = [
   {name: 'R U OK',
    price: 3,
-   description: 'Perfect for Laptop, ipad, Phone, Bullet Journal, Scrapbook, any smooth and flat surface, ' +
-   'The size of the sticker flake is approximately 5.5cm x 6cm (2.17 inches x 2.36 inches), and the material ' +
-   'is glossy water resistant laminate. To increase the lifespan of our stickers, ' +
+   description: 'Perfect for Laptop, ipad, Phone, Bullet Journal, Scrapbook, any smooth and flat surface! ' +
+   'The size of the sticker flake is approximately 5.5cm x 6cm (2.17 inches x 2.36 inches), and the material ' + 
+   'is glossy water resistant laminate.To increase the lifespan of our stickers, ' + 
    'please do not submerge it in water for long periods of time or subject it to hard scrubbing.',
    imageLinks: [
     'https://i.postimg.cc/Sxyck0pm/84c3983c010dcf1eb814972e8c66111.jpg',
