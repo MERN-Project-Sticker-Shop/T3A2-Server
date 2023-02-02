@@ -16,21 +16,26 @@ console.log('Deleted all addresses')
 // Seed product data to the database
 const products = [
   {name: 'R U OK',
-   price: 10,
-   description: 'This is a sticker flakes',
+   price: 3,
+   description: 'Perfect for Laptop, ipad, Phone, Bullet Journal, Scrapbook, any smooth and flat surface, ' +
+   'The size of the sticker flake is approximately 5.5cm x 6cm (2.17 inches x 2.36 inches), and the material ' +
+   'is glossy water resistant laminate. To increase the lifespan of our stickers, ' +
+   'please do not submerge it in water for long periods of time or subject it to hard scrubbing.',
    imageLinks: [
-    'https://i.postimg.cc/7Cgg0Tjt/RUOK1.jpg',
-    'https://i.postimg.cc/9zxyd2N2/RUOK2.jpg',
-    'https://i.postimg.cc/PCDZnwff/RUOK3.jpg'
+    'https://i.postimg.cc/Sxyck0pm/84c3983c010dcf1eb814972e8c66111.jpg',
+    'https://i.postimg.cc/905qkKp5/9293fa5769cc68a8e7ff56d8d98ad85.jpg',
+    'https://i.postimg.cc/MTjQdq1m/d96034d3160d6b8e7e577f30dfca81c.jpg'
    ]
   },
   {name: 'Autumn Vibes',
-  price: 15,
-  description: 'This is a autumn sticker sheet',
+  price: 6,
+  description: 'Cute Cat Sticker Sheet. Perfect for Journaling, Planners, Card Making, decoration and Scrapbooks! ' +
+  'The size of the sticker sheet is approximately 11.5cm x 16.5cm (4.56 inches x 6.49 inches), and ' +
+  'it is printed on glossy white sticker paper.  Stickers sheets are NOT waterproof.',
   imageLinks: [
-    'https://i.postimg.cc/dhcPnbLH/1b32342cfbe061ad1733ace2f4ffb48.jpg',
-    'https://i.postimg.cc/1njbFTkK/a23c8a65932500cd1e72ff2cfc7b675.jpg',
-    'https://i.postimg.cc/8F18gLdL/e93cdad8f30d24fb02712ac59d41028.jpg'
+    'https://i.postimg.cc/y6DHpWgH/2938e70e8f884ee20aa9864fba6512a.jpg',
+    'https://i.postimg.cc/Pf0kghY8/a9631135138ebca99bef8ade1982662.jpg',
+    'https://i.postimg.cc/Qd3ZMb68/e7619087dd1949e6e2f398bb861bfe8.jpg'
   ]
  }
 ]
