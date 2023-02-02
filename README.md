@@ -239,10 +239,10 @@ Test log and screenshots of postman testing is available at [here](docs/postman_
 
 * **Server**
   1. Create a directory on your machine named MERN-Sticker-Shop and $ cd into it.
-  2. Whilst in the ToothInc directory, from bash CLI, clone the server repo $ git clone git@github.com:MERN-Project-Sticker-Shop/T3A2-Server.git.
+  2. Whilst in the MERN-Sticker-Shop directory, from bash CLI, clone the server repo $ git clone git@github.com:MERN-Project-Sticker-Shop/T3A2-Server.git.
   3. CD into the T3A2-Server folder $ cd T3A2-Server, then cd to the src folder $ src.
   4. Install npm packages with $ npm install.
-  5. Create a .env file and add the connection url to mongo database. Example is in .env.sample file.
+  5. Create a .env file in the src folder and add the connection url to mongo database. Example is in .env.sample file.
   6. Seed the Mongo database with the following command $ npm run seed to view dummy data in your local application.
   7. From bash run $ npm start to start the local server.
   8. The server will run on local host port 4001.
