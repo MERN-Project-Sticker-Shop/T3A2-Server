@@ -192,6 +192,10 @@ The MVP features of this application includes view product lists, view details o
 * `vite`: Vite is a build tool that significantly improves the front-end development experience. We use this to build our client-side application.
   
 * `vitest`: Vitest is the unit testing framework built on top of Vite, we use this framework together with testing libraries to test our client-side application.
+
+* `react-responsive`: This package allows us to make responsive design of our component at different device width.
+
+* `bootstrap`: Bootstrap is a free and open-source CSS(front-end development) Framework for developing responsive and mobile-first websites. We included it via CDN.
   
 * **Server**
 * `express`: Express is a Node.js web application framework for building web and mobile applications. It was used for building the backend of this applications to creates a robust API and allows for HTTP utility methods and middleware support.
