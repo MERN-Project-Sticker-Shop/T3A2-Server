@@ -1,8 +1,21 @@
 import app from '../app.js'
 import request from 'supertest'
+import { databaseConnector, databaseDisconnector } from '../mongooseConnector.js'
+import dotenv from 'dotenv'
 
-let productId1
-let productId2
+// Read the .env file
+dotenv.config()  
+
+// establish a connection to the database 
+const DATABASE_URI = process.env.ATLAS_DB_URL_TEST
+// set up before-tests and after-tests operations
+beforeAll(async () => {
+    await databaseConnector(DATABASE_URI);
+});
+
+afterAll(async () => {
+    await databaseDisconnector();
+});
 
 
 // Test the home route
@@ -51,8 +64,6 @@ describe("App tests", () => {
         expect(res.body[0].price).toBe(3)
         expect(res.body[1].name).toBe("Autumn Vibes")
         expect(res.body[1].price).toBe(6)
-        productId1 = res.body[0]._id
-        productId2 = res.body[1]._id
     })
   })
 

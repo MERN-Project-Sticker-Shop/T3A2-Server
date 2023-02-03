@@ -6,21 +6,6 @@ dotenv.config()
 
 mongoose.set('strictQuery', true)
 
-// Close db connection
-async function dbClose() {
-  await mongoose.connection.close()
-  console.log('Database disconnected')
-}
-
-// Connect to the mongo database
-try{
-  const m = await mongoose.connect(process.env.ATLAS_DB_URL) // obtain the environment variable
-  console.log(m.connection.readyState === 1 ? 'Mongoose connected' : 'Mongoose failed to connect')
-}
-catch(err) {
-  console.log(err)
-}
-
 // Create a schema and model for product
 const productSchema = await mongoose.Schema({
   name: { type:String, required:true },
@@ -64,4 +49,5 @@ const ProductModel = mongoose.model('Product', productSchema)
 const OrderModel = mongoose.model('Order', orderSchema)
 const AddressModel = mongoose.model('Address', addressSchema)
 
-export { ProductModel, CartModel, OrderModel, AddressModel, dbClose }
+
+export { ProductModel, CartModel, OrderModel, AddressModel }
