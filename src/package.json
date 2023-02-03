@@ -5,9 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watchAll",
-    "start": "nodemon index.js",
-    "seed": "node seed.js"
+    "test": "NODE_ENV=development node --experimental-vm-modules node_modules/jest/bin/jest.js --watchAll",
+    "start": "NODE_ENV=production nodemon index.js",
+    "seed": "NODE_ENV=development node seed.js",
+    "seed_prod": "NODE_ENV=production node seed.js"
   },
   "repository": {
     "type": "git",

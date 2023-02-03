@@ -1,4 +1,40 @@
-import { ProductModel, CartModel, OrderModel, AddressModel, dbClose } from './db.js'
+import { ProductModel, CartModel, OrderModel, AddressModel } from './db.js'
+import { databaseConnector, databaseDisconnector } from './mongooseConnector.js'
+import dotenv from 'dotenv'
+
+dotenv.config()  
+
+// During test, the test files have their own 
+// database connection management process.
+// So, we don't want to connect to the database here
+// during any automated testing if NODE_ENV = test.
+var databaseURL = "";
+switch (process.env.NODE_ENV.toLowerCase()) {
+    case "development":
+        databaseURL = process.env.ATLAS_DB_URL_TEST;
+        break;
+    case "production":
+        databaseURL = process.env.ATLAS_DB_URL;
+        break;
+    default:
+        console.error("server.js will not connect to the database in the current NODE_ENV.");
+        break;
+}
+
+// This functionality is a big promise-then chain.
+// This is because it requires some async functionality,
+// and that doesn't work without being wrapped in a function.
+// Since .then(callback) lets us create functions as callbacks,
+// we can just do stuff in a nice .then chain.
+databaseConnector(databaseURL).then(() => {
+    console.log("Database connected successfully!");
+}).catch(error => {
+    console.log(`
+    Some error occurred connecting to the database! It was: 
+    ${error}
+    `);
+    return error;
+})
 
 // Clear database
 await ProductModel.deleteMany()
@@ -108,5 +144,5 @@ const orders = [
 await OrderModel.insertMany(orders)
 console.log('Inserted orders')
 
-
-dbClose()
+await databaseDisconnector()
+console.log("DB seed connection closed.")

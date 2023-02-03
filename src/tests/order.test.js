@@ -1,9 +1,23 @@
 import app from '../app.js'
 import request from 'supertest'
+import { databaseConnector, databaseDisconnector } from '../mongooseConnector.js'
 import { cartId1 } from './cart.test.js'
+import dotenv from 'dotenv'
 
+dotenv.config()  
 let orderId
 let addressId
+
+// establish a connection to the database 
+const DATABASE_URI = process.env.ATLAS_DB_URL_TEST
+// set up before-tests and after-tests operations
+beforeAll(async () => {
+    await databaseConnector(DATABASE_URI);
+});
+
+afterAll(async () => {
+    await databaseDisconnector();
+});
 
   // Test to get all orders
   describe("GET order lists", () => {
