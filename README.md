@@ -12,7 +12,7 @@
 
 ---
 
-* Frontend: [Frontend Deployment]
+* Frontend: [Frontend Deployment](https://t3a2-client-production-c5c0.up.railway.app/)
   
 * Backend: [Backend Deployment](https://t3a2-server-production.up.railway.app/)
   
@@ -225,13 +225,24 @@ Each card has been assigned to one or two members in the Kanban board, the name 
 ---
 We have written both unit testing and integration testing for both the client and server side of the application. These tests can be run using vitest at the client side and jest and supertest at server side.
 
-We have also down extensive user testing by ourselves during at both the development stage and production stage. During the development stage, we used postman to test the server side of the application.
+We have also down extensive user testing by ourselves during at both the development stage and production stage. 
+
+### Development testing
+
+During the development stage, we used postman to test the server side of the application.
+
+* **Client**
 
 * **Server**
 * Integration & Unit tests:
-Test coverage report is available by opening the web brower, click CMD+O and navaigate to (T3A2-PART-B-SERVER/src/coverage/Icov-report/index.html)
+Test in a test database, not production database. Test coverage report is available by opening the web brower, click CMD+O and navaigate to (T3A2-PART-B-SERVER/src/coverage/Icov-report/index.html)
 * Development test(Postman-Manual):
 Test log and screenshots of postman testing is available at [here](docs/postman_test_log.md).
+
+### Production testing
+
+After we deployed both frontend and backend application, we and our families have visited and tested the deployed website.
+Test log is available at [here](docs/production_test_log.md)
 
 ## Installation
 
@@ -242,8 +253,8 @@ Test log and screenshots of postman testing is available at [here](docs/postman_
   2. Whilst in the MERN-Sticker-Shop directory, from bash CLI, clone the server repo $ git clone git@github.com:MERN-Project-Sticker-Shop/T3A2-Server.git.
   3. CD into the T3A2-Server folder $ cd T3A2-Server, then cd to the src folder $ src.
   4. Install npm packages with $ npm install.
-  5. Create a .env file in the src folder and add the connection url to mongo database. Example is in .env.sample file.
-  6. Seed the Mongo database with the following command $ npm run seed to view dummy data in your local application.
+  5. Create a .env file in the src folder and add the connection url of mongo database to ATLAS_DB_URL. Example is in .env.sample file.
+  6. Seed the Mongo database with inital data using the following command $ npm run seed_prod.
   7. From bash run $ npm start to start the local server.
   8. The server will run on local host port 4001.
 
