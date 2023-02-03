@@ -229,7 +229,7 @@ We have also down extensive user testing by ourselves during at both the develop
 
 * **Server**
 * Integration & Unit tests:
-Test coverage report is available by opening the web brower and navaigate to (src/coverage/Icov-report/index.html)
+Test coverage report is available by opening the web brower, click CMD+O and navaigate to (T3A2-PART-B-SERVER/src/coverage/Icov-report/index.html)
 * Development test(Postman-Manual):
 Test log and screenshots of postman testing is available at [here](docs/postman_test_log.md).
 
