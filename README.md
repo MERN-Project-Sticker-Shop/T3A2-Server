@@ -223,7 +223,7 @@ Each card has been assigned to one or two members in the Kanban board, the name 
 ## Testing
 
 ---
-We have written both unit testing and integration testing for both the client and server side of the application. These tests can be run using xxx at the client side and jest and supertest at server side.
+We have written both unit testing and integration testing for both the client and server side of the application. These tests can be run using vitest at the client side and jest and supertest at server side.
 
 We have also down extensive user testing by ourselves during at both the development stage and production stage. During the development stage, we used postman to test the server side of the application.
 
@@ -246,3 +246,11 @@ Test log and screenshots of postman testing is available at [here](docs/postman_
   6. Seed the Mongo database with the following command $ npm run seed to view dummy data in your local application.
   7. From bash run $ npm start to start the local server.
   8. The server will run on local host port 4001.
+
+* **Client**
+  1. In the MERN-Sticker-Shop directory, from bash CLI, clone the client repo $ git clone git@github.com:MERN-Project-Sticker-Shop/T3A2-Client.git
+  2. CD into the T3A2-Client folder & cd T3A2-Client.
+  3. Install npm packages with $ npm install.
+  4. Make sure the local server is still running on port 4001.
+  5. From bash CLI run $ npm run dev.
+  6. The server will allow requests from local host 5173.
