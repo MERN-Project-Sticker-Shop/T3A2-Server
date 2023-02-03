@@ -3,6 +3,7 @@ import request from 'supertest'
 import { databaseConnector, databaseDisconnector } from '../mongooseConnector.js'
 import dotenv from 'dotenv'
 
+// Read the .env file
 dotenv.config()  
 let cartId1
 let cartId2

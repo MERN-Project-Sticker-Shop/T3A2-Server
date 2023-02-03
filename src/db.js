@@ -1,6 +1,5 @@
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
-import { databaseConnector } from './mongooseConnector.js';
 
 // Read .env file
 dotenv.config()  

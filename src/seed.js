@@ -2,12 +2,12 @@ import { ProductModel, CartModel, OrderModel, AddressModel } from './db.js'
 import { databaseConnector, databaseDisconnector } from './mongooseConnector.js'
 import dotenv from 'dotenv'
 
+// Read the .env file
 dotenv.config()  
 
-// During test, the test files have their own 
-// database connection management process.
-// So, we don't want to connect to the database here
-// during any automated testing if NODE_ENV = test.
+// During development stage, we only want to test the testing database
+// If NODE_ENV is development, it will seed data into test database
+// If NODE_ENV is production, it will seed data into production database
 var databaseURL = "";
 switch (process.env.NODE_ENV.toLowerCase()) {
     case "development":
@@ -21,11 +21,7 @@ switch (process.env.NODE_ENV.toLowerCase()) {
         break;
 }
 
-// This functionality is a big promise-then chain.
-// This is because it requires some async functionality,
-// and that doesn't work without being wrapped in a function.
-// Since .then(callback) lets us create functions as callbacks,
-// we can just do stuff in a nice .then chain.
+// Connect to the database
 databaseConnector(databaseURL).then(() => {
     console.log("Database connected successfully!");
 }).catch(error => {
@@ -76,6 +72,7 @@ const products = [
  }
 ]
 
+// Insert data into the database
 const pros = await ProductModel.insertMany(products)
 console.log('Inserted products')
 
@@ -105,6 +102,7 @@ const carts = [
   ]}
 ]
 
+// Insert data into the database
 const cars = await CartModel.insertMany(carts)
 console.log('Inserted cart items')
 
@@ -132,6 +130,7 @@ const addresses = [
   }
 ]
 
+// Insert data into the database
 const adds = await AddressModel.insertMany(addresses)
 console.log('Inserted addresses')
 
@@ -141,8 +140,10 @@ const orders = [
   {cart: cars[1], total: 300, address: adds[1]}
 ]
 
+// Insert data into the database
 await OrderModel.insertMany(orders)
 console.log('Inserted orders')
 
+// Disconnect from the database
 await databaseDisconnector()
 console.log("DB seed connection closed.")

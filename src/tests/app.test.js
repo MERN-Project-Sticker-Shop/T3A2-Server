@@ -3,8 +3,8 @@ import request from 'supertest'
 import { databaseConnector, databaseDisconnector } from '../mongooseConnector.js'
 import dotenv from 'dotenv'
 
+// Read the .env file
 dotenv.config()  
-
 
 // establish a connection to the database 
 const DATABASE_URI = process.env.ATLAS_DB_URL_TEST

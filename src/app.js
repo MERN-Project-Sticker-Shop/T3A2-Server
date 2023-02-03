@@ -6,13 +6,14 @@ import orderRoutes from './routes/order_routes.js'
 import { databaseConnector } from './mongooseConnector.js'
 
 
-//Create a new instance of express server
+// Create a new instance of express server
 const app = express() 
 
-//Middlewares
+// Middlewares
 app.use(cors())  
 app.use(express.json())  
 
+// Determine which database to connect with.
 var databaseURL = "";
 switch (process.env.NODE_ENV.toLowerCase()) {
     case "development":
@@ -26,6 +27,7 @@ switch (process.env.NODE_ENV.toLowerCase()) {
         break;
 }
 
+// Connect to the database
 databaseConnector(databaseURL).then(() => {
     console.log("Database connected successfully!");
   }).catch(error => {

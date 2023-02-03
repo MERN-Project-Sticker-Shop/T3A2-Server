@@ -4,6 +4,7 @@ import { databaseConnector, databaseDisconnector } from '../mongooseConnector.js
 import { cartId1 } from './cart.test.js'
 import dotenv from 'dotenv'
 
+// Read the .env file
 dotenv.config()  
 let orderId
 let addressId
