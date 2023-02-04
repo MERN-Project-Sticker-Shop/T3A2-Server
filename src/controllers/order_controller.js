@@ -1,10 +1,13 @@
 import { OrderModel, AddressModel, CartModel } from '../db.js'
 
+// Get all orders
 async function getAllOrder (req, res) {
   res.send(await OrderModel.find().populate('cart').populate('address'))
 }
 
+// Get a single order
 async function getSingleOrder (req, res) {
+  // Use try/except to catch exceptions if entered invalid order id
   try {
     // Find the order object that matches the order id
     const order = await OrderModel.findOne({_id: req.params.orderid}).populate('cart').populate('address')
@@ -19,7 +22,9 @@ async function getSingleOrder (req, res) {
   }
 }
 
+// Create a new address in the database
 async function createAddress(req, res) {
+  // Use try/except to catch exceptions
   try {
     // Deconstruct the request body
     const { email, firstName, lastName, phone, apartmentOrSuite, streetAddress, suburb, state, postcode } = req.body 
@@ -34,7 +39,9 @@ async function createAddress(req, res) {
   }
 }
 
+// Create a new order in the database
 async function createOrder(req, res) {
+  // Use try/except to catch exceptions if entered invalid cart id and address id
   try {
     // Deconstruct the request body
     const { addressId, total, cartId } = req.body 
@@ -42,6 +49,7 @@ async function createOrder(req, res) {
     const addressObject = await AddressModel.findOne({ _id: addressId })
     // If exists, continue to verify whether the cart exitst. Otherwise, return the error message
     if (addressObject) {
+      // Verify whether cart exists
       const cartObject = await CartModel.findOne({ _id: cartId })
       // If both of them exit, create an instance of order model. Otherwiser, return the error message
       if (cartObject) {

@@ -6,7 +6,7 @@ dotenv.config()
 
 mongoose.set('strictQuery', true)
 
-// Create a schema and model for product
+// Create a schema for product
 const productSchema = await mongoose.Schema({
   name: { type:String, required:true },
   price: { type:Number, required:true },
@@ -14,7 +14,7 @@ const productSchema = await mongoose.Schema({
   imageLinks: { type:Array, required:true },
 })
 
-// Create a shema and model for cart
+// Create a shema for cart
 const cartSchema = await mongoose.Schema(
   {items: [{product: { type:String, required:true },
   price: { type:Number, required:true },
@@ -23,14 +23,14 @@ const cartSchema = await mongoose.Schema(
   }]}
 )
 
-// Create a schema and model for order
+// Create a schema for order
 const orderSchema = await mongoose.Schema({
   cart: { type:mongoose.ObjectId, ref: 'Cart' },
   total: { type:Number, required:true },
   address: { type:mongoose.ObjectId, ref: 'Address' }
 })
 
-// Create a schema and model for address
+// Create a schema for address
 const addressSchema = await mongoose.Schema({
   email: { type:String, required:true},
   firstName: { type:String, required:true},
@@ -43,7 +43,7 @@ const addressSchema = await mongoose.Schema({
   postcode: { type:Number, required:true},
 })
 
-
+// Create models for cart, product, order and address
 const CartModel = mongoose.model('Cart', cartSchema)
 const ProductModel = mongoose.model('Product', productSchema)
 const OrderModel = mongoose.model('Order', orderSchema)

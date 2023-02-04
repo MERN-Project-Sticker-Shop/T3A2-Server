@@ -12,7 +12,6 @@ router.get('/:cartid', getSingleCart)
 // Add products to cart
 router.post('/:cartid/:name', addProduct)
 
-
 //Delete one of the product from the cart
 router.delete('/:cartid/:name', deleteProduct)
 
