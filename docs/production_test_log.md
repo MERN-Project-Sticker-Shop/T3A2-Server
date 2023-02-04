@@ -4,7 +4,7 @@
 
 | Feature | Outcome | Comments |
 | ------------- | ------------- | ------------- |
-| Display nav bar and logo | Passed  | No issue  |
+| Display nav bar and logo, able to naviage between pages by clicking nav bar and logo | Passed  | No issue  |
 | Display contact us section includes email and links to social media | Passed  | No issue  |
 | Links to social media are working | Passed  | No issue  |
 | All pages are responsive | Passed  | No issue  |
@@ -13,7 +13,6 @@
 
 | Feature | Outcome | Comments |
 | ------------- | ------------- | ------------- |
-| Display nav bar and logo | Passed  | No issue  |
 | Display banner and shop info | Passed  | No issue  |
 | Display search bar and can be used to filter product | Passed  | No issue  |
 | Display product from database as a list. Each product has a image, name, price and a view details button | Passed  | No issue  |
@@ -40,6 +39,7 @@ Have not developed due to time limits.
 | Display product in the cart with a image, name, price, quantity | Passed  | No issue  |
 | Display subtotal of products which equals to their price | Passed  | No issue  |
 | Display the total payable of all products | Passed  | No issue  |
+| Able to delete product from cart | Passed  | No issue  |
 | Display the checkout and continue shopping button | Passed  | No issue  |
 | Click continue shoppping button will back to the products page  | Passed  | No issue  |
 | Click checkout button will go the checkout page | Passed  | No issue  |
@@ -66,3 +66,40 @@ Have not developed due to time limits.
 | Display the current processing time | Passed  | No issue  |
 | Display the shipping information | Passed  | No issue  |
 | Display a message saying 'Thank you so much for visiting our shop' | Passed  | No issue  |
+
+## Screenshots of website (Responsive)
+
+* Home page
+  ![Home page](Production_screenshots/Home%20Page%20-%20Desktop.png)
+  ![Home page](Production_screenshots/Home%20Page%20-%20Tablet.png)
+  ![Home page](Production_screenshots/Products%20Page%20-%20Mobile.png)
+
+* Search function
+
+  ![Search function](Production_screenshots/Search%20Function.png)
+  
+* Products page
+  ![Products page](Production_screenshots/Products%20Page%20-%20Desktop.png)
+  ![Products page](Production_screenshots/Products%20Page%20-%20Tablet.png)
+  ![Products page](Production_screenshots/Products%20Page%20-%20Mobile.png)
+
+* Cart page
+  ![Cart page](Production_screenshots/Cart%20Page%20-%20Desktop.png)
+  ![Cart page](Production_screenshots/Cart%20Page%20-%20Tablet.png)
+  ![Cart page](Production_screenshots/Cart%20Page%20-%20Mobile.png)
+
+* Quantity validation
+  ![Quantity validation](Production_screenshots/Quantity%20Validation.png)
+  
+* Checkout page
+  ![Checkout page](Production_screenshots/Checkout%20Page%20-%20Desktop.png)
+  ![Checkout page](Production_screenshots/Checkout%20Page%20-%20Tablet.png)
+  ![Checkout page](Production_screenshots/Checkout%20Page%20-%20Mobile.png)
+
+* Input validation
+  ![Input validation](Production_screenshots/Input%20Validation.png)
+
+* Confirmation page
+  ![Confirmation page](Production_screenshots/Confirmation%20Page%20-%20Desktop.png)
+  ![Confirmation page](Production_screenshots/Confirmation%20Page%20-%20Tablet.png)
+  ![Confirmation page](Production_screenshots/Confirmation%20Page%20-%20Mobile.png)
