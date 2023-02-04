@@ -152,7 +152,7 @@ This page displays order details.
 
  Trello Board : Our Trello board can be viewed [here](https://trello.com/b/9oxdHoQc/t3a2-full-stack-app)
 
-We took screeeshots of our Trello each day. These screenshots can be viewed [here]
+We took screeeshots of our Trello each day. These screenshots can be viewed [here](docs/trello.md)
 
 ---
 
