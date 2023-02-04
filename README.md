@@ -158,6 +158,18 @@ We took screeeshots of our Trello each day. These screenshots can be viewed [her
 
 We decided to use Kanban project methodology, which is efficient, flexible and allowed us to continously deliver our products. We achieved this by using the Kanban board on Trello.
 
+## Project Management and Task Delegation Methodology
+
+---
+
+We decided to use discord to communicate during this project. Before we started the project, we joined an audio call to divide the project into small tasks, decide the priority of each task, set up the due date of each task and assigned to each member. Each day we communicated about our progression in the morning and dicussed our plan for the day. If we face any issues, we will join the audio call to discuss it immediately. 
+
+We continued to use the Kanban board for part-b and task delegation. We created cards for tasks and label them with different labels, like MVP, Opional, High priority and etc. The Kanban board included several sections, backlog, to-do, doing, testing and done. Initially all cards were in the backlog section of the board, if we planned to do some of the cards, we will move them to the to-do section. When we doing that card, we will move it to the doing section, then testing section. Once it has been completed, we will move it to the done section.
+
+We have grouped tasks into different due dates based on the priority and whether it is MVP. MVP with high priority will have earlier due date, which means we have to complete them first. Once we completed all tasks belongs to one due date(like all tasks that due on 23rd of Jan), we will have an audio call to review what we have done and discuss if there is any new tasks need to be added. If so, we will add new cards to the board. We will also review the due date for tasks that haven't started yet based on the current progression.  
+
+Each card has been assigned to one or two members in the Kanban board, the name of the member can be seen at the bottom right part of the card. Basically, as we only have two memebers, we decided to divide the project into two parts, client-side and server-side, each will be assigned to a member. Member who are more confident with React have been assigned with the client-side, and who are more confident with APIs, express and database models have been assigned with the server-side.
+
 ## Implemented Application
 
 ---
@@ -212,17 +224,7 @@ The MVP features of this application includes view product lists, view details o
   
 * `nodemon`: Nodemon is used to automatically restarting the node application when changes of the code are detected.
 
-## Project Management and Task Delegation Methodology
 
----
-
-We decided to use discord to communicate during this project. Before we start the project, we joined an audio call to divide the project into small tasks, decide the priority of each task, set up the due date of each task and assigned to each member. Each day we communicated about our progression in the morning and dicuss our plan for the day. If we faces any issues, we will join the audio call to discuss it immediately. 
-
-We continued to use the Kanban board for part-b and task delegation. We created cards for tasks and label them with different labels, like MVP, Opional, High priority and etc. The Kanban board included several sections, backlog, to-do, doing, testing and done. Initially all cards were in the backlog section of the board, if we planned to do some of the cards, we will move them to the to-do section. When we doing that card, we will move it to the doing section, then testing section. Once it has been completed, we will move it to the done section.
-
-We have grouped tasks into different due dates based on the priority and whether it is MVP. MVP with high priority will have earlier due date, which means we have to complete them first. Once we complete all tasks belongs to one due date(like all tasks that due on 23rd of Jan), we will have an audio call to review what we have done and discuss if there is any new tasks need to be added. If so, we will add new cards to the board. We will also review the due date for tasks that haven't started yet based on the current progression.  
-
-Each card has been assigned to one or two members in the Kanban board, the name of the member can be seen at the bottom right part of the card. Basically, as we only have two memebers, we decided to divide the project into two parts, client-side and server-side, each will be assigned to a member. Member who are more confident with React have been assigned with the client-side, and who are more confident with APIs, express and database models have been assigned with the server-side.
 
 ## Testing
 
