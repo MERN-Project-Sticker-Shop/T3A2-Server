@@ -13,7 +13,8 @@ const app = express()
 app.use(cors())  
 app.use(express.json())  
 
-// Determine which database to connect with.
+// Determine which database to connect with.If under development stage, use test database
+// If under production, use production database. To avoid testing mess up the production database
 var databaseURL = "";
 switch (process.env.NODE_ENV.toLowerCase()) {
     case "development":

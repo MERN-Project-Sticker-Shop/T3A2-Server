@@ -18,9 +18,10 @@ async function checkProduct(productName, quantity) {
 // Verify cart
 async function checkCart(id) {
   // Find the cart object that matches the the cart id
+  // Use try/except to catch exceptions if entered invalid cart id
   try{
   const cartObject = await CartModel.findById({ _id: id  })
-    // If found, obtain the item array from the cart object
+    // If found, return the cart object
     if (cartObject) {
       return cartObject
     // If not, return the error message
@@ -36,12 +37,12 @@ async function checkCart(id) {
 
 // Update cart item and quantity
 async function updateCart(id, result, res) {
-    // Verify the cart first and return the item array of the cart
+    // Verify the cart first and return the cart object if found
 
     const cartResult = await checkCart(id, res)
-    // If the cart item exists
+    // If the cart object exists
     if (cartResult !=='Cart Item not found!' & cartResult !=='Invalid Cart Id') {
-      // Obtain the objectID of the product
+      // Obtain the name of the product
       const productName = result.product
       // Check whether the product already exists in the cart
       const found = cartResult.items.find(obj => {
@@ -60,6 +61,7 @@ async function updateCart(id, result, res) {
         const newItem = await CartModel.findByIdAndUpdate(id, updatedCartitem, { new: true})
         res.status(201).send(await newItem)
       }
+      // If not, send the error message
      else {
       res.status(404).send({ error: cartResult })
     }
@@ -113,6 +115,7 @@ async function deleteProduct(req, res) {
     if (result !== 'Product not found!') {
       // Check whether cart exists
       const cartItem = await checkCart(req.params.cartid,res)
+      // If cart exists
       if (cartItem !== 'Cart Item not found!' & cartItem !== 'Invalid Cart Id') {
         // Filter out product that match the name parameters in the url and create a new array
         const newCartitem = cartItem.items.filter(item => {
@@ -121,9 +124,11 @@ async function deleteProduct(req, res) {
         const newItem = await CartModel.findByIdAndUpdate(req.params.cartid, {items: newCartitem}, { new: true })
         // Send the updated array
         res.send(await newItem)
+        // If cart not exists, send the error message
       } else {
         res.status(404).send({ error: cartItem })
       }
+    // If product not exists, send the error message
     } else {
       res.status(404).send({ error: result })
     }
@@ -132,11 +137,14 @@ async function deleteProduct(req, res) {
 //Delete the whole cart
 async function deleteCart(req, res) {
   // Delete the cart with the id defined in the url
+  // Use try/except to catch exceptions if entered invalid cart id
   try {
+    // Find and delete the cart
     const cartItem = await CartModel.findByIdAndDelete(req.params.cartid)
-    // If cart exitst, delete it. If not, return the error message
+    // If cart exists, delete it. If not, return the error message
     if (cartItem) {
       res.sendStatus(204)
+    // If cart not exists, send the error message
     } else {
       res.status(404).send({error: 'Cart not found!'})
     }
