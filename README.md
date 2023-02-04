@@ -236,7 +236,8 @@ We have also down extensive user testing by ourselves during at both the develop
 During the development stage, we used postman to test the server side of the application.
 
 * **Client**
-
+* Development test:
+  Test log is available at [here](docs/client_side_test_log.md)
 * **Server**
 * Integration & Unit tests:
 Test in a test database, not production database. Test coverage report is available by opening the web brower, click CMD+O and navaigate to (T3A2-PART-B-SERVER/src/coverage/Icov-report/index.html)

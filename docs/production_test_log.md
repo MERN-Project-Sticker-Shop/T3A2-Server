@@ -7,6 +7,7 @@
 | Display nav bar and logo | Passed  | No issue  |
 | Display contact us section includes email and links to social media | Passed  | No issue  |
 | Links to social media are working | Passed  | No issue  |
+| All pages are responsive | Passed  | No issue  |
 
 ## Home and Products Page
 
@@ -15,7 +16,7 @@
 | Display nav bar and logo | Passed  | No issue  |
 | Display banner and shop info | Passed  | No issue  |
 | Display search bar and can be used to filter product | Passed  | No issue  |
-| Display product lists. Each product has a image, name, price and a view details button | Passed  | No issue  |
+| Display product from database as a list. Each product has a image, name, price and a view details button | Passed  | No issue  |
 | Click view details button will direct to the product's page with more details | Passed  | No issue  |
 
 ## Product-Detail Page
@@ -25,6 +26,8 @@
 | Display product images, name, price and description | Passed  | No issue  |
 | Display add to cart button | Passed  | No issue  |
 | Click add to cart button will add one product to the cart | Passed  | No issue  |
+| Click add to cart buttion will create a cart and stored in database | Passed  | No issue  |
+| Created cartId will be stored in sessionStorage | Passed  | No issue  |
 
 ## Order History Page(Optional)
 
@@ -40,6 +43,7 @@ Have not developed due to time limits.
 | Display the checkout and continue shopping button | Passed  | No issue  |
 | Click continue shoppping button will back to the products page  | Passed  | No issue  |
 | Click checkout button will go the checkout page | Passed  | No issue  |
+| If the number of quantity is 0, it will delete the product from cart automatically | Passed  | No issue  |
 
 ## Checkout Page
 
@@ -52,6 +56,7 @@ Have not developed due to time limits.
 | Display a place order and a back to cart button | Passed  | No issue  |
 | Click back to cart button will go back to the cart | Passed  | No issue  |
 | Click place order button will direct to the confirmation page | Passed  | No issue  |
+| Click place order button will create a new order and new address in database | Passed  | No issue  |
 
 ## Confirmation Page
 
