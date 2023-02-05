@@ -208,6 +208,8 @@ The MVP features of this application includes view product lists, view details o
 * `react-responsive`: This package allows us to make responsive design of our component at different device width.
 
 * `bootstrap`: Bootstrap is a free and open-source CSS(front-end development) Framework for developing responsive and mobile-first websites. We included it via CDN.
+
+* `msw`: Mock service worker is a testing library that mock by intercepting requests on the network level. We use this library to perform integration test at client-side application.
   
 * **Server**
 * `express`: Express is a Node.js web application framework for building web and mobile applications. It was used for building the backend of this applications to creates a robust API and allows for HTTP utility methods and middleware support.
